@@ -1,0 +1,148 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	/a3c87ab5/
+0	resources/Users.json	/^	{$/;"	o
+1	resources/Users.json	/^	{$/;"	o
+2	resources/Users.json	/^	{$/;"	o
+App	App.jsx	/^export default class App extends React.Component {$/;"	c
+App	components/Profile.jsx	/^export default class App extends React.Component {$/;"	c
+AppContent	App.jsx	/^const AppContent = styled.div`$/;"	C
+AppHeader	components/AppHeader.jsx	/^export default class AppHeader extends React.Component {$/;"	c
+ClickableDetail	components/Profile.jsx	/^const ClickableDetail = styled(NavLink)`$/;"	C
+Date	components/Dialog.jsx	/^const Date = styled.p`$/;"	C
+Date	components/Message.jsx	/^const Date = styled.p`$/;"	C
+Date	components/Post.jsx	/^const Date = styled.p`$/;"	C
+Date	components/Profile.jsx	/^const Date = styled.p`$/;"	C
+DetailIcon	components/Profile.jsx	/^const DetailIcon = styled.img`$/;"	C
+Dialog	components/Dialog.jsx	/^export default class Dialog extends React.Component {$/;"	c
+Feed	components/Feed.jsx	/^export default class Feed extends React.Component {$/;"	c
+FeedHeader	components/Feed.jsx	/^const FeedHeader = styled.header`$/;"	C
+FeedTitle	components/Feed.jsx	/^const FeedTitle = styled.h1`$/;"	C
+Home	components/User.jsx	/^const Home = styled.p`$/;"	C
+LastMessage	components/Dialog.jsx	/^const LastMessage = styled.p`$/;"	C
+Message	components/Message.jsx	/^export default class Message extends React.Component {$/;"	c
+Messenger	components/Messages.jsx	/^export default class Messenger extends React.Component {$/;"	c
+Messenger	components/Messenger.jsx	/^export default class Messenger extends React.Component {$/;"	c
+Name	components/Dialog.jsx	/^const Name = styled.p`$/;"	C
+Name	components/Message.jsx	/^const Name = styled.p`$/;"	C
+Name	components/Post.jsx	/^const Name = styled.p`$/;"	C
+Name	components/Profile.jsx	/^const Name = styled.p`$/;"	C
+Name	components/User.jsx	/^const Name = styled.p`$/;"	C
+Navbar	components/Navbar.jsx	/^export default class Navbar extends React.Component {$/;"	c
+NonclickableDetail	components/Profile.jsx	/^const NonclickableDetail = styled.div`$/;"	C
+Post	components/Post.jsx	/^export default class Post extends React.Component {$/;"	c
+Posts	components/Feed.jsx	/^const Posts = styled.div`$/;"	C
+ProfileDetails	components/Profile.jsx	/^const ProfileDetails = styled.div`$/;"	C
+ProfileHead	components/Profile.jsx	/^const ProfileHead = styled.div`$/;"	C
+Search	components/Search.jsx	/^export default class Search extends React.Component {$/;"	c
+Searchbar	components/Searchbar.jsx	/^export default class Searchbar extends React.Component {$/;"	c
+Status	components/Profile.jsx	/^const Status = styled.p`$/;"	C
+StyledApp	App.jsx	/^const StyledApp = styled.div`$/;"	C
+StyledAvatar	components/Dialog.jsx	/^const StyledAvatar = styled(Avatar)`$/;"	C
+StyledAvatar	components/Message.jsx	/^const StyledAvatar = styled(Avatar)`$/;"	C
+StyledAvatar	components/Post.jsx	/^const StyledAvatar = styled(Avatar)`$/;"	C
+StyledAvatar	components/Profile.jsx	/^const StyledAvatar = styled(Avatar)`$/;"	C
+StyledAvatar	components/User.jsx	/^const StyledAvatar = styled(Avatar)`$/;"	C
+StyledButton	components/AppHeader.jsx	/^const StyledButton = styled.button`$/;"	C
+StyledButton	components/Searchbar.jsx	/^const StyledButton = styled.input`$/;"	C
+StyledDialog	components/Dialog.jsx	/^const StyledDialog = styled(NavLink)`$/;"	C
+StyledDiv	App.jsx	/^const StyledDiv = styled.div`$/;"	C
+StyledFeed	components/Feed.jsx	/^const StyledFeed = styled.div`$/;"	C
+StyledHeader	components/AppHeader.jsx	/^const StyledHeader = styled.header`$/;"	C
+StyledImg	components/AppHeader.jsx	/^const StyledImg = styled.img`$/;"	C
+StyledImg	components/Navbar.jsx	/^const StyledImg = styled.img`$/;"	C
+StyledInput	components/Searchbar.jsx	/^const StyledInput = styled.input`$/;"	C
+StyledLink	components/AppHeader.jsx	/^const StyledLink = styled(NavLink)`$/;"	C
+StyledLink	components/Navbar.jsx	/^const StyledLink = styled(NavLink)`$/;"	C
+StyledMessage	components/Message.jsx	/^const StyledMessage = styled.div`$/;"	C
+StyledMessages	components/Messages.jsx	/^const StyledMessages = styled.div``$/;"	C
+StyledMessenger	components/Messenger.jsx	/^const StyledMessenger = styled.div`$/;"	C
+StyledNavbar	App.jsx	/^const StyledNavbar = styled(Navbar)`$/;"	C
+StyledNavbar	components/Navbar.jsx	/^const StyledNavbar = styled.nav`$/;"	C
+StyledPost	components/Post.jsx	/^const StyledPost = styled.div`$/;"	C
+StyledProfile	components/Profile.jsx	/^const StyledProfile = styled.div`$/;"	C
+StyledSearch	components/Search.jsx	/^const StyledSearch = styled.div`$/;"	C
+StyledSearchbar	components/Searchbar.jsx	/^const StyledSearchbar = styled.form`$/;"	C
+StyledUser	components/User.jsx	/^const StyledUser = styled.div`$/;"	C
+Text	components/Message.jsx	/^const Text = styled.p`$/;"	C
+Text	components/Post.jsx	/^const Text = styled.p`$/;"	C
+User	components/User.jsx	/^export default class User extends React.Component {$/;"	c
+avatar	resources/Users.json	/^		"avatar": "https:\/\/sun1-27.userapi.com\/impg\/Gpwt9PAYpQ1fSbxgvqKzHsTYRz_rizsHoHH4xw\/4lObKz/;"	s	object:2
+avatar	resources/Users.json	/^		"avatar": "https:\/\/sun1-30.userapi.com\/impg\/TVl8dwq9jH__6fMG7FmkmmuvowKTXHubZfLcnQ\/J2KAFU/;"	s	object:0
+avatar	resources/Users.json	/^		"avatar": "https:\/\/sun1-91.userapi.com\/impf\/c850632\/v850632285\/1b114c\/l5DFmFftULc.jpg?s/;"	s	object:1
+birth	resources/Users.json	/^		"birth": "15 декабря 1903г.",$/;"	s	object:1
+birth	resources/Users.json	/^		"birth": "15 мая",$/;"	s	object:2
+birth	resources/Users.json	/^		"birth": "27 сентября",$/;"	s	object:0
+body	index.css	/^body {$/;"	s
+button:focus	index.css	/^button:focus {$/;"	s
+cc	resources/big-logo.svg	/^        version="1.1">$/;"	n	uri:http://creativecommons.org/ns#
+cc	resources/small-logo.svg	/^        version="1.1">$/;"	n	uri:http://creativecommons.org/ns#
+dc	resources/big-logo.svg	/^        version="1.1">$/;"	n	uri:http://purl.org/dc/elements/1.1/
+dc	resources/small-logo.svg	/^        version="1.1">$/;"	n	uri:http://purl.org/dc/elements/1.1/
+friends	resources/Users.json	/^		"friends": "106"$/;"	s	object:0
+friends	resources/Users.json	/^		"friends": "19"$/;"	s	object:2
+friends	resources/Users.json	/^		"friends": "38"$/;"	s	object:1
+home	resources/Users.json	/^		"home": "Верхняя Пышма",$/;"	s	object:1
+home	resources/Users.json	/^		"home": "Москва",$/;"	s	object:2
+home	resources/Users.json	/^		"home": "Самара",$/;"	s	object:0
+id	resources/Users.json	/^		"id": "infret",$/;"	s	object:2
+id	resources/Users.json	/^		"id": "tupamashina",$/;"	s	object:1
+id	resources/Users.json	/^		"id": "wxlf13",$/;"	s	object:0
+input	index.css	/^input,$/;"	s
+name	resources/Users.json	/^		"name": "Владислав Печкин",$/;"	s	object:2
+name	resources/Users.json	/^		"name": "Никита Налейкин",$/;"	s	object:1
+name	resources/Users.json	/^		"name": "Сергей Жарков",$/;"	s	object:0
+newsfeed_outline_28	resources/feed-icon.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 28 28" id="newsfeed_outline_28"><g fill/;"	i
+ns178fdea40101	resources/small-logo.svg	/^        version="1.1">$/;"	n	uri:http://www.w3.org/2000/svg
+ns18734e310101	resources/grey-gift-icon.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 28 28"><g fill="none" fill-rule="evenod/;"	n	uri:http://www.w3.org/2000/svg
+ns41706c2c0101	resources/messenger-icon.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 28 28"><g fill="none" fill-rule="evenod/;"	n	uri:http://www.w3.org/2000/svg
+ns4a04212d0101	resources/blue-menu-icon.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 28 28"><g fill="none" fill-rule="evenod/;"	n	uri:http://www.w3.org/2000/svg
+ns5ea5f7ce0101	resources/blue-search-icon.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 28 28"><g fill="none" fill-rule="evenod/;"	n	uri:http://www.w3.org/2000/svg
+ns630218320101	resources/grey-friends-icon.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 28 28"><g fill="none" fill-rule="evenod/;"	n	uri:http://www.w3.org/2000/svg
+ns78c1d6e30101	resources/blue-friends-icon.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 28 28"><g fill="none" fill-rule="evenod/;"	n	uri:http://www.w3.org/2000/svg
+ns85cc8f770101	resources/feed-icon.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 28 28" id="newsfeed_outline_28"><g fill/;"	n	uri:http://www.w3.org/2000/svg
+ns89dfc5070101	resources/white-search-icon.svg	/^<svg height="20" viewBox="0 0 16 16" width="20" xmlns="http:\/\/www.w3.org\/2000\/svg"><g fill="/;"	n	uri:http://www.w3.org/2000/svg
+ns968e8fb40101	resources/profile-icon.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 28 28"><g fill="none" fill-rule="evenod/;"	n	uri:http://www.w3.org/2000/svg
+nsd630a79d0101	resources/big-logo.svg	/^        version="1.1">$/;"	n	uri:http://www.w3.org/2000/svg
+nsf670fbd00101	resources/grey-home-icon.svg	/^<svg xmlns="http:\/\/www.w3.org\/2000\/svg" viewBox="0 0 28 28"><g fill="none" fill-rule="evenod/;"	n	uri:http://www.w3.org/2000/svg
+path128	resources/big-logo.svg	/^     ry="4.4467926" \/>$/;"	i
+path128	resources/small-logo.svg	/^     ry="4.4467926" \/>$/;"	i
+path132	resources/big-logo.svg	/^     ry="2.0864067" \/>$/;"	i
+path132	resources/small-logo.svg	/^     ry="2.0864067" \/>$/;"	i
+path42	resources/big-logo.svg	/^     d="m 97.353653,28.510922 c 1.033674,0.604878 2.047561,1.243492 3.063737,1.877268 0.89615,0./;"	i
+path915	resources/big-logo.svg	/^     d="m 104.31756,25.018323 c -0.35846,0.835593 -1.04309,1.330057 -1.78041,1.813057 -1.59196,0/;"	i
+path919	resources/big-logo.svg	/^     r="0.11727763" \/>$/;"	i
+path921	resources/big-logo.svg	/^     d="m 99.356447,34.009332 c 2.217303,0.18188 3.789243,0.06025 5.137123,-2.423453 0.1953,-0.3/;"	i
+path973	resources/big-logo.svg	/^     transform="matrix(0.75976193,-0.65020136,0.51706122,0.85594842,0,0)" \/>$/;"	i
+rdf	resources/big-logo.svg	/^        version="1.1">$/;"	n	uri:http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rdf	resources/small-logo.svg	/^        version="1.1">$/;"	n	uri:http://www.w3.org/1999/02/22-rdf-syntax-ns#
+rect116	resources/big-logo.svg	/^     y="17.266369" \/>$/;"	i
+rect126	resources/big-logo.svg	/^     y="15.397348" \/>$/;"	i
+rect126	resources/small-logo.svg	/^     y="15.397348" \/>$/;"	i
+rect38	resources/big-logo.svg	/^     y="25.609501" \/>$/;"	i
+rect40	resources/big-logo.svg	/^     y="25.609501" \/>$/;"	i
+rect46	resources/big-logo.svg	/^     y="25.609501" \/>$/;"	i
+rect965	resources/big-logo.svg	/^     transform="matrix(0.84864932,-0.52895588,0.3043917,0.95254695,0,0)" \/>$/;"	i
+rect969	resources/big-logo.svg	/^     transform="matrix(0.97380763,-0.22737349,0.18816434,0.98213756,0,0)" \/>$/;"	i
+render	App.jsx	/^	render() {$/;"	m	class:App
+render	components/AppHeader.jsx	/^  render() {$/;"	m	class:AppHeader
+render	components/Dialog.jsx	/^	render(name, id, avatar, message, date) {$/;"	m	class:Dialog
+render	components/Feed.jsx	/^  render() {$/;"	m	class:Feed
+render	components/Message.jsx	/^	render(name, avatar, message, date) {$/;"	m	class:Message
+render	components/Messages.jsx	/^	render() {$/;"	m	class:Messenger
+render	components/Messenger.jsx	/^	render() {$/;"	m	class:Messenger
+render	components/Navbar.jsx	/^	render() {$/;"	m	class:Navbar
+render	components/Post.jsx	/^	render(name, id, avatar, date, text) {$/;"	m	class:Post
+render	components/Profile.jsx	/^	render(id) {$/;"	m	class:App
+render	components/Search.jsx	/^	render() {$/;"	m	class:Search
+render	components/Searchbar.jsx	/^	render() {$/;"	m	class:Searchbar
+render	components/User.jsx	/^	render(name, id, avatar, home) {$/;"	m	class:User
+reportWebVitals	reportWebVitals.js	/^const reportWebVitals = onPerfEntry => {$/;"	C
+status	resources/Users.json	/^		"status": "~take my hand~",$/;"	s	object:0
+status	resources/Users.json	/^		"status": "Запомни, брат: волк не спит, волк - спит, но если/;"	s	object:1
+status	resources/Users.json	/^		"status": "Я тут главный",$/;"	s	object:2

@@ -1,0 +1,20 @@
+[
+	{
+		"id": "0",
+		"name": "Vlad Peach",
+		"avatar": "https://images.unsplash.com/photo-1517693470211-fb96913b7277?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8c2thdGUlMjBzaWxob3VldHRlfGVufDB8fDB8&auto=format&fit=crop&w=500&q=60",
+		"birth": "15 May",
+		"status": "I'm the Creator",
+		"home": "Moscow",
+		"friends": "19"
+	},
+	{
+		"id": "1",
+		"name": "Nick Null",
+		"avatar": "https://images.unsplash.com/photo-1581456495146-65a71b2c8e52?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80",
+		"birth": "15 January",
+		"status": "~take my hand~",
+		"home": "Samara",
+		"friends": "106"
+	}
+]
