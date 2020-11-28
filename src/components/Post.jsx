@@ -1,17 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import Avatar from './Avatar'
+import Card from './Card'
 
-const StyledPost = styled.div`
+const StyledPost = styled(Card)`
 	width: 100%;
 	display: grid;
 	grid-template-areas: 'avatar name' 'avatar date' 'text text';
 	grid-template-columns: 74px 1fr;
 	grid-template-rows: 37px 37px 1fr;
 	text-decoration: none;
-	box-shadow: var(--elevation);
-	background-color: var(--white);
-	border-radius: 4px;
 	margin-top: 6px;
 `
 
@@ -40,7 +38,7 @@ const Text = styled.p`
 `
 
 export default class Post extends React.Component {
-	render(name, id, avatar, date, text) {
+	render() {
 		return (
 			<StyledPost>
 				<StyledAvatar src={this.props.avatar} />

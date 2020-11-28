@@ -6,7 +6,7 @@ const StyledSearchbar = styled.form`
 	height: 34px;
 	display: flex;
 	align-items: center;
-	margin: 12px;
+	padding: 12px;
 `
 
 const StyledInput = styled.input`
@@ -37,12 +37,11 @@ const StyledButton = styled.input`
 		background-color: var(--darker-blue);
 	}
 `
-
 export default class Searchbar extends React.Component {
 	render() {
 		return (
 			<StyledSearchbar>
-				<StyledInput type="text" placeholder="Поиск" />
+				<StyledInput type="text" placeholder="Search" />
 				<StyledButton type="submit" value="" />
 			</StyledSearchbar>
 		)

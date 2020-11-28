@@ -5,6 +5,7 @@ import Navbar from './components/Navbar'
 import Feed from './components/Feed'
 import Profile from './components/Profile'
 import Messenger from './components/Messenger'
+import Friendlist from './components/Friendlist'
 import Search from './components/Search'
 import { BrowserRouter, Route } from 'react-router-dom'
 
@@ -35,6 +36,7 @@ export default class App extends React.Component {
 						<Route path="/user" component={Profile} />
 						<Route path="/feed" component={Feed} />
 						<Route path="/messenger" component={Messenger} />
+						<Route path="/friends" component={Friendlist} />
 						<Route path="/search" component={Search} />
 					</AppContent>
 				</StyledDiv>

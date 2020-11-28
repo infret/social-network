@@ -32,7 +32,7 @@ export default class Header extends React.Component {
 		return (
 			<StyledHeader>
 				<StyledLink to="/feed">
-					<StyledImg src={FullLogo} alt="Вреакте" />
+					<StyledImg src={FullLogo} alt="Vreacte" />
 				</StyledLink>
 			</StyledHeader>
 		)

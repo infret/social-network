@@ -4,7 +4,6 @@ import HeaderButton from './HeaderButton'
 import BlueMenuIcon from '../resources/blue-menu-icon.svg'
 import BlueMoreIcon from '../resources/blue-more-icon.svg'
 
-
 const StyledHeader = styled.header`
 	background-color: var(--white);
 	height: 52px;

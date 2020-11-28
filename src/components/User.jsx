@@ -27,7 +27,7 @@ const Name = styled.p`
 const Home = styled.p`
 	grid-area: text;
 	align-self: end;
-	font-size: 14px;
+	font-size: 15px;
 	color: #999;
 `
 
