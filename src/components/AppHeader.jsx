@@ -10,15 +10,13 @@ const StyledHeader = styled.header`
 	position: fixed;
 	display: flex;
 	align-items: center;
-	justify-content: center;
 	box-shadow: var(--elevation);
 `
 
 const StyledLink = styled(NavLink)`
 	margin-left: 14px;
 	height: 28px;
-	width: 886px;
-	@media (max-width: 800px) {
+	@media (max-width: 700px) {
 		display: none;
 	}
 `

@@ -13,7 +13,7 @@ const StyledNavbar = styled.nav`
 	position: sticky;
 	margin: 58px 6px;
 	background-color: var(--light-grey);
-	@media (max-width: 800px) {
+	@media (max-width: 700px) {
 		display: none;
 	}
 `

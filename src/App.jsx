@@ -13,14 +13,17 @@ const StyledDiv = styled.div`
 	width: 900px;
 	margin: 0 auto 0 auto;
 	display: flex;
-	@media (max-width: 800px) {
-		width: 100vw;
+	@media (max-width: 700px) {
+		width: 700px;
 	}
 `
 
 const AppContent = styled.div`
 	width: 650px;
-	@media (max-width: 800px) {
+	@media (max-width: 900px) {
+		width: 70vw;
+	}
+	@media (max-width: 700px) {
 		width: 100vw;
 	}
 `
