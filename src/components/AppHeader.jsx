@@ -6,7 +6,7 @@ import FullLogo from '../resources/big-logo.svg'
 const StyledHeader = styled.header`
 	background-color: var(--white);
 	height: 52px;
-	width: 100%;
+	width: 100vw;
 	position: fixed;
 	display: flex;
 	align-items: center;

@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import Post from './Post'
-import Users from '../resources/Users.json'
-import Posts from '../resources/Posts.json'
+import Users from '../resources/UsersData.json'
+import Posts from '../resources/PostsData.json'
 import PageHeader from './PageHeader'
 
 const StyledFeed = styled.div``

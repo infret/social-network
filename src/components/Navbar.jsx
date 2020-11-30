@@ -6,7 +6,7 @@ import FeedIcon from '../resources/feed-icon.svg'
 import BlueFriendsIcon from '../resources/blue-friends-icon.svg'
 import MessengerIcon from '../resources/messenger-icon.svg'
 import BlueSearchIcon from '../resources/blue-search-icon.svg'
-import Users from '../resources/Users.json'
+import Users from '../resources/UsersData.json'
 
 const StyledNavbar = styled.nav`
 	width: 238px;

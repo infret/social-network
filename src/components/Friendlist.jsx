@@ -6,29 +6,27 @@ import Card from './Card'
 import PageHeader from './PageHeader'
 import styled from 'styled-components'
 
-const StyledSearch = styled.div``
+const StyledFriendlist = styled.div``
 
 const PageContent = styled(Card)`
 	margin-top: 6px;
 `
 
-export default class Search extends React.Component {
+export default class Friendlist extends React.Component {
 	render() {
 		return (
-			<StyledSearch>
-				<PageHeader title="Search people" />
+			<StyledFriendlist>
+				<PageHeader title="Friends" />
 				<PageContent>
 					<Searchbar />
-					{Users.map((Users) => (
-						<User
-							name={Users.name}
-							id={Users.id}
-							avatar={Users.avatar}
-							home={Users.home}
-						/>
-					))}
+					<User
+						name={Users[1].name}
+						id={Users[1].id}
+						avatar={Users[1].avatar}
+						home={Users[1].home}
+					/>
 				</PageContent>
-			</StyledSearch>
+			</StyledFriendlist>
 		)
 	}
 }
