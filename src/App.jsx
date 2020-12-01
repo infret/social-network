@@ -7,7 +7,7 @@ import Messenger from './components/Messenger'
 import Friendlist from './components/Friendlist'
 import Search from './components/Search'
 import { BrowserRouter, Route } from 'react-router-dom'
-import MessagesPage from './components/Messages'
+import Messages from './components/Messages'
 import state from './State'
 
 const AppContainer = styled.div`
@@ -47,7 +47,7 @@ export default class App extends React.Component {
 						<Route path="/user" component={Profile} state="state"/>
 						<Route path="/feed" component={Feed} />
 						<Route path="/messenger" render={ () => <Messenger state={state}/>}/>
-						<Route path={"/dialog/" + 1} component={MessagesPage} />
+						<Route path={"/dialog/" + 1} component={ () => <Messages state={state}/>} />
 						<Route path="/friends" component={Friendlist} />
 						<Route path="/search" component={Search} />
 					</AppContent>

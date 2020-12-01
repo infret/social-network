@@ -67,13 +67,6 @@ export default class Messenger extends React.Component {
 						<Date>{this.props.state.messages[1].date}</Date>
 						<LastMessage>{this.props.state.messages[this.props.state.messages.length - 1].text}</LastMessage>
 					</StyledDialog>
-					{/* <Dialog
-						name={Users[Messages[1].sender_id].name}
-						id={Users[Messages[1].sender_id].id}
-						avatar={Users[Messages[1].sender_id].avatar}
-						text={Messages[1].text}
-						date={Messages[1].date}
-					/> */}
 				</PageContent>
 			</StyledMessenger>
 		)
