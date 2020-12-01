@@ -42,12 +42,13 @@
      id="namedview40"
      showgrid="false"
      inkscape:zoom="5.6568543"
-     inkscape:cx="53.13101"
+     inkscape:cx="105.63369"
      inkscape:cy="5.610678"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
-     inkscape:current-layer="svg38" />
+     inkscape:current-layer="svg38"
+     inkscape:document-rotation="0" />
   <path
      d="m0 23c0-10.8423 0-16.26346 3.36827-19.63173s8.78943-3.36827 19.63173-3.36827h2c10.8423 0 16.2635 0 19.6317 3.36827 3.3683 3.36827 3.3683 8.78943 3.3683 19.63173v2c0 10.8423 0 16.2635-3.3683 19.6317-3.3682 3.3683-8.7894 3.3683-19.6317 3.3683h-2c-10.8423 0-16.26346 0-19.63173-3.3683-3.36827-3.3682-3.36827-8.7894-3.36827-19.6317z"
      fill="#2787f5"
@@ -205,42 +206,13 @@
      y="79.68042"
      transform="matrix(0.79678536,-0.60426244,0.48030707,0.87710041,0,0)" />
   <rect
-     style="fill:#ffffff;stroke:#ffffff;stroke-width:0.927866"
-     id="rect70"
-     width="12.985743"
-     height="5.6222687"
-     x="94.528084"
-     y="35.485023" />
-  <rect
-     style="fill:#000000;stroke:#000000;stroke-width:1.08514"
-     id="rect74"
-     width="4.7184029"
-     height="26.194078"
-     x="-86.079651"
-     y="-24.57501"
-     transform="matrix(-0.90501702,-0.42537535,-0.3183014,0.94798957,0,0)" />
-  <rect
-     style="fill:#000000;stroke:#000000;stroke-width:1.07188"
+     style="fill:#000000;stroke:#000000;stroke-width:1.00351"
      id="rect78"
-     width="4.600225"
-     height="26.214167"
-     x="58.873009"
-     y="41.164478"
-     transform="matrix(0.89887549,-0.43820413,0.30798706,0.95139055,0,0)" />
-  <rect
-     style="fill:#ffffff;stroke:#ffffff"
-     id="rect907"
-     width="9.9890747"
-     height="3.999234"
-     x="70.539009"
-     y="35.485023" />
-  <rect
-     style="fill:#ffffff;stroke:#ffffff;stroke-width:1.59884"
-     id="rect909"
-     width="26.113415"
-     height="3.9106297"
-     x="61.159882"
-     y="8.3864431" />
+     width="4.0704503"
+     height="25.96706"
+     x="63.590054"
+     y="46.606853"
+     transform="matrix(0.86768267,-0.49711848,0.26556481,0.96409301,0,0)" />
   <ellipse
      style="fill:#ffffff;stroke:#ffffff;stroke-width:0.925189"
      id="path918"
@@ -278,4 +250,26 @@
      cy="21.410091"
      rx="2.9207723"
      ry="2.2037678" />
+  <rect
+     style="fill:#000000;stroke:#000000;stroke-width:1.00351"
+     id="rect41"
+     width="4.0704503"
+     height="25.96706"
+     x="-89.238426"
+     y="-32.196602"
+     transform="matrix(-0.86768267,-0.49711848,-0.26556481,0.96409301,0,0)" />
+  <rect
+     style="fill:#ffffff;stroke:#ffffff"
+     id="rect43"
+     width="33.210125"
+     height="4.228857"
+     x="60.30323"
+     y="8.1999998" />
+  <rect
+     style="fill:#ffffff;stroke:#ffffff;stroke-width:1.1944"
+     id="rect45"
+     width="49.660385"
+     height="4.0344543"
+     x="60.400433"
+     y="35.597202" />
 </svg>

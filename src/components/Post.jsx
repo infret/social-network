@@ -44,7 +44,7 @@ export default class Post extends React.Component {
 				<StyledAvatar src={this.props.avatar} />
 				<Name>{this.props.name}</Name>
 				<Text>{this.props.text}</Text>
-				<Date>{this.props.date + ' ' + this.props.time}</Date>
+				<Date>{this.props.date}</Date>
 			</StyledPost>
 		)
 	}
