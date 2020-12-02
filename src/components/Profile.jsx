@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import Avatar from './Avatar'
-import Users from '../resources/UsersData.json'
 import PageHeader from './PageHeader'
 import Card from './Card'
 import GreyFriendsIcon from '../resources/grey-friends-icon.svg'
@@ -72,23 +71,23 @@ export default class App extends React.Component {
 				<PageHeader title="Profile" />
 				<PageContent>
 					<ProfileHead>
-						<StyledAvatar src={Users[0].avatar} />
-						<Name>{Users[0].name}</Name>
-						<Status>{Users[0].status}</Status>
-						<State>{Users[0].state}</State>
+						<StyledAvatar src={this.props.state.users[0].avatar} />
+						<Name>{this.props.state.users[0].name}</Name>
+						<Status>{this.props.state.users[0].status}</Status>
+						<State>{this.props.state.users[0].state}</State>
 					</ProfileHead>
 					<ProfileDetails>
 						<ProfileDetail>
 							<DetailIcon src={GreyFriendsIcon} />
-							{Users[0].friends} friends
+							{this.props.state.users[0].friends} friends
 						</ProfileDetail>
 						<ProfileDetail>
 							<DetailIcon src={GreyHomeIcon} />
-							{Users[0].home}
+							{this.props.state.users[0].home}
 						</ProfileDetail>
 						<ProfileDetail>
 							<DetailIcon src={GreyGiftIcon} />
-							{Users[0].birth}
+							{this.props.state.users[0].birth}
 						</ProfileDetail>
 					</ProfileDetails>
 				</PageContent>

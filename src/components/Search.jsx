@@ -1,6 +1,5 @@
 import React from 'react'
 import Searchbar from './Searchbar'
-import Users from '../resources/UsersData.json'
 import User from './User'
 import Card from './Card'
 import PageHeader from './PageHeader'
@@ -19,7 +18,7 @@ export default class Search extends React.Component {
 				<PageHeader title="Search people" />
 				<PageContent>
 					<Searchbar />
-					{Users.map((Users) => (
+					{this.props.state.users.map((Users) => (
 						<User
 							name={Users.name}
 							id={Users.id}

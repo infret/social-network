@@ -1,8 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import Post from './Post'
-import Users from '../resources/UsersData.json'
-import Posts from '../resources/PostsData.json'
 import PageHeader from './PageHeader'
 
 const StyledFeed = styled.div``
@@ -12,14 +10,13 @@ export default class Feed extends React.Component {
 		return (
 			<StyledFeed>
 				<PageHeader title="News" />
-				{Posts.map((Posts) => (
+				{this.props.state.users[0].posts.map(({ text, date}) => (
 					<Post
-						name={Users[Posts.sender_id].name}
-						id={Posts.id}
-						avatar={Users[Posts.sender_id].avatar}
-						text={Posts.text}
-						date={Posts.date}
-						time={Posts.time}
+						name={this.props.state.users[0].name}
+						id={this.props.state.users[0].posts.id}
+						avatar={this.props.state.users[0].avatar}
+						text={text}
+						date={date}
 					/>
 				))}
 			</StyledFeed>

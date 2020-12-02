@@ -7,7 +7,6 @@ import BlueFriendsIcon from '../resources/blue-friends-icon.svg'
 import MessengerIcon from '../resources/messenger-icon.svg'
 import BlueSearchIcon from '../resources/blue-search-icon.svg'
 import BigLogo from '../resources/big-logo.svg'
-import Users from '../resources/UsersData.json'
 
 const StyledNavbar = styled.nav`
 	width: 238px;
@@ -52,9 +51,9 @@ export default class Navbar extends React.Component {
 			<StyledNavbar>
 				<AppLogo src={BigLogo} />
 				<Navlinks>
-					<StyledLink to={'/user/' + Users[0].id}>
+					<StyledLink to={'/user/' + this.props.state.users[0].id}>
 						<StyledImg src={ProfileIcon} />
-						{Users[0].name}
+						{this.props.state.users[0].name}
 					</StyledLink>
 					<StyledLink to="/feed">
 						<StyledImg src={FeedIcon} />

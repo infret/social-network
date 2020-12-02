@@ -42,14 +42,23 @@ export default class App extends React.Component {
 			<BrowserRouter state={state}>
 				<AppHeader />
 				<AppContainer>
-					<Navbar />
+					<Navbar state={state} />
 					<AppContent>
-						<Route path="/user" component={Profile} state="state"/>
-						<Route path="/feed" component={Feed} />
-						<Route path="/messenger" render={ () => <Messenger state={state}/>}/>
-						<Route path={"/dialog/" + 1} component={ () => <Messages state={state}/>} />
-						<Route path="/friends" component={Friendlist} />
-						<Route path="/search" component={Search} />
+						<Route path="/user" component={() => <Profile state={state} />} />
+						<Route path="/feed" component={() => <Feed state={state} />} />
+						<Route
+							path="/messenger"
+							render={() => <Messenger state={state} />}
+						/>
+						<Route
+							path={'/dialog/' + 1}
+							component={() => <Messages state={state} />}
+						/>
+						<Route
+							path="/friends"
+							component={() => <Friendlist state={state} />}
+						/>
+						<Route path="/search" component={() => <Search state={state} />} />
 					</AppContent>
 				</AppContainer>
 			</BrowserRouter>
