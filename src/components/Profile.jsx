@@ -3,21 +3,22 @@ import styled from 'styled-components'
 import Avatar from './Avatar'
 import PageHeader from './PageHeader'
 import Card from './Card'
+import PostInput from './PostInput'
 import GreyFriendsIcon from '../resources/grey-friends-icon.svg'
 import GreyHomeIcon from '../resources/grey-home-icon.svg'
 import GreyGiftIcon from '../resources/grey-gift-icon.svg'
 
 const StyledProfile = styled.div``
 
-const PageContent = styled(Card)`
+const PageContent = styled.div`
 	margin-top: 6px;
 `
 
-const ProfileHead = styled.div`
+const ProfileDescription = styled(Card)`
 	display: grid;
-	grid-template-areas: 'avatar name' 'avatar status' 'avatar state';
+	grid-template-areas: 'avatar name' 'avatar status' 'avatar state' 'details details';
 	grid-template-columns: 102px 1fr;
-	grid-template-rows: 34px 34px 34px;
+	grid-template-rows: 34px 34px 34px 1fr;
 	margin-top: 6px;
 `
 
@@ -45,6 +46,7 @@ const State = styled.p`
 	grid-area: state;
 `
 const ProfileDetails = styled.div`
+	grid-area: details;
 	display: flex;
 	flex-direction: column;
 `
@@ -68,14 +70,13 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<StyledProfile>
-				<PageHeader title="Profile" />
+				<PageHeader title='Profile' />
 				<PageContent>
-					<ProfileHead>
+					<ProfileDescription>
 						<StyledAvatar src={this.props.state.users[0].avatar} />
 						<Name>{this.props.state.users[0].name}</Name>
 						<Status>{this.props.state.users[0].status}</Status>
 						<State>{this.props.state.users[0].state}</State>
-					</ProfileHead>
 					<ProfileDetails>
 						<ProfileDetail>
 							<DetailIcon src={GreyFriendsIcon} />
@@ -90,6 +91,8 @@ export default class App extends React.Component {
 							{this.props.state.users[0].birth}
 						</ProfileDetail>
 					</ProfileDetails>
+					</ProfileDescription>
+					<PostInput />
 				</PageContent>
 			</StyledProfile>
 		)

@@ -6,8 +6,8 @@ import Profile from './components/Profile'
 import Messenger from './components/Messenger'
 import Friendlist from './components/Friendlist'
 import Search from './components/Search'
-import { BrowserRouter, Route } from 'react-router-dom'
-import Messages from './components/Messages'
+import { BrowserRouter, Route, Redirect } from 'react-router-dom'
+import Messages from './components/Dialog'
 import state from './State'
 
 const AppContainer = styled.div`
@@ -44,10 +44,11 @@ export default class App extends React.Component {
 				<AppContainer>
 					<Navbar state={state} />
 					<AppContent>
-						<Route path="/user" component={() => <Profile state={state} />} />
-						<Route path="/feed" component={() => <Feed state={state} />} />
+						<Redirect from='/' to='/feed' exact />
+						<Route path='/user' component={() => <Profile state={state} />} />
+						<Route path='/feed' component={() => <Feed state={state} />} />
 						<Route
-							path="/messenger"
+							path='/messenger'
 							render={() => <Messenger state={state} />}
 						/>
 						<Route
@@ -55,10 +56,10 @@ export default class App extends React.Component {
 							component={() => <Messages state={state} />}
 						/>
 						<Route
-							path="/friends"
+							path='/friends'
 							component={() => <Friendlist state={state} />}
 						/>
-						<Route path="/search" component={() => <Search state={state} />} />
+						<Route path='/search' component={() => <Search state={state} />} />
 					</AppContent>
 				</AppContainer>
 			</BrowserRouter>

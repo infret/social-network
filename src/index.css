@@ -14,7 +14,12 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-input,
-button:focus {
+:focus {
 	outline: none;
+}
+
+textarea {
+	resize: none;
+	font-family: sans-serif;
+	font-style: normal;
 }

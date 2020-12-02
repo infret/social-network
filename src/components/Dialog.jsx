@@ -5,15 +5,16 @@ import Card from './Card'
 
 const StyledMessages = styled.div``
 
-const PageContent = styled(Card)``
+const PageContent = styled(Card)`
+margin-top: 6px;`
 
 const Message = styled.div`
 	min-height: 72px;
+	padding: 8px;
 `
 
 const Text = styled.p`
 	color: #000;
-	padding: 6px;
 `
 
 const Date = styled.p`
