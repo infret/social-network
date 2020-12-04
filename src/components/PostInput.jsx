@@ -15,11 +15,12 @@ const StyledInput = styled.textarea`
 	background-color: var(--grey);
 	width: 100%;
 	font-size: 14px;
+	height: auto;
 	border: none;
 	border-radius: 4px;
 	height: 34px;
-  padding: 6px 12px;
-  font-size: 15px;
+	padding: 6px 12px;
+	font-size: 15px;
 
 	&:hover {
 		background-color: var(--darker-grey);
@@ -31,6 +32,7 @@ export default class PostInput extends React.Component {
 		return (
 			<StyledPostInput>
 				<StyledInput type='text' placeholder="What's new?" />
+				<input type='submit' />
 			</StyledPostInput>
 		)
 	}

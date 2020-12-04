@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Post from './Post'
 import PageHeader from './PageHeader'
+import PostInput from './PostInput'
 
 const StyledFeed = styled.div``
 
@@ -19,6 +20,7 @@ export default class Feed extends React.Component {
 						date={date}
 					/>
 				))}
+				<PostInput state={this.props.state}/>
 			</StyledFeed>
 		)
 	}

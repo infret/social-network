@@ -8,7 +8,8 @@ import Friendlist from './components/Friendlist'
 import Search from './components/Search'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 import Messages from './components/Dialog'
-import state from './State'
+import state from './state'
+import {addPost} from './state'
 
 const AppContainer = styled.div`
 	width: 900px;
@@ -36,6 +37,8 @@ const AppContent = styled.div`
 	}
 `
 
+addPost('ban')
+
 export default class App extends React.Component {
 	render() {
 		return (
@@ -46,7 +49,7 @@ export default class App extends React.Component {
 					<AppContent>
 						<Redirect from='/' to='/feed' exact />
 						<Route path='/user' component={() => <Profile state={state} />} />
-						<Route path='/feed' component={() => <Feed state={state} />} />
+						<Route path='/feed' component={() => <Feed state={state} />} addPost={addPost}/>
 						<Route
 							path='/messenger'
 							render={() => <Messenger state={state} />}

@@ -15,6 +15,9 @@ const PageTitle = styled.h1`
 	font-size: 20px;
 	margin-left: 12px;
 	margin-right: auto;
+	@media (max-width: 700px) {
+		margin-left: 0;
+	}
 `
 
 const HeaderButton = styled.button`
@@ -33,9 +36,9 @@ export default class PageHeader extends React.Component {
 	render() {
 		return (
 			<StyledHeader>
-				<HeaderButton icon={BlueMenuIcon}/>
+				<HeaderButton icon={BlueMenuIcon} />
 				<PageTitle>{this.props.title}</PageTitle>
-        <HeaderButton icon={BlueMoreIcon}/>
+				<HeaderButton icon={BlueMoreIcon} />
 			</StyledHeader>
 		)
 	}

@@ -67,16 +67,14 @@ let state = {
 		},
 	],
 }
-
-export let AddPost = (postText) => {
+	
+export function addPost(postText){
 	let newPost = {
-		id: 2,
-		sender_id: 0,
 		text: postText,
-		date: Date().toLocaleString(),
+		date: 'hui',
 	}
 
-	state.posts.push(newPost)
+	state.users[0].posts.push(newPost)
 }
 
 export default state
