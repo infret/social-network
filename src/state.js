@@ -1,3 +1,5 @@
+import React from 'react';
+
 let state = {
 	users: [
 		{
@@ -67,8 +69,8 @@ let state = {
 		},
 	],
 }
-	
-export function addPost(postText){
+
+const addPost = (postText) => {
 	let newPost = {
 		text: postText,
 		date: 'hui',
@@ -77,4 +79,7 @@ export function addPost(postText){
 	state.users[0].posts.push(newPost)
 }
 
-export default state
+const AddPostContext = React.createContext();
+
+export default state;
+export { AddPostContext, addPost };

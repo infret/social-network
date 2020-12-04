@@ -8,8 +8,7 @@ import Friendlist from './components/Friendlist'
 import Search from './components/Search'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
 import Messages from './components/Dialog'
-import state from './state'
-import {addPost} from './state'
+import state, { AddPostContext, addPost } from './state'
 
 const AppContainer = styled.div`
 	width: 900px;
@@ -42,30 +41,35 @@ addPost('ban')
 export default class App extends React.Component {
 	render() {
 		return (
-			<BrowserRouter state={state}>
-				<AppHeader />
-				<AppContainer>
-					<Navbar state={state} />
-					<AppContent>
-						<Redirect from='/' to='/feed' exact />
-						<Route path='/user' component={() => <Profile state={state} />} />
-						<Route path='/feed' component={() => <Feed state={state} />} addPost={addPost}/>
-						<Route
-							path='/messenger'
-							render={() => <Messenger state={state} />}
-						/>
-						<Route
-							path={'/dialog/' + 1}
-							component={() => <Messages state={state} />}
-						/>
-						<Route
-							path='/friends'
-							component={() => <Friendlist state={state} />}
-						/>
-						<Route path='/search' component={() => <Search state={state} />} />
-					</AppContent>
-				</AppContainer>
-			</BrowserRouter>
+			<AddPostContext.Provider value={{ addPost }}>
+				<BrowserRouter state={state}>
+					<AppHeader />
+					<AppContainer>
+						<Navbar state={state} />
+						<AppContent>
+							<Redirect from='/' to='/feed' exact />
+							<Route path='/user' component={() => <Profile state={state} />} />
+							<Route path='/feed' component={() => <Feed state={state} />} />
+							<Route
+								path='/messenger'
+								render={() => <Messenger state={state} />}
+							/>
+							<Route
+								path={'/dialog/' + 1}
+								component={() => <Messages state={state} />}
+							/>
+							<Route
+								path='/friends'
+								component={() => <Friendlist state={state} />}
+							/>
+							<Route
+								path='/search'
+								component={() => <Search state={state} />}
+							/>
+						</AppContent>
+					</AppContainer>
+				</BrowserRouter>
+			</AddPostContext.Provider>
 		)
 	}
 }

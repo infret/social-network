@@ -39,7 +39,7 @@ const Status = styled.p`
 	grid-area: status;
 `
 
-const State = styled.p`
+const OnlineStatus = styled.p`
 	color: #999;
 	font-size: 15px;
 	align-self: end;
@@ -76,21 +76,21 @@ export default class App extends React.Component {
 						<StyledAvatar src={this.props.state.users[0].avatar} />
 						<Name>{this.props.state.users[0].name}</Name>
 						<Status>{this.props.state.users[0].status}</Status>
-						<State>{this.props.state.users[0].state}</State>
-					<ProfileDetails>
-						<ProfileDetail>
-							<DetailIcon src={GreyFriendsIcon} />
-							{this.props.state.users[0].friends} friends
-						</ProfileDetail>
-						<ProfileDetail>
-							<DetailIcon src={GreyHomeIcon} />
-							{this.props.state.users[0].home}
-						</ProfileDetail>
-						<ProfileDetail>
-							<DetailIcon src={GreyGiftIcon} />
-							{this.props.state.users[0].birth}
-						</ProfileDetail>
-					</ProfileDetails>
+						<OnlineStatus>{this.props.state.users[0].state}</OnlineStatus>
+						<ProfileDetails>
+							<ProfileDetail>
+								<DetailIcon src={GreyFriendsIcon} />
+								{this.props.state.users[0].friends} friends
+							</ProfileDetail>
+							<ProfileDetail>
+								<DetailIcon src={GreyHomeIcon} />
+								{this.props.state.users[0].home}
+							</ProfileDetail>
+							<ProfileDetail>
+								<DetailIcon src={GreyGiftIcon} />
+								{this.props.state.users[0].birth}
+							</ProfileDetail>
+						</ProfileDetails>
 					</ProfileDescription>
 					<PostInput />
 				</PageContent>
