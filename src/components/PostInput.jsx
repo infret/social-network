@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Card from './Card'
+import { AddPostContext } from '../State';
 
 const StyledPostInput = styled(Card)`
 	margin-top: 6px;
@@ -27,10 +28,15 @@ const StyledInput = styled.textarea`
 `
 
 export default class PostInput extends React.Component {
+	static contextType = AddPostContext;
+	
 	render() {
+		const { addPost } = this.context;
+
 		return (
 			<StyledPostInput>
 				<StyledInput type='text' placeholder="What's new?" />
+				<button type="button" onClick={() => addPost('AYE!')}></button>
 			</StyledPostInput>
 		)
 	}

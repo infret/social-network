@@ -1,3 +1,5 @@
+import React from 'react';
+
 let state = {
 	users: [
 		{
@@ -68,7 +70,7 @@ let state = {
 	],
 }
 
-export let AddPost = (postText) => {
+const addPost = (postText) => {
 	let newPost = {
 		id: 2,
 		sender_id: 0,
@@ -76,7 +78,11 @@ export let AddPost = (postText) => {
 		date: Date().toLocaleString(),
 	}
 
-	state.posts.push(newPost)
+	state.users[0].posts.push(newPost);
+	console.log(state.users[0].posts);
 }
 
-export default state
+const AddPostContext = React.createContext();
+
+export default state;
+export { AddPostContext, addPost };
