@@ -9,9 +9,10 @@ import BlueSearchIcon from '../resources/blue-search-icon.svg'
 import BigLogo from '../resources/big-logo.svg'
 
 const StyledNavbar = styled.nav`
-	width: 238px;
+	width: 250px;
+	height: 100%;
 	position: sticky;
-	margin: 6px;
+	top: 0;
 	background-color: var(--light-grey);
 	@media (max-width: 700px) {
 		display: none;
@@ -37,12 +38,12 @@ const StyledImg = styled.img`
 `
 
 const AppLogo = styled.img`
-	margin: 5px 8px 7px 6px;
+	margin: 11px 0 0 7px;
 	height: 30px;
 `
 
 const Navlinks = styled.div`
-	margin-top: 6px;
+	margin: 13px 6px 0 0;
 `
 
 export default class Navbar extends React.Component {
@@ -55,19 +56,19 @@ export default class Navbar extends React.Component {
 						<StyledImg src={ProfileIcon} />
 						{this.props.state.users[0].name}
 					</StyledLink>
-					<StyledLink to="/feed">
+					<StyledLink to='/feed'>
 						<StyledImg src={FeedIcon} />
 						Feed
 					</StyledLink>
-					<StyledLink to="/messenger">
+					<StyledLink to='/messenger'>
 						<StyledImg src={MessengerIcon} />
 						Messenger
 					</StyledLink>
-					<StyledLink to="/friends">
+					<StyledLink to='/friends'>
 						<StyledImg src={BlueFriendsIcon} />
 						Friends
 					</StyledLink>
-					<StyledLink to="/search">
+					<StyledLink to='/search'>
 						<StyledImg src={BlueSearchIcon} />
 						Search
 					</StyledLink>

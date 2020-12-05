@@ -9,6 +9,7 @@ const StyledHeader = styled.header`
 	display: flex;
 	align-items: center;
 	position: sticky;
+	top: 0;
 	grid-area: header;
 `
 

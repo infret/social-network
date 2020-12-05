@@ -12,8 +12,6 @@ const PageContent = styled.div`
 	margin-top: 6px;
 `
 
-const Messages = styled(Card)``
-
 const StyledMessage = styled.div`
 	width: 100%;
 	height: auto;
@@ -58,7 +56,7 @@ export default class Dialog extends React.Component {
 			<StyledDialog>
 				<PageHeader title={this.props.state.users[1].name} />
 				<PageContent>
-					<Messages>
+					<Card>
 						{this.props.state.messages.map(({ text, date }) => (
 							<StyledMessage>
 								<StyledAvatar
@@ -79,7 +77,7 @@ export default class Dialog extends React.Component {
 								<Date>{date}</Date>
 							</StyledMessage>
 						))}
-					</Messages>
+					</Card>
 					<TextareaForm
 						icon={BlueSendIcon}
 						placeholder='Your message'
