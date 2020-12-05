@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import Avatar from './Avatar'
 import PageHeader from './PageHeader'
 import Card from './Card'
-import PostInput from './PostInput'
+import TextareaForm from './TextareaForm'
 import GreyFriendsIcon from '../resources/grey-friends-icon.svg'
 import GreyHomeIcon from '../resources/grey-home-icon.svg'
 import GreyGiftIcon from '../resources/grey-gift-icon.svg'
+import BlueNextIcon from '../resources/blue-next-icon.svg'
 
 const StyledProfile = styled.div``
 
@@ -92,7 +93,11 @@ export default class App extends React.Component {
 							</ProfileDetail>
 						</ProfileDetails>
 					</ProfileDescription>
-					<PostInput />
+					<TextareaForm
+						icon={BlueNextIcon}
+						placeholder="What's new?"
+						onclick={this.props.addPost}
+					/>{' '}
 				</PageContent>
 			</StyledProfile>
 		)

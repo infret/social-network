@@ -7,8 +7,8 @@ import Messenger from './components/Messenger'
 import Friendlist from './components/Friendlist'
 import Search from './components/Search'
 import { BrowserRouter, Route, Redirect } from 'react-router-dom'
-import Messages from './components/Dialog'
-import state, { AddPostContext, addPost } from './state'
+import Dialog from './components/Dialog'
+import stateData, { addPost, addMessage } from './state'
 
 const AppContainer = styled.div`
 	width: 900px;
@@ -36,40 +36,36 @@ const AppContent = styled.div`
 	}
 `
 
-addPost('ban')
-
 export default class App extends React.Component {
 	render() {
 		return (
-			<AddPostContext.Provider value={{ addPost }}>
-				<BrowserRouter state={state}>
+				<BrowserRouter>
 					<AppHeader />
 					<AppContainer>
-						<Navbar state={state} />
+						<Navbar state={stateData} />
 						<AppContent>
-							<Redirect from='/' to='/feed' exact />
-							<Route path='/user' component={() => <Profile state={state} />} />
-							<Route path='/feed' component={() => <Feed state={state} />} />
+							{/* <Redirect from='/' to='/feed' exact/> */}
+							<Route path='/user' component={() => <Profile state={stateData} />} />
+							<Route path='/feed' component={() => <Feed state={stateData} addPost={addPost}/>} />
 							<Route
 								path='/messenger'
-								render={() => <Messenger state={state} />}
+								render={() => <Messenger state={stateData} addMessage={addMessage} />}
 							/>
 							<Route
 								path={'/dialog/' + 1}
-								component={() => <Messages state={state} />}
+								component={() => <Dialog state={stateData} addMessage={addMessage}/>}
 							/>
 							<Route
 								path='/friends'
-								component={() => <Friendlist state={state} />}
+								component={() => <Friendlist state={stateData} />}
 							/>
 							<Route
 								path='/search'
-								component={() => <Search state={state} />}
+								component={() => <Search state={stateData} />}
 							/>
 						</AppContent>
 					</AppContainer>
 				</BrowserRouter>
-			</AddPostContext.Provider>
 		)
 	}
 }

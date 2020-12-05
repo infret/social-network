@@ -41,8 +41,8 @@ export default class Searchbar extends React.Component {
 	render() {
 		return (
 			<StyledSearchbar>
-				<StyledInput type="text" placeholder="Search" />
-				<StyledButton type="submit" value="" />
+				<StyledInput type='text' placeholder='Search' />
+				<StyledButton type='submit' value='' />
 			</StyledSearchbar>
 		)
 	}

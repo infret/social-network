@@ -1,8 +1,8 @@
+import reportWebVitals from './reportWebVitals'
+import { createGlobalStyle } from 'styled-components'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import reportWebVitals from './reportWebVitals'
-import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -25,19 +25,23 @@ body {
 	outline: none;
 }
 
-textarea {
+textarea, pre {
 	resize: none;
+	overflow: auto;
 	font-family: sans-serif;
 	font-style: normal;
 }
 `
 
-ReactDOM.render(
-	<React.StrictMode>
-		<App />
-		<GlobalStyle />
-	</React.StrictMode>,
-	document.getElementById('root')
-)
+export const renderEntireApp = () => {
+	ReactDOM.render(
+		<React.StrictMode>
+			<App />
+			<GlobalStyle />
+		</React.StrictMode>,
+		document.getElementById('root')
+	)
+	reportWebVitals()
+}
 
-reportWebVitals()
+renderEntireApp()

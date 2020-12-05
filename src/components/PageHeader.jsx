@@ -9,6 +9,7 @@ const StyledHeader = styled.header`
 	display: flex;
 	align-items: center;
 	position: sticky;
+	grid-area: header;
 `
 
 const PageTitle = styled.h1`

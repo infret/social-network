@@ -4,7 +4,6 @@ import Avatar from './Avatar'
 import Card from './Card'
 
 const StyledPost = styled(Card)`
-	width: 100%;
 	display: grid;
 	grid-template-areas: 'avatar name' 'avatar date' 'text text';
 	grid-template-columns: 74px 1fr;
@@ -32,8 +31,10 @@ const Date = styled.p`
 	font-size: 14px;
 `
 
-const Text = styled.p`
+const Text = styled.pre`
 	grid-area: text;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 	margin: 0 12px 12px 12px;
 `
 

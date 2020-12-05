@@ -1,6 +1,6 @@
-import React from 'react';
+import { renderEntireApp } from './index'
 
-let state = {
+let stateData = {
 	users: [
 		{
 			id: '0',
@@ -18,7 +18,7 @@ let state = {
 					date: '11 November 17:08',
 				},
 				{
-					text: 'The world is gonna roll me',
+					text: 'The world is gonna roll',
 					date: '12 November 17:42',
 				},
 			],
@@ -49,37 +49,65 @@ let state = {
 	dialogs: [
 		{
 			companion_id: '1',
-			companion_name: 'Nick Null' ,
+			companion_name: 'Nick Null',
 			compation_avatar:
 				'https://images.unsplash.com/photo-1581456495146-65a71b2c8e52?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80',
-		}
+		},
 	],
 	messages: [
 		{
 			sender_id: '0',
 			recipient_id: '1',
 			text: 'Sup',
-			date: '11 November 10:08',
+			date: '11 Nov 10:08',
 		},
 		{
 			sender_id: '1',
 			recipient_id: '0',
 			text: 'Hey',
-			date: '11 November 10:47',
+			date: '11 Nov 10:47',
 		},
 	],
 }
 
-const addPost = (postText) => {
-	let newPost = {
-		text: postText,
-		date: 'hui',
-	}
-
-	state.users[0].posts.push(newPost)
+const getCurrentDate = () => {
+	const date = new Date()
+	let currentDate =
+		date.getDay() +
+		' ' +
+		date.toLocaleString('default', { month: 'short' }) +
+		' ' +
+		date.getHours() +
+		':' +
+		(date.getMinutes() < 10 ? '0' : '') +
+		date.getMinutes()
+	return currentDate
 }
 
-const AddPostContext = React.createContext();
+export const addPost = (postText) => {
+	if (postText) {
+		let newPost = {
+			text: postText,
+			date: getCurrentDate(),
+		}
 
-export default state;
-export { AddPostContext, addPost };
+		stateData.users[0].posts.push(newPost)
+		renderEntireApp()
+	}
+}
+
+export const addMessage = (messageText) => {
+	if (messageText) {
+		let newMessage = {
+			sender_id: '0',
+			recipient_id: '1',
+			text: messageText,
+			date: getCurrentDate(),
+		}
+
+		stateData.messages.push(newMessage)
+		renderEntireApp()
+	}
+}
+
+export default stateData
