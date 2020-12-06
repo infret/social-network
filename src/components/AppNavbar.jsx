@@ -8,7 +8,7 @@ import MessengerIcon from '../resources/messenger-icon.svg'
 import BlueSearchIcon from '../resources/blue-search-icon.svg'
 import BigLogo from '../resources/big-logo.svg'
 
-const StyledNavbar = styled.nav`
+const Navbar = styled.nav`
 	width: 250px;
 	height: 100%;
 	position: sticky;
@@ -46,34 +46,34 @@ const Navlinks = styled.div`
 	margin: 13px 6px 0 0;
 `
 
-export default class Navbar extends React.Component {
-	render() {
-		return (
-			<StyledNavbar>
-				<AppLogo src={BigLogo} />
-				<Navlinks>
-					<StyledLink to={'/user/' + this.props.state.users[0].id}>
-						<StyledImg src={ProfileIcon} />
-						{this.props.state.users[0].name}
-					</StyledLink>
-					<StyledLink to='/feed'>
-						<StyledImg src={FeedIcon} />
-						Feed
-					</StyledLink>
-					<StyledLink to='/messenger'>
-						<StyledImg src={MessengerIcon} />
-						Messenger
-					</StyledLink>
-					<StyledLink to='/friends'>
-						<StyledImg src={BlueFriendsIcon} />
-						Friends
-					</StyledLink>
-					<StyledLink to='/search'>
-						<StyledImg src={BlueSearchIcon} />
-						Search
-					</StyledLink>
-				</Navlinks>
-			</StyledNavbar>
-		)
-	}
+const AppNavbar = (props) => {
+	return (
+		<Navbar>
+			<AppLogo src={BigLogo} />
+			<Navlinks>
+				<StyledLink to={'/user/' + props.state.users[0].id}>
+					<StyledImg src={ProfileIcon} />
+					{props.state.users[0].name}
+				</StyledLink>
+				<StyledLink to='/feed'>
+					<StyledImg src={FeedIcon} />
+					Feed
+				</StyledLink>
+				<StyledLink to='/messenger'>
+					<StyledImg src={MessengerIcon} />
+					Messenger
+				</StyledLink>
+				<StyledLink to='/friends'>
+					<StyledImg src={BlueFriendsIcon} />
+					Friends
+				</StyledLink>
+				<StyledLink to='/search'>
+					<StyledImg src={BlueSearchIcon} />
+					Search
+				</StyledLink>
+			</Navlinks>
+		</Navbar>
+	)
 }
+
+export default AppNavbar

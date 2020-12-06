@@ -1,15 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
-import Avatar from './Avatar'
-import PageHeader from './PageHeader'
-import Card from './Card'
-import TextareaForm from './TextareaForm'
+import Avatar from './AvatarTemplate'
+import PageHeader from './HeaderTemplate'
+import Card from './CardTemplate'
+import TextareaForm from './TextareaTemplate'
 import GreyFriendsIcon from '../resources/grey-friends-icon.svg'
 import GreyHomeIcon from '../resources/grey-home-icon.svg'
 import GreyGiftIcon from '../resources/grey-gift-icon.svg'
 import BlueNextIcon from '../resources/blue-next-icon.svg'
 
-const StyledProfile = styled.div``
+const Page = styled.div``
 
 const PageContent = styled.div`
 	margin-top: 6px;
@@ -67,39 +67,38 @@ const DetailIcon = styled.img`
 	margin: 8px;
 `
 
-export default class App extends React.Component {
-	render() {
-		return (
-			<StyledProfile>
-				<PageHeader title='Profile' />
-				<PageContent>
-					<ProfileDescription>
-						<StyledAvatar src={this.props.state.users[0].avatar} />
-						<Name>{this.props.state.users[0].name}</Name>
-						<Status>{this.props.state.users[0].status}</Status>
-						<OnlineStatus>{this.props.state.users[0].state}</OnlineStatus>
-						<ProfileDetails>
-							<ProfileDetail>
-								<DetailIcon src={GreyFriendsIcon} />
-								{this.props.state.users[0].friends} friends
-							</ProfileDetail>
-							<ProfileDetail>
-								<DetailIcon src={GreyHomeIcon} />
-								{this.props.state.users[0].home}
-							</ProfileDetail>
-							<ProfileDetail>
-								<DetailIcon src={GreyGiftIcon} />
-								{this.props.state.users[0].birth}
-							</ProfileDetail>
-						</ProfileDetails>
-					</ProfileDescription>
-					<TextareaForm
-						icon={BlueNextIcon}
-						placeholder="What's new?"
-						onclick={this.props.addPost}
-					/>{' '}
-				</PageContent>
-			</StyledProfile>
-		)
-	}
+const ProfilePage = (props) => {
+	return (
+		<Page>
+			<PageHeader title='Profile' />
+			<PageContent>
+				<ProfileDescription>
+					<StyledAvatar src={props.state.users[0].avatar} />
+					<Name>{props.state.users[0].name}</Name>
+					<Status>{props.state.users[0].status}</Status>
+					<OnlineStatus>{props.state.users[0].state}</OnlineStatus>
+					<ProfileDetails>
+						<ProfileDetail>
+							<DetailIcon src={GreyFriendsIcon} />
+							{props.state.users[0].friends} friends
+						</ProfileDetail>
+						<ProfileDetail>
+							<DetailIcon src={GreyHomeIcon} />
+							{props.state.users[0].home}
+						</ProfileDetail>
+						<ProfileDetail>
+							<DetailIcon src={GreyGiftIcon} />
+							{props.state.users[0].birth}
+						</ProfileDetail>
+					</ProfileDetails>
+				</ProfileDescription>
+				<TextareaForm
+					icon={BlueNextIcon}
+					placeholder="What's new?"
+					onclick={props.addPost}
+				/>{' '}
+			</PageContent>
+		</Page>
+	)
 }
+export default ProfilePage

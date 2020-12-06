@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import WhiteSearchIcon from '../resources/white-search-icon.svg'
 
-const StyledSearchbar = styled.form`
+const Template = styled.form`
 	height: 34px;
 	display: flex;
 	align-items: center;
@@ -37,13 +37,12 @@ const StyledButton = styled.input`
 		background-color: var(--darker-blue);
 	}
 `
-export default class Searchbar extends React.Component {
-	render() {
-		return (
-			<StyledSearchbar>
-				<StyledInput type='text' placeholder='Search' />
-				<StyledButton type='submit' value='' />
-			</StyledSearchbar>
-		)
-	}
+const SearchbarTemplate = (props) => {
+	return (
+		<Template>
+			<StyledInput type='text' placeholder='Search' />
+			<StyledButton type='submit' value='' />
+		</Template>
+	)
 }
+export default SearchbarTemplate

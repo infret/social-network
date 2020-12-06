@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import Avatar from './Avatar'
-import Card from './Card'
+import Avatar from './AvatarTemplate'
+import Card from './CardTemplate'
 
-const StyledPost = styled(Card)`
+const Template = styled(Card)`
 	display: grid;
 	grid-template-areas: 'avatar name' 'avatar date' 'text text';
 	grid-template-columns: 74px 1fr;
@@ -33,20 +33,17 @@ const Date = styled.p`
 
 const Text = styled.pre`
 	grid-area: text;
-	white-space: pre-wrap;
-	word-wrap: break-word;
 	margin: 0 12px 12px 12px;
 `
 
-export default class Post extends React.Component {
-	render() {
-		return (
-			<StyledPost>
-				<StyledAvatar src={this.props.avatar} />
-				<Name>{this.props.name}</Name>
-				<Text>{this.props.text}</Text>
-				<Date>{this.props.date}</Date>
-			</StyledPost>
-		)
-	}
+const PostTemplate = (props) => {
+	return (
+		<Template>
+			<StyledAvatar src={props.avatar} />
+			<Name>{props.name}</Name>
+			<Text>{props.text}</Text>
+			<Date>{props.date}</Date>
+		</Template>
+	)
 }
+export default PostTemplate

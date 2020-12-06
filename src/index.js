@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App'
+import App from './components/AppLayout'
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -30,6 +30,8 @@ textarea, pre {
 	overflow: auto;
 	font-family: sans-serif;
 	font-style: normal;
+	white-space: pre-wrap;
+	word-wrap: break-word;
 }
 `
 

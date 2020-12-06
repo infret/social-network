@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import BlueMenuIcon from '../resources/blue-menu-icon.svg'
 import BlueMoreIcon from '../resources/blue-more-icon.svg'
 
-const StyledHeader = styled.header`
+const Template = styled.header`
 	background-color: var(--white);
 	height: 52px;
 	display: flex;
@@ -34,14 +34,13 @@ const HeaderButton = styled.button`
 	}
 `
 
-export default class PageHeader extends React.Component {
-	render() {
-		return (
-			<StyledHeader>
-				<HeaderButton icon={BlueMenuIcon} />
-				<PageTitle>{this.props.title}</PageTitle>
-				<HeaderButton icon={BlueMoreIcon} />
-			</StyledHeader>
-		)
-	}
+const HeaderTemplate = (props) => {
+	return (
+		<Template>
+			<HeaderButton icon={BlueMenuIcon} />
+			<PageTitle>{props.title}</PageTitle>
+			<HeaderButton icon={BlueMoreIcon} />
+		</Template>
+	)
 }
+export default HeaderTemplate

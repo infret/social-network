@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Avatar from './Avatar'
+import Avatar from './AvatarTemplate'
 
-const StyledUser = styled.div`
+const Template = styled.div`
 	width: 100%;
 	display: grid;
 	grid-template-areas: 'avatar name' 'avatar text';
@@ -31,14 +31,13 @@ const Home = styled.p`
 	color: #999;
 `
 
-export default class User extends React.Component {
-	render(name, id, avatar, home) {
+const UserTemplate = (props) => {
 		return (
-			<StyledUser>
-				<StyledAvatar src={this.props.avatar} />
-				<Name>{this.props.name}</Name>
-				<Home>{this.props.home}</Home>
-			</StyledUser>
+			<Template>
+				<StyledAvatar src={props.avatar} />
+				<Name>{props.name}</Name>
+				<Home>{props.home}</Home>
+			</Template>
 		)
 	}
-}
+export default UserTemplate

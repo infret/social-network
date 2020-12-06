@@ -1,12 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import Searchbar from './Searchbar'
-import Avatar from './Avatar'
+import Searchbar from './SearchbarTemplate'
+import Avatar from './AvatarTemplate'
 import { NavLink } from 'react-router-dom'
-import PageHeader from './PageHeader'
-import Card from './Card'
+import PageHeader from './HeaderTemplate'
+import Card from './CardTemplate'
 
-const StyledMessenger = styled.div``
+const Page = styled.div``
 
 const PageContent = styled(Card)`
 	margin-top: 6px;
@@ -54,21 +54,30 @@ const Date = styled.p`
 	margin: 12px;
 `
 
-export default class Messenger extends React.Component {
-	render() {
-		return (
-			<StyledMessenger>
-				<PageHeader title="Chats" />
-				<PageContent>
-					<Searchbar />
-					<DialogLink to={'/dialog/' + this.props.state.users[this.props.state.messages[1].sender_id].id}>
-						<StyledAvatar src={this.props.state.users[this.props.state.messages[1].sender_id].avatar} />
-						<Name>{this.props.state.users[this.props.state.messages[1].sender_id].name}</Name>
-						<Date>{this.props.state.messages[1].date}</Date>
-						<LastMessage>{this.props.state.messages[this.props.state.messages.length - 1].text}</LastMessage>
-					</DialogLink>
-				</PageContent>
-			</StyledMessenger>
-		)
-	}
+const MessengerPage = (props) => {
+	return (
+		<Page>
+			<PageHeader title='Chats' />
+			<PageContent>
+				<Searchbar />
+				<DialogLink
+					to={
+						'/dialog/' + props.state.users[props.state.messages[1].sender_id].id
+					}
+				>
+					<StyledAvatar
+						src={props.state.users[props.state.messages[1].sender_id].avatar}
+					/>
+					<Name>
+						{props.state.users[props.state.messages[1].sender_id].name}
+					</Name>
+					<Date>{props.state.messages[1].date}</Date>
+					<LastMessage>
+						{props.state.messages[props.state.messages.length - 1].text}
+					</LastMessage>
+				</DialogLink>
+			</PageContent>
+		</Page>
+	)
 }
+export default MessengerPage

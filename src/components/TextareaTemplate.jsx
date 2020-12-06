@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Card from './Card'
+import Card from './CardTemplate'
 
-const StyledForm = styled(Card)`
+const Template = styled(Card)`
 	margin-top: 6px;
 	display: flex;
 	align-items: center;
@@ -34,32 +34,29 @@ const StyledSubmit = styled.input`
 	margin-left: 12px;
 `
 
-export default class PostInput extends React.Component {
-	handleKeyDown(textarea) {
+const TextareaTemplate = (props) => {
+	const handleKeyDown = (textarea) => {
 		textarea.target.style.height = 'inherit'
 		textarea.target.style.height = `${Math.min(
 			textarea.target.scrollHeight,
 			150
 		)}px`
 	}
-
-	render() {
-		let textarea = React.createRef()
-
-		return (
-			<StyledForm>
-				<StyledTextarea
-					placeholder={this.props.placeholder}
-					ref={textarea}
-					onKeyDown={this.handleKeyDown}
-				/>
-				<StyledSubmit
-					type='submit'
-					value=''
-					onClick={() => this.props.onclick(textarea.current.value)}
-					icon={this.props.icon}
-				></StyledSubmit>
-			</StyledForm>
-		)
-	}
+	let textarea = React.createRef()
+	return (
+		<Template>
+			<StyledTextarea
+				placeholder={props.placeholder}
+				ref={textarea}
+				onKeyDown={handleKeyDown}
+			/>
+			<StyledSubmit
+				type='submit'
+				value=''
+				onClick={() => props.onclick(textarea.current.value)}
+				icon={props.icon}
+			></StyledSubmit>
+		</Template>
+	)
 }
+export default TextareaTemplate
