@@ -1,6 +1,9 @@
 import {createStore, combineReducers} from 'redux'
 import postListReducer from './reducers/posts'
 import messengerReducer from './reducers/messages'
+import createHistory from 'history/createBrowserHistory';
+
+export const history = createHistory();
 
 export const getCurrentDate = () => {
 	const date = new Date()

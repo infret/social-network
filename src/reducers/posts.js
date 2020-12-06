@@ -19,7 +19,7 @@ const initialState = {
   postText: '',
 }
 
-export const postsReducer = (state = initialState, action) => {
+const postsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case UPDATE_POST_TEXT:
 			state.newpostText = action.text
@@ -37,3 +37,5 @@ export const postsReducer = (state = initialState, action) => {
 			return state
 	}
 }
+
+export default postsReducer

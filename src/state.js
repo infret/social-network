@@ -1,7 +1,5 @@
 // TODO: remove this file
 
-import { renderEntireApp } from './index'
-
 let stateData = {
 	users: [
 		{
@@ -91,7 +89,6 @@ export const addPost = (postText) => {
 		}
 
 		stateData.users[0].posts.push(newPost)
-		renderEntireApp()
 	}
 }
 
@@ -105,7 +102,6 @@ export const addMessage = (messageText) => {
 		}
 
 		stateData.messages.push(newMessage)
-		renderEntireApp()
 	}
 }
 

@@ -1,4 +1,4 @@
-import {getCurrentDate} from '../store'
+import { getCurrentDate } from '../store'
 
 const UPDATE_MESSAGE_TEXT = 'UPDATE_MESSAGE_TEXT'
 const ADD_MESSAGE = 'ADD_MESSAGE'
@@ -18,11 +18,10 @@ const initialState = {
 			date: '11 Nov 10:47',
 		},
 	],
-  messageText: '',
-  currentDate: getCurrentDate()
+	messageText: '',
 }
 
-export const messagesReducer = (state = initialState, action) => {
+const messagesReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case UPDATE_MESSAGE_TEXT:
 			state.newMessageText = action.text
@@ -33,10 +32,12 @@ export const messagesReducer = (state = initialState, action) => {
 				recipient_id: '1',
 				text: state.newMessageText,
 				date: getCurrentDate(),
-      })
-      state.newMessageText = ''
+			})
+			state.newMessageText = ''
 			return state
 		default:
 			return state
 	}
 }
+
+export default messagesReducer

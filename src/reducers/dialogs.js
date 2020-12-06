@@ -11,7 +11,7 @@ const initialState = {
 	],
 }
 
-export const messagesReducer = (state = initialState, action) => {
+const dialogsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_DIALOG:
 			state.messages.push({
@@ -25,3 +25,5 @@ export const messagesReducer = (state = initialState, action) => {
 			return state
 	}
 }
+
+export default dialogsReducer

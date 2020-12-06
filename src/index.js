@@ -1,7 +1,9 @@
-import { createGlobalStyle } from 'styled-components'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/AppLayout'
+import { createGlobalStyle } from 'styled-components'
+import { Provider } from 'react-redux'
+import { store } from './store'
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -35,14 +37,10 @@ textarea, pre {
 }
 `
 
-export const renderEntireApp = () => {
-	ReactDOM.render(
-		<React.StrictMode>
-			<App />
-			<GlobalStyle />
-		</React.StrictMode>,
-		document.getElementById('root')
-	)
-}
-
-renderEntireApp()
+ReactDOM.render(
+	<Provider store={store}>
+		<App />
+		<GlobalStyle />
+	</Provider>,
+	document.getElementById('root')
+)
