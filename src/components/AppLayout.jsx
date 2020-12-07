@@ -39,41 +39,41 @@ const App = (props) => {
 		<BrowserRouter>
 			<AppHeader />
 			<AppContainer>
-				<AppNavbar state={props.store._state} />
+				<AppNavbar state={props.state} />
 				<AppContent>
 					<Route
-						path='/user'
-						component={() => <ProfilePage state={props.store._state} />}
+						path={'/user' + props.state.users[0].id}
+						component={() => <ProfilePage state={props.state} dispatch={props.dispatch}/>}
 					/>
 					<Route
 						path='/feed'
 						component={() => (
 							<FeedPage
-								state={props.store._state}
-								addPost={props.store.addPost}
+								state={props.state}
+								dispatch={props.dispatch}
 							/>
 						)}
 					/>
 					<Route
 						path='/messenger'
-						render={() => <MessengerPage state={props.store._state} />}
+						render={() => <MessengerPage state={props.state} />}
 					/>
 					<Route
 						path={'/dialog/' + 1}
 						component={() => (
 							<DialogPage
-								state={props.store._state}
-								addMessage={props.store.addMessage}
+								state={props.state}
+								dispatch={props.dispatch}
 							/>
 						)}
 					/>
 					<Route
 						path='/friends'
-						component={() => <FriendsPage state={props.store._state} />}
+						component={() => <FriendsPage state={props.state} />}
 					/>
 					<Route
 						path='/search'
-						component={() => <SearchPage state={props.store._state} />}
+						component={() => <SearchPage state={props.state} />}
 					/>
 				</AppContent>
 			</AppContainer>

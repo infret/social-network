@@ -95,8 +95,9 @@ const ProfilePage = (props) => {
 				<TextareaForm
 					icon={BlueNextIcon}
 					placeholder="What's new?"
-					onclick={props.addPost}
-				/>{' '}
+					action={'ADD_POST'}
+					dispatch={props.dispatch}
+				/>
 			</PageContent>
 		</Page>
 	)

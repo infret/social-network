@@ -37,7 +37,7 @@ textarea, pre {
 
 ReactDOM.render(
 	<React.StrictMode>
-		<App store={store} />
+		<App state={store.getState()} dispatch={store.dispatch}/>
 		<GlobalStyle />
 	</React.StrictMode>,
 	document.getElementById('root')

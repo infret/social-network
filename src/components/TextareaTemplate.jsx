@@ -35,6 +35,7 @@ const StyledSubmit = styled.input`
 `
 
 const TextareaTemplate = (props) => {
+	let textarea = React.createRef()
 	const handleKeyDown = (textarea) => {
 		textarea.target.style.height = 'inherit'
 		textarea.target.style.height = `${Math.min(
@@ -42,18 +43,24 @@ const TextareaTemplate = (props) => {
 			150
 		)}px`
 	}
-	let textarea = React.createRef()
 	return (
 		<Template>
 			<StyledTextarea
 				placeholder={props.placeholder}
 				ref={textarea}
+				// value={props.textareaValue}
+				//onChange={props.updateTextareaValue}
 				onKeyDown={handleKeyDown}
 			/>
 			<StyledSubmit
 				type='submit'
 				value=''
-				onClick={() => props.onclick(textarea.current.value)}
+				onClick={(textarea) =>
+					props.dispatch({
+						type: props.action,
+						text: textarea.current.value,
+					})
+				}
 				icon={props.icon}
 			></StyledSubmit>
 		</Template>

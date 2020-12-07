@@ -1,4 +1,8 @@
-// TODO: rewrite this to Redux, import reducers
+// TODO: rewrite store to Redux, import reducers
+
+const UPDATE_POST_TEXT = 'UPDATE_POST_TEXT'
+const ADD_POST = 'ADD_POST'
+
 export const store = {
 	_state: {
 		users: [
@@ -67,16 +71,28 @@ export const store = {
 				date: '12 Nov 17:42',
 			},
 		],
+		textareaValue: ''
 	},
-	addPost(postText) {
-		if (postText) {
-			let newPost = {
-				sender_id: '0',
-				text: postText,
-				date: store.getCurrentDate(),
-			}
-			console.log(newPost)
-			store._state.posts.push(newPost)
+
+	getState() {
+		return store._state
+	},
+
+	dispatch(action){
+		switch (action.type) {
+			case UPDATE_POST_TEXT:
+				store.getState.textareaValue = action.text
+				return store.getState
+			case 'ADD_POST':
+				store.getState.posts.push({
+					sender_id: '0',
+					text: action.text,
+					date: store.getCurrentDate(),
+				})
+				store.getState.textareaValue = ''
+				return store.getState
+			default:
+				return store.getState
 		}
 	},
 
