@@ -13,8 +13,9 @@ const FeedPage = (props) => {
 			<PageHeader title='News' />
 			<TextareaForm
 				icon={BlueNextIcon}
-				placeholder="What's new?"
-				onclick={props.addPost}
+					placeholder="What's new?"
+					action='ADD_POST'
+					dispatch={props.dispatch}
 			/>
 			{props.state.posts.map(({ sender_id, text, date }) => (
 				<Post
