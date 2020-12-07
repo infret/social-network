@@ -28,16 +28,16 @@ const Home = styled.p`
 	grid-area: text;
 	align-self: end;
 	font-size: 15px;
-	color: #999;
+	color: var(--dark-grey);
 `
 
 const UserTemplate = (props) => {
-		return (
-			<Template>
-				<StyledAvatar src={props.avatar} />
-				<Name>{props.name}</Name>
-				<Home>{props.home}</Home>
-			</Template>
-		)
-	}
+	return (
+		<Template>
+			<StyledAvatar src={props.avatar} />
+			<Name>{props.name}</Name>
+			<Home>{props.home}</Home>
+		</Template>
+	)
+}
 export default UserTemplate

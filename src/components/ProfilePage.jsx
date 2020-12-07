@@ -41,7 +41,7 @@ const Status = styled.p`
 `
 
 const OnlineStatus = styled.p`
-	color: #999;
+	color: var(--dark-grey);
 	font-size: 15px;
 	align-self: end;
 	grid-area: state;
@@ -55,7 +55,7 @@ const ProfileDetails = styled.div`
 const ProfileDetail = styled.div`
 	height: 36px;
 	display: flex;
-	color: #999;
+	color: var(--dark-grey);
 	align-items: center;
 	margin-bottom: 2px;
 	font-size: 15px;

@@ -39,14 +39,14 @@ const Name = styled.p`
 `
 
 const LastMessage = styled.p`
-	color: #999;
+	color: var(--dark-grey);
 	grid-area: text;
 	align-self: end;
 	font-size: 15px;
 `
 
 const Date = styled.p`
-	color: #999;
+	color: var(--dark-grey);
 	grid-area: date;
 	align-self: end;
 	font-size: 14px;

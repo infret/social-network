@@ -16,11 +16,10 @@ const FeedPage = (props) => {
 				placeholder="What's new?"
 				onclick={props.addPost}
 			/>
-			{props.state.users[0].posts.map(({ text, date }) => (
+			{props.state.posts.map(({ sender_id, text, date }) => (
 				<Post
-					name={props.state.users[0].name}
-					id={props.state.users[0].posts.id}
-					avatar={props.state.users[0].avatar}
+					name={props.state.users[sender_id].name}
+					avatar={props.state.users[sender_id].avatar}
 					text={text}
 					date={date}
 				/>

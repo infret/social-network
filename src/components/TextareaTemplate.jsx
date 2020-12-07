@@ -24,7 +24,7 @@ const StyledTextarea = styled.textarea`
 `
 
 const StyledSubmit = styled.input`
-	background-color: var(--white);
+	background-color: white;
 	background-image: url(${(props) => props.icon});
 	background-repeat: no-repeat;
 	background-position: center;

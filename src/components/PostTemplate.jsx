@@ -25,7 +25,7 @@ const Name = styled.p`
 `
 
 const Date = styled.p`
-	color: #999;
+	color: var(--dark-grey);
 	grid-area: date;
 	align-self: end;
 	font-size: 14px;

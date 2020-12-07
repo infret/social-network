@@ -4,7 +4,7 @@ import BlueMenuIcon from '../resources/blue-menu-icon.svg'
 import BlueMoreIcon from '../resources/blue-more-icon.svg'
 
 const Template = styled.header`
-	background-color: var(--white);
+	background-color: white;
 	height: 52px;
 	display: flex;
 	align-items: center;

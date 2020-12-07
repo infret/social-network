@@ -1,14 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import Navbar from './AppNavbar'
-import Feed from './FeedPage'
-import Profile from './ProfilePage'
-import Messenger from './MessengerPage'
-import Friends from './FriendsPage'
-import Search from './SearchPage'
+import AppNavbar from './AppNavbar'
+import FeedPage from './FeedPage'
+import ProfilePage from './ProfilePage'
+import MessengerPage from './MessengerPage'
+import FriendsPage from './FriendsPage'
+import SearchPage from './SearchPage'
 import { BrowserRouter, Route } from 'react-router-dom'
-import Dialog from './DialogPage'
-import stateData, { addPost, addMessage } from '../state'
+import DialogPage from './DialogPage'
 
 const AppContainer = styled.div`
 	max-width: 900px;
@@ -22,7 +21,7 @@ const AppContainer = styled.div`
 `
 
 const AppHeader = styled.header`
-	background-color: var(--white);
+	background-color: white;
 	height: 52px;
 	width: 100%;
 	position: fixed;
@@ -40,32 +39,41 @@ const App = (props) => {
 		<BrowserRouter>
 			<AppHeader />
 			<AppContainer>
-				<Navbar state={stateData} />
+				<AppNavbar state={props.store._state} />
 				<AppContent>
-					<Route path='/user' component={() => <Profile state={stateData} />} />
+					<Route
+						path='/user'
+						component={() => <ProfilePage state={props.store._state} />}
+					/>
 					<Route
 						path='/feed'
-						component={() => <Feed state={stateData} addPost={addPost} />}
+						component={() => (
+							<FeedPage
+								state={props.store._state}
+								addPost={props.store.addPost}
+							/>
+						)}
 					/>
 					<Route
 						path='/messenger'
-						render={() => (
-							<Messenger state={stateData} addMessage={addMessage} />
-						)}
+						render={() => <MessengerPage state={props.store._state} />}
 					/>
 					<Route
 						path={'/dialog/' + 1}
 						component={() => (
-							<Dialog state={stateData} addMessage={addMessage} />
+							<DialogPage
+								state={props.store._state}
+								addMessage={props.store.addMessage}
+							/>
 						)}
 					/>
 					<Route
 						path='/friends'
-						component={() => <Friends state={stateData} />}
+						component={() => <FriendsPage state={props.store._state} />}
 					/>
 					<Route
 						path='/search'
-						component={() => <Search state={stateData} />}
+						component={() => <SearchPage state={props.store._state} />}
 					/>
 				</AppContent>
 			</AppContainer>

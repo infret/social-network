@@ -2,14 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/AppLayout'
 import { createGlobalStyle } from 'styled-components'
-import { Provider } from 'react-redux'
 import { store } from './store'
 
 const GlobalStyle = createGlobalStyle`
 body {
 	--blue: #2787f5;
 	--darker-blue: #267cde;
-	--white: #ffffff;
 	--grey: #eeeeee;
 	--darker-grey: #dddddd;
 	--dark-grey: #999999;
@@ -38,9 +36,9 @@ textarea, pre {
 `
 
 ReactDOM.render(
-	<Provider store={store}>
-		<App />
+	<React.StrictMode>
+		<App store={store} />
 		<GlobalStyle />
-	</Provider>,
+	</React.StrictMode>,
 	document.getElementById('root')
 )

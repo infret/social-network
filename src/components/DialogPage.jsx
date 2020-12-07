@@ -37,7 +37,7 @@ const Name = styled.p`
 `
 
 const Date = styled.p`
-	color: #999;
+	color: var(--dark-grey);
 	font-size: 14px;
 	grid-area: date;
 	text-align: end;
@@ -56,16 +56,10 @@ const DialogPage = (props) => {
 			<PageHeader title={props.state.users[1].name} />
 			<PageContent>
 				<Card>
-					{props.state.messages.map(({ text, date }) => (
+					{props.state.messages.map(({ sender_id, text, date }) => (
 						<StyledMessage>
-							<StyledAvatar
-								src={
-									props.state.users[props.state.messages[1].sender_id].avatar
-								}
-							/>
-							<Name>
-								{props.state.users[props.state.messages[1].sender_id].name}
-							</Name>
+							<StyledAvatar src={props.state.users[sender_id].avatar} />
+							<Name>{props.state.users[sender_id].name}</Name>
 							<Text>{text}</Text>
 							<Date>{date}</Date>
 						</StyledMessage>
