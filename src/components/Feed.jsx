@@ -8,6 +8,18 @@ import BlueNextIcon from '../resources/blue-next-icon.svg'
 const StyledFeed = styled.div``
 
 const Feed = (props) => {
+	const posts = []
+	for (let i = 0; i < props.data.posts.length; i++) {
+		console.log(i)
+		posts.push(
+			<Post
+				name={props.data.users[props.data.posts[i].sender_id].name}
+				avatar={props.data.users[props.data.posts[i].sender_id].avatar}
+				text={props.data.posts[i].text}
+				date={props.data.posts[i].date}
+			/>
+		)
+	}
 	return (
 		<StyledFeed>
 			<PageHeader title='News' />
@@ -16,15 +28,7 @@ const Feed = (props) => {
 				placeholder="What's new?"
 				onclick={props.addPost}
 			/>
-			{props.state.users[0].posts.map(({ text, date }) => (
-				<Post
-					name={props.state.users[0].name}
-					id={props.state.users[0].posts.id}
-					avatar={props.state.users[0].avatar}
-					text={text}
-					date={date}
-				/>
-			))}
+			{posts}
 		</StyledFeed>
 	)
 }

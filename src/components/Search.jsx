@@ -17,7 +17,7 @@ const Search = (props) => {
 			<PageHeader title='Search people' />
 			<PageContent>
 				<Searchbar />
-				{props.state.users.map((Users) => (
+				{props.data.users.map((Users) => (
 					<User
 						name={Users.name}
 						id={Users.id}

@@ -62,18 +62,16 @@ const Messenger = (props) => {
 				<Searchbar />
 				<DialogLink
 					to={
-						'/dialog/' + props.state.users[props.state.messages[1].sender_id].id
+						'/dialog/' + props.data.users[props.data.messages[1].sender_id].id
 					}
 				>
 					<StyledAvatar
-						src={props.state.users[props.state.messages[1].sender_id].avatar}
+						src={props.data.users[props.data.messages[1].sender_id].avatar}
 					/>
-					<Name>
-						{props.state.users[props.state.messages[1].sender_id].name}
-					</Name>
-					<Date>{props.state.messages[1].date}</Date>
+					<Name>{props.data.users[props.data.messages[1].sender_id].name}</Name>
+					<Date>{props.data.messages[1].date}</Date>
 					<LastMessage>
-						{props.state.messages[props.state.messages.length - 1].text}
+						{props.data.messages[props.data.messages.length - 1].text}
 					</LastMessage>
 				</DialogLink>
 			</PageContent>

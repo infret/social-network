@@ -18,10 +18,10 @@ const Friendlist = (props) => {
 			<PageContent>
 				<Searchbar />
 				<User
-					name={props.state.users[1].name}
-					id={props.state.users[1].id}
-					avatar={props.state.users[1].avatar}
-					home={props.state.users[1].home}
+					name={props.data.users[1].name}
+					id={props.data.users[1].id}
+					avatar={props.data.users[1].avatar}
+					home={props.data.users[1].home}
 				/>
 			</PageContent>
 		</StyledFriendlist>

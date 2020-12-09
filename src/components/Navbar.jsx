@@ -10,9 +10,9 @@ import BigLogo from '../resources/big-logo.svg'
 
 const StyledNavbar = styled.nav`
 	width: 250px;
-	height: 100%;
 	position: sticky;
 	top: 0;
+	height: 300px;
 	background-color: var(--light-grey);
 	@media (max-width: 700px) {
 		display: none;
@@ -51,9 +51,9 @@ const Navbar = (props) => {
 		<StyledNavbar>
 			<AppLogo src={BigLogo} />
 			<Navlinks>
-				<StyledLink to={'/user/' + props.state.users[0].id}>
+				<StyledLink to={'/user/' + props.data.users[0].id}>
 					<StyledImg src={ProfileIcon} />
-					{props.state.users[0].name}
+					{props.data.users[0].name}
 				</StyledLink>
 				<StyledLink to='/feed'>
 					<StyledImg src={FeedIcon} />

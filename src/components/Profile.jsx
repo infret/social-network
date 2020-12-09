@@ -17,7 +17,7 @@ const PageContent = styled.div`
 
 const ProfileDescription = styled(Card)`
 	display: grid;
-	grid-template-areas: 'avatar name' 'avatar status' 'avatar state' 'details details';
+	grid-template-areas: 'avatar name' 'avatar status' 'avatar data' 'details details';
 	grid-template-columns: 102px 1fr;
 	grid-template-rows: 34px 34px 34px 1fr;
 	margin-top: 6px;
@@ -44,7 +44,7 @@ const OnlineStatus = styled.p`
 	color: #999;
 	font-size: 15px;
 	align-self: end;
-	grid-area: state;
+	grid-area: data;
 `
 const ProfileDetails = styled.div`
 	grid-area: details;
@@ -72,22 +72,22 @@ const Profile = (props) => {
 			<PageHeader title='Profile' />
 			<PageContent>
 				<ProfileDescription>
-					<StyledAvatar src={props.state.users[0].avatar} />
-					<Name>{props.state.users[0].name}</Name>
-					<Status>{props.state.users[0].status}</Status>
-					<OnlineStatus>{props.state.users[0].state}</OnlineStatus>
+					<StyledAvatar src={props.data.users[0].avatar} />
+					<Name>{props.data.users[0].name}</Name>
+					<Status>{props.data.users[0].status}</Status>
+					<OnlineStatus>{props.data.users[0].data}</OnlineStatus>
 					<ProfileDetails>
 						<ProfileDetail>
 							<DetailIcon src={GreyFriendsIcon} />
-							{props.state.users[0].friends} friends
+							{props.data.users[0].friends} friends
 						</ProfileDetail>
 						<ProfileDetail>
 							<DetailIcon src={GreyHomeIcon} />
-							{props.state.users[0].home}
+							{props.data.users[0].home}
 						</ProfileDetail>
 						<ProfileDetail>
 							<DetailIcon src={GreyGiftIcon} />
-							{props.state.users[0].birth}
+							{props.data.users[0].birth}
 						</ProfileDetail>
 					</ProfileDetails>
 				</ProfileDescription>

@@ -10,7 +10,6 @@ const StyledHeader = styled.header`
 	align-items: center;
 	position: sticky;
 	top: 0;
-	grid-area: header;
 `
 
 const PageTitle = styled.h1`

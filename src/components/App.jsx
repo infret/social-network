@@ -8,12 +8,11 @@ import Friendlist from './Friendlist'
 import Search from './Search'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Dialog from './Dialog'
-import stateData, { addPost, addMessage } from '../store'
+import data, { addPost, addMessage } from '../store'
 
 const AppContainer = styled.div`
 	max-width: 900px;
 	width: 100vw;
-	height: 100%;
 	margin: 0 auto 0 auto;
 	display: flex;
 	@media (max-width: 800px) {
@@ -36,44 +35,30 @@ const AppContent = styled.div`
 `
 
 const App = (props) => {
-	
-		return (
-			<BrowserRouter>
-				<AppHeader />
-				<AppContainer>
-					<Navbar state={stateData} />
-					<AppContent>
-						<Route
-							path='/user'
-							component={() => <Profile state={stateData} />}
-						/>
-						<Route
-							path='/feed'
-							component={() => <Feed state={stateData} addPost={addPost} />}
-						/>
-						<Route
-							path='/messenger'
-							render={() => (
-								<Messenger state={stateData} addMessage={addMessage} />
-							)}
-						/>
-						<Route
-							path={'/dialog/' + 1}
-							component={() => (
-								<Dialog state={stateData} addMessage={addMessage} />
-							)}
-						/>
-						<Route
-							path='/friends'
-							component={() => <Friendlist state={stateData} />}
-						/>
-						<Route
-							path='/search'
-							component={() => <Search state={stateData} />}
-						/>
-					</AppContent>
-				</AppContainer>
-			</BrowserRouter>
-		)
-	}
-	export default App
+	return (
+		<BrowserRouter>
+			<AppHeader />
+			<AppContainer>
+				<Navbar data={data} />
+				<AppContent>
+					<Route path='/user' component={() => <Profile data={data} />} />
+					<Route
+						path='/feed'
+						component={() => <Feed data={data} addPost={addPost} />}
+					/>
+					<Route
+						path='/messenger'
+						render={() => <Messenger data={data} addMessage={addMessage} />}
+					/>
+					<Route
+						path={'/dialog/' + 1}
+						component={() => <Dialog data={data} addMessage={addMessage} />}
+					/>
+					<Route path='/friends' component={() => <Friendlist data={data} />} />
+					<Route path='/search' component={() => <Search data={data} />} />
+				</AppContent>
+			</AppContainer>
+		</BrowserRouter>
+	)
+}
+export default App
