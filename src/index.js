@@ -1,8 +1,7 @@
-import reportWebVitals from './reportWebVitals'
 import { createGlobalStyle } from 'styled-components'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import App from './components/App'
 
 const GlobalStyle = createGlobalStyle`
 body {
@@ -42,7 +41,6 @@ export const renderEntireApp = () => {
 		</React.StrictMode>,
 		document.getElementById('root')
 	)
-	reportWebVitals()
 }
 
 renderEntireApp()

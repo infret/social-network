@@ -11,21 +11,20 @@ const PageContent = styled(Card)`
 	margin-top: 6px;
 `
 
-export default class Friendlist extends React.Component {
-	render() {
-		return (
-			<StyledFriendlist>
-				<PageHeader title="Friends" />
-				<PageContent>
-					<Searchbar />
-					<User
-						name={this.props.state.users[1].name}
-						id={this.props.state.users[1].id}
-						avatar={this.props.state.users[1].avatar}
-						home={this.props.state.users[1].home}
-					/>
-				</PageContent>
-			</StyledFriendlist>
-		)
-	}
+const Friendlist = (props) => {
+	return (
+		<StyledFriendlist>
+			<PageHeader title='Friends' />
+			<PageContent>
+				<Searchbar />
+				<User
+					name={props.state.users[1].name}
+					id={props.state.users[1].id}
+					avatar={props.state.users[1].avatar}
+					home={props.state.users[1].home}
+				/>
+			</PageContent>
+		</StyledFriendlist>
+	)
 }
+export default Friendlist

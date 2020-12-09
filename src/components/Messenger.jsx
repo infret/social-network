@@ -54,21 +54,30 @@ const Date = styled.p`
 	margin: 12px;
 `
 
-export default class Messenger extends React.Component {
-	render() {
-		return (
-			<StyledMessenger>
-				<PageHeader title="Chats" />
-				<PageContent>
-					<Searchbar />
-					<DialogLink to={'/dialog/' + this.props.state.users[this.props.state.messages[1].sender_id].id}>
-						<StyledAvatar src={this.props.state.users[this.props.state.messages[1].sender_id].avatar} />
-						<Name>{this.props.state.users[this.props.state.messages[1].sender_id].name}</Name>
-						<Date>{this.props.state.messages[1].date}</Date>
-						<LastMessage>{this.props.state.messages[this.props.state.messages.length - 1].text}</LastMessage>
-					</DialogLink>
-				</PageContent>
-			</StyledMessenger>
-		)
-	}
+const Messenger = (props) => {
+	return (
+		<StyledMessenger>
+			<PageHeader title='Chats' />
+			<PageContent>
+				<Searchbar />
+				<DialogLink
+					to={
+						'/dialog/' + props.state.users[props.state.messages[1].sender_id].id
+					}
+				>
+					<StyledAvatar
+						src={props.state.users[props.state.messages[1].sender_id].avatar}
+					/>
+					<Name>
+						{props.state.users[props.state.messages[1].sender_id].name}
+					</Name>
+					<Date>{props.state.messages[1].date}</Date>
+					<LastMessage>
+						{props.state.messages[props.state.messages.length - 1].text}
+					</LastMessage>
+				</DialogLink>
+			</PageContent>
+		</StyledMessenger>
+	)
 }
+export default Messenger

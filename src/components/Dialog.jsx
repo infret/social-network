@@ -50,41 +50,35 @@ const Text = styled.pre`
 	align-self: center;
 `
 
-export default class Dialog extends React.Component {
-	render() {
-		return (
-			<StyledDialog>
-				<PageHeader title={this.props.state.users[1].name} />
-				<PageContent>
-					<Card>
-						{this.props.state.messages.map(({ text, date }) => (
-							<StyledMessage>
-								<StyledAvatar
-									src={
-										this.props.state.users[
-											this.props.state.messages[1].sender_id
-										].avatar
-									}
-								/>
-								<Name>
-									{
-										this.props.state.users[
-											this.props.state.messages[1].sender_id
-										].name
-									}
-								</Name>
-								<Text>{text}</Text>
-								<Date>{date}</Date>
-							</StyledMessage>
-						))}
-					</Card>
-					<TextareaForm
-						icon={BlueSendIcon}
-						placeholder='Your message'
-						onclick={this.props.addMessage}
-					/>
-				</PageContent>
-			</StyledDialog>
-		)
-	}
+const Dialog = (props) => {
+	return (
+		<StyledDialog>
+			<PageHeader title={props.state.users[1].name} />
+			<PageContent>
+				<Card>
+					{props.state.messages.map(({ text, date }) => (
+						<StyledMessage>
+							<StyledAvatar
+								src={
+									props.state.users[props.state.messages[1].sender_id].avatar
+								}
+							/>
+							<Name>
+								{props.state.users[props.state.messages[1].sender_id].name}
+							</Name>
+							<Text>{text}</Text>
+							<Date>{date}</Date>
+						</StyledMessage>
+					))}
+				</Card>
+				<TextareaForm
+					icon={BlueSendIcon}
+					placeholder='Your message'
+					onclick={props.addMessage}
+				/>
+			</PageContent>
+		</StyledDialog>
+	)
 }
+
+export default Dialog

@@ -37,8 +37,8 @@ const StyledButton = styled.input`
 		background-color: var(--darker-blue);
 	}
 `
-export default class Searchbar extends React.Component {
-	render() {
+const Searchbar = (props) => {
+	
 		return (
 			<StyledSearchbar>
 				<StyledInput type='text' placeholder='Search' />
@@ -46,4 +46,4 @@ export default class Searchbar extends React.Component {
 			</StyledSearchbar>
 		)
 	}
-}
+	export default Searchbar

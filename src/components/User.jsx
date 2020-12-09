@@ -31,14 +31,13 @@ const Home = styled.p`
 	color: #999;
 `
 
-export default class User extends React.Component {
-	render(name, id, avatar, home) {
-		return (
-			<StyledUser>
-				<StyledAvatar src={this.props.avatar} />
-				<Name>{this.props.name}</Name>
-				<Home>{this.props.home}</Home>
-			</StyledUser>
-		)
-	}
+const User = (props) => {
+	return (
+		<StyledUser>
+			<StyledAvatar src={props.avatar} />
+			<Name>{props.name}</Name>
+			<Home>{props.home}</Home>
+		</StyledUser>
+	)
 }
+export default User

@@ -11,23 +11,23 @@ const PageContent = styled(Card)`
 	margin-top: 6px;
 `
 
-export default class Search extends React.Component {
-	render() {
-		return (
-			<StyledSearch>
-				<PageHeader title="Search people" />
-				<PageContent>
-					<Searchbar />
-					{this.props.state.users.map((Users) => (
-						<User
-							name={Users.name}
-							id={Users.id}
-							avatar={Users.avatar}
-							home={Users.home}
-						/>
-					))}
-				</PageContent>
-			</StyledSearch>
-		)
-	}
+const Search = (props) => {
+	return (
+		<StyledSearch>
+			<PageHeader title='Search people' />
+			<PageContent>
+				<Searchbar />
+				{props.state.users.map((Users) => (
+					<User
+						name={Users.name}
+						id={Users.id}
+						avatar={Users.avatar}
+						home={Users.home}
+					/>
+				))}
+			</PageContent>
+		</StyledSearch>
+	)
 }
+
+export default Search

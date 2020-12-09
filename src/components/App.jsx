@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import Navbar from './components/Navbar'
-import Feed from './components/Feed'
-import Profile from './components/Profile'
-import Messenger from './components/Messenger'
-import Friendlist from './components/Friendlist'
-import Search from './components/Search'
+import Navbar from './Navbar'
+import Feed from './Feed'
+import Profile from './Profile'
+import Messenger from './Messenger'
+import Friendlist from './Friendlist'
+import Search from './Search'
 import { BrowserRouter, Route } from 'react-router-dom'
-import Dialog from './components/Dialog'
-import stateData, { addPost, addMessage } from './state'
+import Dialog from './Dialog'
+import stateData, { addPost, addMessage } from '../store'
 
 const AppContainer = styled.div`
 	max-width: 900px;
@@ -35,8 +35,8 @@ const AppContent = styled.div`
 	width: 100%;
 `
 
-export default class App extends React.Component {
-	render() {
+const App = (props) => {
+	
 		return (
 			<BrowserRouter>
 				<AppHeader />
@@ -76,4 +76,4 @@ export default class App extends React.Component {
 			</BrowserRouter>
 		)
 	}
-}
+	export default App

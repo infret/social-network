@@ -38,15 +38,14 @@ const Text = styled.pre`
 	margin: 0 12px 12px 12px;
 `
 
-export default class Post extends React.Component {
-	render() {
-		return (
-			<StyledPost>
-				<StyledAvatar src={this.props.avatar} />
-				<Name>{this.props.name}</Name>
-				<Text>{this.props.text}</Text>
-				<Date>{this.props.date}</Date>
-			</StyledPost>
-		)
-	}
+const Post = (props) => {
+	return (
+		<StyledPost>
+			<StyledAvatar src={props.avatar} />
+			<Name>{props.name}</Name>
+			<Text>{props.text}</Text>
+			<Date>{props.date}</Date>
+		</StyledPost>
+	)
 }
+export default Post

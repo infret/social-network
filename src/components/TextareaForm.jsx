@@ -34,8 +34,8 @@ const StyledSubmit = styled.input`
 	margin-left: 12px;
 `
 
-export default class PostInput extends React.Component {
-	handleKeyDown(textarea) {
+const TextareaForm = (props) => {
+	function handleKeyDown(textarea) {
 		textarea.target.style.height = 'inherit'
 		textarea.target.style.height = `${Math.min(
 			textarea.target.scrollHeight,
@@ -43,23 +43,22 @@ export default class PostInput extends React.Component {
 		)}px`
 	}
 
-	render() {
-		let textarea = React.createRef()
+	let textarea = React.createRef()
 
-		return (
-			<StyledForm>
-				<StyledTextarea
-					placeholder={this.props.placeholder}
-					ref={textarea}
-					onKeyDown={this.handleKeyDown}
-				/>
-				<StyledSubmit
-					type='submit'
-					value=''
-					onClick={() => this.props.onclick(textarea.current.value)}
-					icon={this.props.icon}
-				></StyledSubmit>
-			</StyledForm>
-		)
-	}
+	return (
+		<StyledForm>
+			<StyledTextarea
+				placeholder={props.placeholder}
+				ref={textarea}
+				onKeyDown={handleKeyDown}
+			/>
+			<StyledSubmit
+				type='submit'
+				value=''
+				onClick={() => props.onclick(textarea.current.value)}
+				icon={props.icon}
+			></StyledSubmit>
+		</StyledForm>
+	)
 }
+export default TextareaForm

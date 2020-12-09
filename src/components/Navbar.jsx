@@ -46,34 +46,33 @@ const Navlinks = styled.div`
 	margin: 13px 6px 0 0;
 `
 
-export default class Navbar extends React.Component {
-	render() {
-		return (
-			<StyledNavbar>
-				<AppLogo src={BigLogo} />
-				<Navlinks>
-					<StyledLink to={'/user/' + this.props.state.users[0].id}>
-						<StyledImg src={ProfileIcon} />
-						{this.props.state.users[0].name}
-					</StyledLink>
-					<StyledLink to='/feed'>
-						<StyledImg src={FeedIcon} />
-						Feed
-					</StyledLink>
-					<StyledLink to='/messenger'>
-						<StyledImg src={MessengerIcon} />
-						Messenger
-					</StyledLink>
-					<StyledLink to='/friends'>
-						<StyledImg src={BlueFriendsIcon} />
-						Friends
-					</StyledLink>
-					<StyledLink to='/search'>
-						<StyledImg src={BlueSearchIcon} />
-						Search
-					</StyledLink>
-				</Navlinks>
-			</StyledNavbar>
-		)
-	}
+const Navbar = (props) => {
+	return (
+		<StyledNavbar>
+			<AppLogo src={BigLogo} />
+			<Navlinks>
+				<StyledLink to={'/user/' + props.state.users[0].id}>
+					<StyledImg src={ProfileIcon} />
+					{props.state.users[0].name}
+				</StyledLink>
+				<StyledLink to='/feed'>
+					<StyledImg src={FeedIcon} />
+					Feed
+				</StyledLink>
+				<StyledLink to='/messenger'>
+					<StyledImg src={MessengerIcon} />
+					Messenger
+				</StyledLink>
+				<StyledLink to='/friends'>
+					<StyledImg src={BlueFriendsIcon} />
+					Friends
+				</StyledLink>
+				<StyledLink to='/search'>
+					<StyledImg src={BlueSearchIcon} />
+					Search
+				</StyledLink>
+			</Navlinks>
+		</StyledNavbar>
+	)
 }
+export default Navbar

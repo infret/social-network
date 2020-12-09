@@ -34,14 +34,13 @@ const HeaderButton = styled.button`
 	}
 `
 
-export default class PageHeader extends React.Component {
-	render() {
-		return (
-			<StyledHeader>
-				<HeaderButton icon={BlueMenuIcon} />
-				<PageTitle>{this.props.title}</PageTitle>
-				<HeaderButton icon={BlueMoreIcon} />
-			</StyledHeader>
-		)
-	}
+const PageHeader = (props) => {
+	return (
+		<StyledHeader>
+			<HeaderButton icon={BlueMenuIcon} />
+			<PageTitle>{props.title}</PageTitle>
+			<HeaderButton icon={BlueMoreIcon} />
+		</StyledHeader>
+	)
 }
+export default PageHeader
