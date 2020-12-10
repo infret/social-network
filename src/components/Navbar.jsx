@@ -43,7 +43,7 @@ const AppLogo = styled.img`
 `
 
 const Navlinks = styled.div`
-	margin: 13px 6px 0 0;
+	margin-top: 13px;
 `
 
 const Navbar = (props) => {
@@ -51,9 +51,9 @@ const Navbar = (props) => {
 		<StyledNavbar>
 			<AppLogo src={BigLogo} />
 			<Navlinks>
-				<StyledLink to={'/user/' + props.data.users[0].id}>
+				<StyledLink to={'/user/' + props.data.currentUserId}>
 					<StyledImg src={ProfileIcon} />
-					{props.data.users[0].name}
+					Profile
 				</StyledLink>
 				<StyledLink to='/feed'>
 					<StyledImg src={FeedIcon} />

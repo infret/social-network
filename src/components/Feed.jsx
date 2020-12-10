@@ -7,6 +7,12 @@ import BlueNextIcon from '../resources/blue-next-icon.svg'
 
 const StyledFeed = styled.div``
 
+const PageContent = styled.div`
+	overflow-y: scroll;
+	height: calc(100vh - 58px);
+	max-height: calc(100vh - 58px);
+`
+
 const Feed = (props) => {
 	const posts = []
 	for (let i = 0; i < props.data.posts.length; i++) {
@@ -23,12 +29,14 @@ const Feed = (props) => {
 	return (
 		<StyledFeed>
 			<PageHeader title='News' />
-			<TextareaForm
-				icon={BlueNextIcon}
-				placeholder="What's new?"
-				onclick={props.addPost}
-			/>
-			{posts}
+			<PageContent>
+				<TextareaForm
+					icon={BlueNextIcon}
+					placeholder="What's new?"
+					onclick={props.addPost}
+				/>
+				{posts}
+			</PageContent>
 		</StyledFeed>
 	)
 }

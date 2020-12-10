@@ -36,7 +36,7 @@ const HeaderButton = styled.button`
 const PageHeader = (props) => {
 	return (
 		<StyledHeader>
-			<HeaderButton icon={BlueMenuIcon} />
+			<HeaderButton icon={BlueMenuIcon}/>
 			<PageTitle>{props.title}</PageTitle>
 			<HeaderButton icon={BlueMoreIcon} />
 		</StyledHeader>

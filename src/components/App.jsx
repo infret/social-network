@@ -25,8 +25,6 @@ const AppHeader = styled.header`
 	height: 52px;
 	width: 100%;
 	position: fixed;
-	display: flex;
-	align-items: center;
 	box-shadow: var(--elevation);
 `
 
@@ -34,7 +32,7 @@ const AppContent = styled.div`
 	width: 100%;
 `
 
-const App = (props) => {
+const App = () => {
 	return (
 		<BrowserRouter>
 			<AppHeader />
@@ -48,7 +46,7 @@ const App = (props) => {
 					/>
 					<Route
 						path='/messenger'
-						render={() => <Messenger data={data} addMessage={addMessage} />}
+						render={() => <Messenger data={data}/>}
 					/>
 					<Route
 						path={'/dialog/' + 1}
