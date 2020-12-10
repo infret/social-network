@@ -23,8 +23,9 @@ const Feed = (props) => {
 					placeholder="What's new?"
 					onclick={props.addPost}
 				/>
-				{props.getPosts().map((post) => (
+				{props.getPosts().map((post, index) => (
 					<Post
+						key={index}
 						name={post.name}
 						avatar={post.avatar}
 						text={post.text}

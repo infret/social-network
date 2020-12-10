@@ -34,54 +34,41 @@ let data = {
 			friends: '106',
 		},
 	],
-	dialogs: [
-		{
-			companion_id: '1',
-			companion_name: 'Nick Null',
-			compation_avatar:
-				'https://images.unsplash.com/photo-1581456495146-65a71b2c8e52?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80',
-		},
-	],
 	messages: [
 		{
 			sender_id: '0',
 			recipient_id: '1',
 			text: 'Sup',
-			date: '11 Nov 10:08',
+			date: '11 Nov, 10:08',
 		},
 		{
 			sender_id: '1',
 			recipient_id: '0',
 			text: 'Hey',
-			date: '11 Nov 10:47',
+			date: '11 Nov, 10:47',
 		},
 	],
 	posts: [
 		{
 			sender_id: '0',
 			text: 'Somebody once told me',
-			date: '11 Nov 17:08',
+			date: '11 Nov, 17:08',
 		},
 		{
 			sender_id: '1',
 			text: 'The world is gonna roll me',
-			date: '12 Nov 17:42',
+			date: '12 Nov, 17:42',
 		},
 	],
 }
 
 function getCurrentDate() {
-	const date = new Date()
-	let currentDate =
-		date.getDay() +
-		' ' +
-		date.toLocaleString('default', { month: 'short' }) +
-		' ' +
-		date.getHours() +
-		':' +
-		(date.getMinutes() < 10 ? '0' : '') +
-		date.getMinutes()
-	return currentDate
+	return new Intl.DateTimeFormat('en-GB', {
+		month: 'short',
+		day: 'numeric',
+		hour: 'numeric',
+		minute: 'numeric',
+	}).format(Date.now())
 }
 
 export function getPosts(sender_id) {

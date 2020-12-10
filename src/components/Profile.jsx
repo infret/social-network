@@ -101,8 +101,9 @@ const Profile = (props) => {
 					placeholder="What's new?"
 					onclick={props.addPost}
 				/>{' '}
-				{props.getPosts(props.data.currentUserId).map((post) => (
+				{props.getPosts(props.data.currentUserId).map((post, index) => (
 					<Post
+						key={index}
 						name={post.name}
 						avatar={post.avatar}
 						text={post.text}

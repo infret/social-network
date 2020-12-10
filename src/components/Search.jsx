@@ -17,12 +17,13 @@ const Search = (props) => {
 			<PageHeader title='Search people' />
 			<PageContent>
 				<Searchbar />
-				{props.data.users.map((Users) => (
+				{props.data.users.map((users, index) => (
 					<User
-						name={Users.name}
-						id={Users.id}
-						avatar={Users.avatar}
-						home={Users.home}
+						key={index}
+						name={users.name}
+						id={users.id}
+						avatar={users.avatar}
+						home={users.home}
 					/>
 				))}
 			</PageContent>

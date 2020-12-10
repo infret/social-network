@@ -68,8 +68,8 @@ const Dialog = (props) => {
 			<PageHeader title={props.data.users[window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)].name} />
 			<PageContent>
 				<Messages>
-					{props.data.messages.map((message) => (
-						<StyledMessage>
+					{props.data.messages.map((message, index) => (
+						<StyledMessage key={index}>
 							<StyledAvatar
 								src={props.data.users[message.sender_id].avatar}
 							/>

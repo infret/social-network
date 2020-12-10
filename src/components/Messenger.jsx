@@ -60,8 +60,8 @@ const Messenger = (props) => {
 			<PageHeader title='Chats' />
 			<PageContent>
 				<Searchbar />
-				{props.getDialogs().map((dialog) => (
-					<DialogLink to={'/dialog/' + dialog.id}>
+				{props.getDialogs().map((dialog, index) => (
+					<DialogLink key={index} to={'/dialog/' + dialog.id}>
 						<StyledAvatar src={dialog.avatar} />
 						<Name>{dialog.name}</Name>
 						<Date>{dialog.date}</Date>
