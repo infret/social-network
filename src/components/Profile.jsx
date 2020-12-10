@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Avatar from './Avatar'
 import PageHeader from './PageHeader'
 import Card from './Card'
+import Post from './Post'
 import TextareaForm from './TextareaForm'
 import GreyFriendsIcon from '../resources/grey-friends-icon.svg'
 import GreyHomeIcon from '../resources/grey-home-icon.svg'
@@ -72,22 +73,26 @@ const Profile = (props) => {
 			<PageHeader title='Profile' />
 			<PageContent>
 				<ProfileDescription>
-					<StyledAvatar src={props.data.users[0].avatar} />
-					<Name>{props.data.users[0].name}</Name>
-					<Status>{props.data.users[0].status}</Status>
-					<OnlineStatus>{props.data.users[0].data}</OnlineStatus>
+					<StyledAvatar
+						src={props.data.users[props.data.currentUserId].avatar}
+					/>
+					<Name>{props.data.users[props.data.currentUserId].name}</Name>
+					<Status>{props.data.users[props.data.currentUserId].status}</Status>
+					<OnlineStatus>
+						{props.data.users[props.data.currentUserId].data}
+					</OnlineStatus>
 					<ProfileDetails>
 						<ProfileDetail>
 							<DetailIcon src={GreyFriendsIcon} />
-							{props.data.users[0].friends} friends
+							{props.data.users[props.data.currentUserId].friends} friends
 						</ProfileDetail>
 						<ProfileDetail>
 							<DetailIcon src={GreyHomeIcon} />
-							{props.data.users[0].home}
+							{props.data.users[props.data.currentUserId].home}
 						</ProfileDetail>
 						<ProfileDetail>
 							<DetailIcon src={GreyGiftIcon} />
-							{props.data.users[0].birth}
+							{props.data.users[props.data.currentUserId].birth}
 						</ProfileDetail>
 					</ProfileDetails>
 				</ProfileDescription>
@@ -96,6 +101,14 @@ const Profile = (props) => {
 					placeholder="What's new?"
 					onclick={props.addPost}
 				/>{' '}
+				{props.getPosts(props.data.currentUserId).map((post) => (
+					<Post
+						name={post.name}
+						avatar={post.avatar}
+						text={post.text}
+						date={post.date}
+					/>
+				))}
 			</PageContent>
 		</StyledProfile>
 	)

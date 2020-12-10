@@ -60,20 +60,14 @@ const Messenger = (props) => {
 			<PageHeader title='Chats' />
 			<PageContent>
 				<Searchbar />
-				<DialogLink
-					to={
-						'/dialog/' + props.data.users[props.data.messages[1].sender_id].id
-					}
-				>
-					<StyledAvatar
-						src={props.data.users[props.data.messages[1].sender_id].avatar}
-					/>
-					<Name>{props.data.users[props.data.messages[1].sender_id].name}</Name>
-					<Date>{props.data.messages[1].date}</Date>
-					<LastMessage>
-						{props.data.messages[props.data.messages.length - 1].text}
-					</LastMessage>
-				</DialogLink>
+				{props.getDialogs().map((dialog) => (
+					<DialogLink to={'/dialog/' + dialog.id}>
+						<StyledAvatar src={dialog.avatar} />
+						<Name>{dialog.name}</Name>
+						<Date>{dialog.date}</Date>
+						<LastMessage>{dialog.text}</LastMessage>
+					</DialogLink>
+				))}
 			</PageContent>
 		</StyledMessenger>
 	)

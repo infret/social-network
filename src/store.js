@@ -70,7 +70,7 @@ let data = {
 	],
 }
 
-const getCurrentDate = () => {
+function getCurrentDate() {
 	const date = new Date()
 	let currentDate =
 		date.getDay() +
@@ -84,15 +84,53 @@ const getCurrentDate = () => {
 	return currentDate
 }
 
+export function getPosts(sender_id) {
+	const posts = []
+	for (let i = 0; i < data.posts.length; i++) {
+		if (sender_id) {
+			if (data.posts[i].sender_id === sender_id) {
+				posts.push({
+					name: data.users[sender_id].name,
+					avatar: data.users[sender_id].avatar,
+					text: data.posts[i].text,
+					date: data.posts[i].date,
+				})
+			}
+		} else {
+			posts.push({
+				name: data.users[data.posts[i].sender_id].name,
+				avatar: data.users[data.posts[i].sender_id].avatar,
+				text: data.posts[i].text,
+				date: data.posts[i].date,
+			})
+		}
+	}
+	return posts
+}
+
+export function getDialogs() {
+	const dialogs = []
+	for (let i = 0; i < data.messages.length; i++) {
+		if (data.messages[i].recipient_id === data.currentUserId) {
+			dialogs.push({
+				id: data.users[data.messages[i].sender_id].id,
+				name: data.users[data.messages[i].sender_id].name,
+				avatar: data.users[data.messages[i].sender_id].avatar,
+				text: data.messages[i].text,
+				date: data.messages[i].date,
+			})
+		}
+	}
+	return dialogs
+}
+
 export const addPost = (postText) => {
 	if (postText) {
-		let newPost = {
+		data.posts.push({
 			sender_id: data.currentUserId,
 			text: postText,
 			date: getCurrentDate(),
-		}
-
-		data.posts.push(newPost)
+		})
 		renderEntireApp()
 	}
 }

@@ -14,18 +14,6 @@ const PageContent = styled.div`
 `
 
 const Feed = (props) => {
-	const posts = []
-	for (let i = 0; i < props.data.posts.length; i++) {
-		console.log(i)
-		posts.push(
-			<Post
-				name={props.data.users[props.data.posts[i].sender_id].name}
-				avatar={props.data.users[props.data.posts[i].sender_id].avatar}
-				text={props.data.posts[i].text}
-				date={props.data.posts[i].date}
-			/>
-		)
-	}
 	return (
 		<StyledFeed>
 			<PageHeader title='News' />
@@ -35,7 +23,14 @@ const Feed = (props) => {
 					placeholder="What's new?"
 					onclick={props.addPost}
 				/>
-				{posts}
+				{props.getPosts().map((post) => (
+					<Post
+						name={post.name}
+						avatar={post.avatar}
+						text={post.text}
+						date={post.date}
+					/>
+				))}
 			</PageContent>
 		</StyledFeed>
 	)

@@ -65,19 +65,19 @@ const Text = styled.pre`
 const Dialog = (props) => {
 	return (
 		<StyledDialog>
-			<PageHeader title={props.data.users[1].name} />
+			<PageHeader title={props.data.users[window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)].name} />
 			<PageContent>
 				<Messages>
-					{props.data.messages.map(({ text, date }) => (
+					{props.data.messages.map((message) => (
 						<StyledMessage>
 							<StyledAvatar
-								src={props.data.users[props.data.messages[1].sender_id].avatar}
+								src={props.data.users[message.sender_id].avatar}
 							/>
 							<Name>
-								{props.data.users[props.data.messages[1].sender_id].name}
+								{props.data.users[message.sender_id].name}
 							</Name>
-							<Text>{text}</Text>
-							<Date>{date}</Date>
+							<Text>{message.text}</Text>
+							<Date>{message.date}</Date>
 						</StyledMessage>
 					))}
 				</Messages>

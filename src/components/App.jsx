@@ -8,7 +8,7 @@ import Friendlist from './Friendlist'
 import Search from './Search'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Dialog from './Dialog'
-import data, { addPost, addMessage } from '../store'
+import data, { addPost, addMessage, getPosts, getDialogs } from '../store'
 
 const AppContainer = styled.div`
 	max-width: 900px;
@@ -39,14 +39,21 @@ const App = () => {
 			<AppContainer>
 				<Navbar data={data} />
 				<AppContent>
-					<Route path='/user' component={() => <Profile data={data} />} />
+					<Route
+						path='/user'
+						component={() => (
+							<Profile data={data} addPost={addPost} getPosts={getPosts} />
+						)}
+					/>
 					<Route
 						path='/feed'
-						component={() => <Feed data={data} addPost={addPost} />}
+						component={() => (
+							<Feed data={data} addPost={addPost} getPosts={getPosts} />
+						)}
 					/>
 					<Route
 						path='/messenger'
-						render={() => <Messenger data={data}/>}
+						render={() => <Messenger data={data} getDialogs={getDialogs} />}
 					/>
 					<Route
 						path={'/dialog/' + 1}
