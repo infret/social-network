@@ -32,6 +32,7 @@ const AppHeader = styled.header`
 
 const AppContent = styled.div`
 	width: 100%;
+	min-height: 100vh;
 `
 
 const App = (props) => {

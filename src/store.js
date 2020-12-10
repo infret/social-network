@@ -8,7 +8,7 @@ export const store = {
 		users: [
 			{
 				id: '0',
-				name: 'Vlad Peach',
+				name: 'Vlad Undefined',
 				avatar:
 					'https://images.unsplash.com/photo-1503212556734-c0ca0c49c8b0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fHNpbGhvdWV0dGV8ZW58MHwyfDB8&auto=format&fit=crop&w=400&q=60',
 				status: 'online',
@@ -46,6 +46,54 @@ export const store = {
 			},
 		],
 		messages: [
+			{
+				sender_id: '0',
+				recipient_id: '1',
+				text: 'Sup',
+				date: '11 Nov 10:08',
+			},
+			{
+				sender_id: '1',
+				recipient_id: '0',
+				text: 'Hey',
+				date: '11 Nov 10:47',
+			},
+			{
+				sender_id: '0',
+				recipient_id: '1',
+				text: 'Sup',
+				date: '11 Nov 10:08',
+			},
+			{
+				sender_id: '1',
+				recipient_id: '0',
+				text: 'Hey',
+				date: '11 Nov 10:47',
+			},
+			{
+				sender_id: '0',
+				recipient_id: '1',
+				text: 'Sup',
+				date: '11 Nov 10:08',
+			},
+			{
+				sender_id: '1',
+				recipient_id: '0',
+				text: 'Hey',
+				date: '11 Nov 10:47',
+			},
+			{
+				sender_id: '0',
+				recipient_id: '1',
+				text: 'Sup',
+				date: '11 Nov 10:08',
+			},
+			{
+				sender_id: '1',
+				recipient_id: '0',
+				text: 'Hey',
+				date: '11 Nov 10:47',
+			},
 			{
 				sender_id: '0',
 				recipient_id: '1',

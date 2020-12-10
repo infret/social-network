@@ -6,10 +6,16 @@ import Avatar from './AvatarTemplate'
 import TextareaForm from './TextareaTemplate'
 import BlueSendIcon from '../resources/blue-send-icon.svg'
 
-const Page = styled.div``
+const Page = styled.div`
+	height: 100%;
+`
 
 const PageContent = styled.div`
 	margin-top: 6px;
+	height: calc(100vh - 58px);
+	max-height: calc(100vh - 58px);
+	display: flex;
+	flex-direction: column;
 `
 
 const StyledMessage = styled.div`
@@ -50,12 +56,21 @@ const Text = styled.pre`
 	align-self: center;
 `
 
+const StyledTextareaForm = styled(TextareaForm)`
+	margin: auto 0 6px;
+`
+
+const Messages = styled(Card)`
+	overflow-y: scroll;
+	margin-bottom: 6px;
+`
+
 const DialogPage = (props) => {
 	return (
 		<Page>
 			<PageHeader title={props.state.users[1].name} />
 			<PageContent>
-				<Card>
+				<Messages>
 					{props.state.messages.map(({ sender_id, text, date }) => (
 						<StyledMessage>
 							<StyledAvatar src={props.state.users[sender_id].avatar} />
@@ -64,8 +79,8 @@ const DialogPage = (props) => {
 							<Date>{date}</Date>
 						</StyledMessage>
 					))}
-				</Card>
-				<TextareaForm
+				</Messages>
+				<StyledTextareaForm
 					icon={BlueSendIcon}
 					placeholder='Your message'
 					onclick={props.addMessage}

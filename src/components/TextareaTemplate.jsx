@@ -44,7 +44,7 @@ const TextareaTemplate = (props) => {
 		)}px`
 	}
 	return (
-		<Template>
+		<Template className={props.className}>
 			<StyledTextarea
 				placeholder={props.placeholder}
 				ref={textarea}
