@@ -31,7 +31,7 @@ const Home = styled.p`
 	color: #999;
 `
 
-const User = (props) => {
+export default function User(props){
 	return (
 		<StyledUser>
 			<StyledAvatar src={props.avatar} />
@@ -40,4 +40,3 @@ const User = (props) => {
 		</StyledUser>
 	)
 }
-export default User

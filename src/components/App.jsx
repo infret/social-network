@@ -8,7 +8,7 @@ import Friendlist from './Friendlist'
 import Search from './Search'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Dialog from './Dialog'
-import data, { addPost, addMessage, getPosts, getDialogs } from '../store'
+import { data, getPosts, getDialogs, getCurrentDate, getMessages } from '../store'
 
 const AppContainer = styled.div`
 	max-width: 900px;
@@ -32,7 +32,7 @@ const AppContent = styled.div`
 	width: 100%;
 `
 
-const App = () => {
+export default function App(){
 	return (
 		<BrowserRouter>
 			<AppHeader />
@@ -42,13 +42,13 @@ const App = () => {
 					<Route
 						path='/user'
 						component={() => (
-							<Profile data={data} addPost={addPost} getPosts={getPosts} />
+							<Profile data={data} getPosts={getPosts} />
 						)}
 					/>
 					<Route
 						path='/feed'
 						component={() => (
-							<Feed data={data} addPost={addPost} getPosts={getPosts} />
+							<Feed data={data} getPosts={getPosts} getCurrentDate={getCurrentDate}/>
 						)}
 					/>
 					<Route
@@ -57,7 +57,7 @@ const App = () => {
 					/>
 					<Route
 						path={'/dialog/' + 1}
-						component={() => <Dialog data={data} addMessage={addMessage} />}
+						component={() => <Dialog data={data} getMessages={getMessages} getCurrentDate={getCurrentDate}/>}
 					/>
 					<Route path='/friends' component={() => <Friendlist data={data} />} />
 					<Route path='/search' component={() => <Search data={data} />} />
@@ -66,4 +66,3 @@ const App = () => {
 		</BrowserRouter>
 	)
 }
-export default App

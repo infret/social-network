@@ -37,7 +37,7 @@ const StyledButton = styled.input`
 		background-color: var(--darker-blue);
 	}
 `
-const Searchbar = (props) => {
+export default function Searchbar(props){
 	
 		return (
 			<StyledSearchbar>
@@ -46,4 +46,3 @@ const Searchbar = (props) => {
 			</StyledSearchbar>
 		)
 	}
-	export default Searchbar

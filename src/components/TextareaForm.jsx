@@ -34,7 +34,7 @@ const StyledSubmit = styled.input`
   margin-left: 12px;
 `
 
-const TextareaForm = (props) => {
+export default function TextareaForm(props){
   function handleKeyDown(textarea) {
     textarea.target.style.height = 'inherit'
     textarea.target.style.height = `${Math.min(
@@ -61,4 +61,3 @@ const TextareaForm = (props) => {
       </StyledForm>
   )
 }
-export default TextareaForm

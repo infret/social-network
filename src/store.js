@@ -1,13 +1,11 @@
-import { renderEntireApp } from './index'
-
-let data = {
+export let data = {
 	currentUserId: '0',
 	users: [
 		{
 			id: '0',
 			name: 'Vlad Peach',
 			avatar:
-				'https://images.unsplash.com/photo-1503212556734-c0ca0c49c8b0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fHNpbGhvdWV0dGV8ZW58MHwyfDB8&auto=format&fit=crop&w=400&q=60',
+					'https://images.unsplash.com/photo-1503212556734-c0ca0c49c8b0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fHNpbGhvdWV0dGV8ZW58MHwyfDB8&auto=format&fit=crop&w=400&q=60',
 			status: 'online',
 			birth: '15 May',
 			home: 'Moscow',
@@ -17,7 +15,7 @@ let data = {
 			id: '1',
 			name: 'Nick Null',
 			avatar:
-				'https://images.unsplash.com/photo-1581456495146-65a71b2c8e52?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80',
+					'https://images.unsplash.com/photo-1581456495146-65a71b2c8e52?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80',
 			birth: '15 January',
 			status: 'offline',
 			home: 'Samara',
@@ -27,7 +25,7 @@ let data = {
 			id: '2',
 			name: 'Serge Jar',
 			avatar:
-				'https://images.unsplash.com/photo-1500389723459-ca24a5564899?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW4lMjBzaGFkb3d8ZW58MHx8MHw%3D&auto=format&fit=crop&w=400&q=60',
+					'https://images.unsplash.com/photo-1500389723459-ca24a5564899?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW4lMjBzaGFkb3d8ZW58MHx8MHw%3D&auto=format&fit=crop&w=400&q=60',
 			birth: '15 January',
 			status: 'offline',
 			home: 'Samara',
@@ -62,7 +60,7 @@ let data = {
 	],
 }
 
-function getCurrentDate() {
+export function getCurrentDate() {
 	return new Intl.DateTimeFormat('en-GB', {
 		month: 'short',
 		day: 'numeric',
@@ -72,7 +70,7 @@ function getCurrentDate() {
 }
 
 export function getPosts(sender_id) {
-	const posts = []
+	let posts = []
 	for (let i = 0; i < data.posts.length; i++) {
 		if (sender_id) {
 			if (data.posts[i].sender_id === sender_id) {
@@ -95,8 +93,23 @@ export function getPosts(sender_id) {
 	return posts
 }
 
+export function getMessages(companion_id) {
+	let messages = []
+	for (let i = 0; i < data.messages.length; i++) {
+		if ((data.messages[i].sender_id === companion_id && data.messages[i].recipient_id === data.currentUserId) || (data.messages[i].sender_id === data.currentUserId && data.messages[i].recipient_id == companion_id)) {
+			messages.push({
+				name: data.users[data.messages[i].sender_id].name,
+				avatar: data.users[data.messages[i].sender_id].avatar,
+				text: data.posts[i].text,
+				date: data.posts[i].date,
+			})
+		}
+	}
+	return messages
+}
+
 export function getDialogs() {
-	const dialogs = []
+	let dialogs = []
 	for (let i = 0; i < data.messages.length; i++) {
 		if (data.messages[i].recipient_id === data.currentUserId) {
 			dialogs.push({
@@ -110,30 +123,3 @@ export function getDialogs() {
 	}
 	return dialogs
 }
-
-export const addPost = (postText) => {
-	if (postText) {
-		data.posts.push({
-			sender_id: data.currentUserId,
-			text: postText,
-			date: getCurrentDate(),
-		})
-		renderEntireApp()
-	}
-}
-
-export const addMessage = (messageText) => {
-	if (messageText) {
-		let newMessage = {
-			sender_id: data.currentUserId,
-			recipient_id: '1',
-			text: messageText,
-			date: getCurrentDate(),
-		}
-
-		data.messages.push(newMessage)
-		renderEntireApp()
-	}
-}
-
-export default data

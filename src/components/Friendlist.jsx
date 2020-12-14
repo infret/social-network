@@ -5,15 +5,13 @@ import Card from './Card'
 import PageHeader from './PageHeader'
 import styled from 'styled-components'
 
-const StyledFriendlist = styled.div``
-
 const PageContent = styled(Card)`
 	margin-top: 6px;
 `
 
-const Friendlist = (props) => {
+export default function Friendlist(props){
 	return (
-		<StyledFriendlist>
+		<div>
 			<PageHeader title='Friends' />
 			<PageContent>
 				<Searchbar />
@@ -24,7 +22,6 @@ const Friendlist = (props) => {
 					home={props.data.users[1].home}
 				/>
 			</PageContent>
-		</StyledFriendlist>
+		</div>
 	)
 }
-export default Friendlist

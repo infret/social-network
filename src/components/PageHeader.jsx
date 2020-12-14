@@ -33,7 +33,7 @@ const HeaderButton = styled.button`
 	}
 `
 
-const PageHeader = (props) => {
+export default function PageHeader(props){
 	return (
 		<StyledHeader>
 			<HeaderButton icon={BlueMenuIcon}/>
@@ -42,4 +42,3 @@ const PageHeader = (props) => {
 		</StyledHeader>
 	)
 }
-export default PageHeader

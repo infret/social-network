@@ -1,14 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
 import PageHeader from './PageHeader'
 import Card from './Card'
 import Avatar from './Avatar'
 import TextareaForm from './TextareaForm'
 import BlueSendIcon from '../resources/blue-send-icon.svg'
-
-const StyledDialog = styled.div`
-	height: 100%;
-`
 
 const PageContent = styled.div`
 	margin-top: 6px;
@@ -62,33 +58,42 @@ const Text = styled.pre`
 	align-self: center;
 `
 
-const Dialog = (props) => {
+export default function Dialog(props) {
+	const [messages, setMessage] = useState(props.data.messages)
+
+	function addMessage(messageText) {
+		if (messageText) {
+			setMessage(
+					messages.push({
+						sender_id: props.data.currentUserId,
+						text: messageText,
+						date: props.getCurrentDate(),
+					}),
+			)
+		}
+	}
+
 	return (
-		<StyledDialog>
-			<PageHeader title={props.data.users[window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)].name} />
-			<PageContent>
-				<Messages>
-					{props.data.messages.map((message, index) => (
-						<StyledMessage key={index}>
-							<StyledAvatar
-								src={props.data.users[message.sender_id].avatar}
-							/>
-							<Name>
-								{props.data.users[message.sender_id].name}
-							</Name>
-							<Text>{message.text}</Text>
-							<Date>{message.date}</Date>
-						</StyledMessage>
-					))}
-				</Messages>
-				<TextareaForm
-					icon={BlueSendIcon}
-					placeholder='Your message'
-					onclick={props.addMessage}
-				/>
-			</PageContent>
-		</StyledDialog>
+			<div>
+				<PageHeader
+						title={props.data.users[window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)].name}/>
+				<PageContent>
+					<Messages>
+						{props.getMessages('1').map((message, index) => (
+								<StyledMessage key={index}>
+									<StyledAvatar src={message.avatar}/>
+									<Name>{message.name}</Name>
+									<Text>{message.text}</Text>
+									<Date>{message.date}</Date>
+								</StyledMessage>
+						))}
+					</Messages>
+					<TextareaForm
+							icon={BlueSendIcon}
+							placeholder='Your message'
+							onclick={addMessage}
+					/>
+				</PageContent>
+			</div>
 	)
 }
-
-export default Dialog

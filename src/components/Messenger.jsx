@@ -6,8 +6,6 @@ import { NavLink } from 'react-router-dom'
 import PageHeader from './PageHeader'
 import Card from './Card'
 
-const StyledMessenger = styled.div``
-
 const PageContent = styled(Card)`
 	margin-top: 6px;
 `
@@ -54,9 +52,9 @@ const Date = styled.p`
 	margin: 12px;
 `
 
-const Messenger = (props) => {
+export default function Messenger(props){
 	return (
-		<StyledMessenger>
+		<div>
 			<PageHeader title='Chats' />
 			<PageContent>
 				<Searchbar />
@@ -69,7 +67,6 @@ const Messenger = (props) => {
 					</DialogLink>
 				))}
 			</PageContent>
-		</StyledMessenger>
+		</div>
 	)
 }
-export default Messenger

@@ -10,8 +10,6 @@ import GreyHomeIcon from '../resources/grey-home-icon.svg'
 import GreyGiftIcon from '../resources/grey-gift-icon.svg'
 import BlueNextIcon from '../resources/blue-next-icon.svg'
 
-const StyledProfile = styled.div``
-
 const PageContent = styled.div`
 	margin-top: 6px;
 `
@@ -67,9 +65,9 @@ const DetailIcon = styled.img`
 	width: 24px;
 	margin: 8px;
 `
-const Profile = (props) => {
+export default function Profile(props){
 	return (
-		<StyledProfile>
+		<div>
 			<PageHeader title='Profile' />
 			<PageContent>
 				<ProfileDescription>
@@ -111,7 +109,6 @@ const Profile = (props) => {
 					/>
 				))}
 			</PageContent>
-		</StyledProfile>
+		</div>
 	)
 }
-export default Profile

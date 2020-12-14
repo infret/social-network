@@ -38,7 +38,7 @@ const Text = styled.pre`
 	margin: 0 12px 12px 12px;
 `
 
-const Post = (props) => {
+export default function Post(props){
 	return (
 		<StyledPost>
 			<StyledAvatar src={props.avatar} />
@@ -48,4 +48,3 @@ const Post = (props) => {
 		</StyledPost>
 	)
 }
-export default Post

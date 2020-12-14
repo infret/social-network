@@ -46,7 +46,7 @@ const Navlinks = styled.div`
 	margin-top: 13px;
 `
 
-const Navbar = (props) => {
+export default function Navbar(props){
 	return (
 		<StyledNavbar>
 			<AppLogo src={BigLogo} />
@@ -75,4 +75,3 @@ const Navbar = (props) => {
 		</StyledNavbar>
 	)
 }
-export default Navbar

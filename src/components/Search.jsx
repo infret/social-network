@@ -5,15 +5,13 @@ import Card from './Card'
 import PageHeader from './PageHeader'
 import styled from 'styled-components'
 
-const StyledSearch = styled.div``
-
 const PageContent = styled(Card)`
 	margin-top: 6px;
 `
 
-const Search = (props) => {
+export default function Search(props){
 	return (
-		<StyledSearch>
+		<div>
 			<PageHeader title='Search people' />
 			<PageContent>
 				<Searchbar />
@@ -27,8 +25,6 @@ const Search = (props) => {
 					/>
 				))}
 			</PageContent>
-		</StyledSearch>
+		</div>
 	)
 }
-
-export default Search

@@ -4,8 +4,7 @@ import Post from './Post'
 import PageHeader from './PageHeader'
 import TextareaForm from './TextareaForm'
 import BlueNextIcon from '../resources/blue-next-icon.svg'
-
-const StyledFeed = styled.div``
+import {useState} from 'react'
 
 const PageContent = styled.div`
 	overflow-y: scroll;
@@ -13,27 +12,40 @@ const PageContent = styled.div`
 	max-height: calc(100vh - 58px);
 `
 
-const Feed = (props) => {
+export default function Feed(props) {
+	const [posts, setPost] = useState(props.data.posts)
+
+	function addPost(postText) {
+		if (postText) {
+			setPost(
+					posts.push({
+						sender_id: props.data.currentUserId,
+						text: postText,
+						date: props.getCurrentDate(),
+					})
+			)
+		}
+	}
+
 	return (
-		<StyledFeed>
-			<PageHeader title='News' />
-			<PageContent>
-				<TextareaForm
-					icon={BlueNextIcon}
-					placeholder="What's new?"
-					onclick={props.addPost}
-				/>
-				{props.getPosts().map((post, index) => (
-					<Post
-						key={index}
-						name={post.name}
-						avatar={post.avatar}
-						text={post.text}
-						date={post.date}
+			<div>
+				<PageHeader title='News'/>
+				<PageContent>
+					<TextareaForm
+							icon={BlueNextIcon}
+							placeholder="What's new?"
+							onclick={addPost}
 					/>
-				))}
-			</PageContent>
-		</StyledFeed>
+					{props.getPosts().map((post, index) => (
+							<Post
+									key={index}
+									name={post.name}
+									avatar={post.avatar}
+									text={post.text}
+									date={post.date}
+							/>
+					))}
+				</PageContent>
+			</div>
 	)
 }
-export default Feed
