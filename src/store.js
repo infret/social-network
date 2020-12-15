@@ -95,8 +95,8 @@ export function getPosts(sender_id) {
 
 export function getMessages(companion_id) {
 	let messages = []
-	for (let i = 0; i < data.messages.length; i++) {
-		if ((data.messages[i].sender_id === companion_id && data.messages[i].recipient_id === data.currentUserId) || (data.messages[i].sender_id === data.currentUserId && data.messages[i].recipient_id == companion_id)) {
+	data.messages.forEach((item, i) => {
+		if ((data.messages[i].sender_id === companion_id && data.messages[i].recipient_id === data.currentUserId) || (data.messages[i].sender_id === data.currentUserId && data.messages[i].recipient_id === companion_id)) {
 			messages.push({
 				name: data.users[data.messages[i].sender_id].name,
 				avatar: data.users[data.messages[i].sender_id].avatar,
@@ -104,9 +104,20 @@ export function getMessages(companion_id) {
 				date: data.posts[i].date,
 			})
 		}
-	}
+	})
 	return messages
 }
+
+// for (let i = 0; i < data.messages.length; i++) {
+// 	if ((data.messages[i].sender_id === companion_id && data.messages[i].recipient_id === data.currentUserId) || (data.messages[i].sender_id === data.currentUserId && data.messages[i].recipient_id === companion_id)) {
+// 		messages.push({
+// 			name: data.users[data.messages[i].sender_id].name,
+// 			avatar: data.users[data.messages[i].sender_id].avatar,
+// 			text: data.posts[i].text,
+// 			date: data.posts[i].date,
+// 		})
+// 	}
+// }
 
 export function getDialogs() {
 	let dialogs = []

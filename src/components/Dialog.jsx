@@ -59,20 +59,6 @@ const Text = styled.pre`
 `
 
 export default function Dialog(props) {
-	const [messages, setMessage] = useState(props.data.messages)
-
-	function addMessage(messageText) {
-		if (messageText) {
-			setMessage(
-					messages.push({
-						sender_id: props.data.currentUserId,
-						text: messageText,
-						date: props.getCurrentDate(),
-					}),
-			)
-		}
-	}
-
 	return (
 			<div>
 				<PageHeader
@@ -91,7 +77,7 @@ export default function Dialog(props) {
 					<TextareaForm
 							icon={BlueSendIcon}
 							placeholder='Your message'
-							onclick={addMessage}
+							onclick={props.addMessage}
 					/>
 				</PageContent>
 			</div>
