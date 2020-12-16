@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import ProfileIcon from '../resources/profile-icon.svg'
 import FeedIcon from '../resources/feed-icon.svg'
 import BlueFriendsIcon from '../resources/blue-friends-icon.svg'
@@ -26,6 +26,7 @@ const StyledLink = styled(NavLink)`
 	align-items: center;
 	text-decoration: none;
 	color: black;
+
 	&:hover {
 		background-color: var(--darker-grey);
 	}
@@ -46,32 +47,17 @@ const Navlinks = styled.div`
 	margin-top: 13px;
 `
 
-export default function Navbar(props){
+export default function Navbar(props) {
 	return (
-		<StyledNavbar>
-			<AppLogo src={BigLogo} />
-			<Navlinks>
-				<StyledLink to={'/user/' + props.data.currentUserId}>
-					<StyledImg src={ProfileIcon} />
-					Profile
-				</StyledLink>
-				<StyledLink to='/feed'>
-					<StyledImg src={FeedIcon} />
-					Feed
-				</StyledLink>
-				<StyledLink to='/messenger'>
-					<StyledImg src={MessengerIcon} />
-					Messenger
-				</StyledLink>
-				<StyledLink to='/friends'>
-					<StyledImg src={BlueFriendsIcon} />
-					Friends
-				</StyledLink>
-				<StyledLink to='/search'>
-					<StyledImg src={BlueSearchIcon} />
-					Search
-				</StyledLink>
-			</Navlinks>
-		</StyledNavbar>
+			<StyledNavbar>
+				<AppLogo src={BigLogo}/>
+				<Navlinks>
+					<StyledLink to={'/user/' + props.currentUserId}><StyledImg src={ProfileIcon}/>Profile</StyledLink>
+					<StyledLink to='/feed'><StyledImg src={FeedIcon}/>Feed</StyledLink>
+					<StyledLink to='/messenger'><StyledImg src={MessengerIcon}/>Messenger</StyledLink>
+					<StyledLink to='/friends'><StyledImg src={BlueFriendsIcon}/>Friends</StyledLink>
+					<StyledLink to='/search'><StyledImg src={BlueSearchIcon}/>Search</StyledLink>
+				</Navlinks>
+			</StyledNavbar>
 	)
 }

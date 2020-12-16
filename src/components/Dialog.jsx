@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import PageHeader from './PageHeader'
 import Card from './Card'
@@ -59,10 +59,13 @@ const Text = styled.pre`
 `
 
 export default function Dialog(props) {
+	useEffect(() => {
+		document.title = 'Dialog'
+	}, []);
 	return (
 			<div>
 				<PageHeader
-						title={props.data.users[window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)].name}/>
+						title={props.data.users[props.userId].name}/>
 				<PageContent>
 					<Messages>
 						{props.getMessages('1').map((message, index) => (

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import Searchbar from './Searchbar'
 import Avatar from './Avatar'
@@ -53,13 +53,16 @@ const Date = styled.p`
 `
 
 export default function Messenger(props){
+	useEffect(() => {
+		document.title = 'Chats'
+	}, []);
 	return (
 		<div>
 			<PageHeader title='Chats' />
 			<PageContent>
 				<Searchbar />
-				{props.getDialogs().map((dialog, index) => (
-					<DialogLink key={index} to={'/dialog/' + dialog.id}>
+				{props.getDialogs().map((dialog, i) => (
+					<DialogLink key={i} to={'/dialog/' + dialog.companion_id}>
 						<StyledAvatar src={dialog.avatar} />
 						<Name>{dialog.name}</Name>
 						<Date>{dialog.date}</Date>

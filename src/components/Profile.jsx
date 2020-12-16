@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import styled from 'styled-components'
 import Avatar from './Avatar'
 import PageHeader from './PageHeader'
@@ -16,9 +16,9 @@ const PageContent = styled.div`
 
 const ProfileDescription = styled(Card)`
 	display: grid;
-	grid-template-areas: 'avatar name' 'avatar status' 'avatar data' 'details details';
+	grid-template-areas: 'avatar name' 'avatar status' 'details details';
 	grid-template-columns: 102px 1fr;
-	grid-template-rows: 34px 34px 34px 1fr;
+	grid-template-rows: 51px 51px 1fr;
 	margin-top: 6px;
 `
 
@@ -34,16 +34,9 @@ const Name = styled.p`
 `
 
 const Status = styled.p`
-	font-size: 15px;
-	align-self: start;
-	grid-area: status;
-`
-
-const OnlineStatus = styled.p`
 	color: #999;
 	font-size: 15px;
-	align-self: end;
-	grid-area: data;
+	grid-area: status;
 `
 const ProfileDetails = styled.div`
 	grid-area: details;
@@ -66,31 +59,31 @@ const DetailIcon = styled.img`
 	margin: 8px;
 `
 export default function Profile(props){
+	useEffect(() => {
+		document.title = props.data.users[props.userId].name
+	}, [props.data.users, props.userId]);
 	return (
 		<div>
 			<PageHeader title='Profile' />
 			<PageContent>
 				<ProfileDescription>
 					<StyledAvatar
-						src={props.data.users[props.data.currentUserId].avatar}
+						src={props.data.users[props.userId].avatar}
 					/>
-					<Name>{props.data.users[props.data.currentUserId].name}</Name>
-					<Status>{props.data.users[props.data.currentUserId].status}</Status>
-					<OnlineStatus>
-						{props.data.users[props.data.currentUserId].data}
-					</OnlineStatus>
+					<Name>{props.data.users[props.userId].name}</Name>
+					<Status>{props.data.users[props.userId].status}</Status>
 					<ProfileDetails>
 						<ProfileDetail>
 							<DetailIcon src={GreyFriendsIcon} />
-							{props.data.users[props.data.currentUserId].friends} friends
+							{props.data.users[props.userId].friends} friends
 						</ProfileDetail>
 						<ProfileDetail>
 							<DetailIcon src={GreyHomeIcon} />
-							{props.data.users[props.data.currentUserId].home}
+							{props.data.users[props.userId].home}
 						</ProfileDetail>
 						<ProfileDetail>
 							<DetailIcon src={GreyGiftIcon} />
-							{props.data.users[props.data.currentUserId].birth}
+							{props.data.users[props.userId].birth}
 						</ProfileDetail>
 					</ProfileDetails>
 				</ProfileDescription>
@@ -98,8 +91,8 @@ export default function Profile(props){
 					icon={BlueNextIcon}
 					placeholder="What's new?"
 					onclick={props.addPost}
-				/>{' '}
-				{props.getPosts(props.data.currentUserId).map((post, index) => (
+				/>
+				{props.getPosts(props.userId).map((post, index) => (
 					<Post
 						key={index}
 						name={post.name}

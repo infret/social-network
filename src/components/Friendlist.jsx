@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Searchbar from './Searchbar'
 import User from './User'
 import Card from './Card'
@@ -10,6 +10,9 @@ const PageContent = styled(Card)`
 `
 
 export default function Friendlist(props){
+	useEffect(() => {
+		document.title = 'Friends'
+	}, []);
 	return (
 		<div>
 			<PageHeader title='Friends' />
