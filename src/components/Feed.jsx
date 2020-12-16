@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Post from './Post'
 import PageHeader from './PageHeader'
@@ -12,9 +12,7 @@ const PageContent = styled.div`
 `
 
 export default function Feed(props) {
-	useEffect(() => {
-		document.title = 'News'
-	}, []);
+	document.title = 'News'
 	return (
 			<div>
 				<PageHeader title='News'/>

@@ -59,9 +59,7 @@ const Text = styled.pre`
 `
 
 export default function Dialog(props) {
-	useEffect(() => {
-		document.title = 'Dialog'
-	}, []);
+	document.title = 'Dialog'
 	return (
 			<div>
 				<PageHeader

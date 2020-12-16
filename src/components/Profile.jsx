@@ -59,9 +59,7 @@ const DetailIcon = styled.img`
 	margin: 8px;
 `
 export default function Profile(props){
-	useEffect(() => {
-		document.title = props.data.users[props.userId].name
-	}, [props.data.users, props.userId]);
+	document.title = props.data.users[props.userId].name
 	return (
 		<div>
 			<PageHeader title='Profile' />
