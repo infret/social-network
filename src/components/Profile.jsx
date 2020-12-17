@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import Avatar from './Avatar'
 import PageHeader from './PageHeader'
@@ -91,14 +91,15 @@ export default function Profile(props){
 					onclick={props.addPost}
 				/>
 				{props.getPosts(props.userId).map((post, index) => (
-					<Post
-						key={index}
-						name={post.name}
-						avatar={post.avatar}
-						text={post.text}
-						date={post.date}
-					/>
+						<Post
+								key={index}
+								name={post.name}
+								avatar={post.avatar}
+								text={post.text}
+								date={post.date}
+						/>
 				))}
+
 			</PageContent>
 		</div>
 	)

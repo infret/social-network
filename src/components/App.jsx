@@ -115,18 +115,16 @@ export default function App() {
 		return dialogsToRender
 	}
 
-	let chosenUserId = parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))
-
 	return (
 			<BrowserRouter>
 				<AppHeader/>
 				<AppContainer>
 					<Navbar currentUserId={data.currentUserId}/>
 					<AppContent>
-						<Route path='/user/' component={() => <Profile data={data} userId={chosenUserId} getPosts={getPosts} addPost={addPost}/>}/>
+						<Route path='/user/' component={() => <Profile data={data} userId={window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)} getPosts={getPosts} addPost={addPost}/>}/>
 						<Route path='/feed' component={() => (<Feed getPosts={getPosts} addPost={addPost}/>)}/>
 						<Route path='/messenger' component={() => <Messenger data={data} getDialogs={getDialogs}/>}/>
-						<Route path='/dialog/' component={() => (<Dialog data={data} userId={chosenUserId} getMessages={getMessages} addMessage={addMessage}/>)}/>
+						<Route path='/dialog/' component={() => (<Dialog data={data} userId={window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)} getMessages={getMessages} addMessage={addMessage}/>)}/>
 						<Route path='/friends' component={() => <Friendlist data={data}/>}/>
 						<Route path='/search' component={() => <Search data={data}/>}/>
 					</AppContent>
