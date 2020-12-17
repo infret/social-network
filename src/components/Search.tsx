@@ -4,12 +4,17 @@ import User from './User'
 import Card from './Card'
 import PageHeader from './PageHeader'
 import styled from 'styled-components'
+import {dataInterface} from '../store'
 
 const PageContent = styled(Card)`
 	margin-top: 6px;
 `
 
-export default function Search(props){
+interface propsInterface {
+	data: dataInterface,
+}
+
+export default function Search(props : propsInterface){
 	useEffect(() => {
 		document.title = 'Search people'
 	}, []);
@@ -22,7 +27,7 @@ export default function Search(props){
 					<User
 						key={index}
 						name={users.name}
-						id={users.id}
+						id={index}
 						avatar={users.avatar}
 						home={users.home}
 					/>

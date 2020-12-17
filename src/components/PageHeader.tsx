@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import BlueMenuIcon from '../resources/blue-menu-icon.svg'
 import BlueMoreIcon from '../resources/blue-more-icon.svg'
+import {dataInterface, messageInterface} from '../store'
 
 const StyledHeader = styled.header`
 	background-color: var(--white);
@@ -21,7 +22,7 @@ const PageTitle = styled.h1`
 	}
 `
 
-const HeaderButton = styled.button`
+const HeaderButton = styled.button<{icon: string;}>`
 	background-color: transparent;
 	background-image: url(${(props) => props.icon});
 	border: none;
@@ -33,7 +34,11 @@ const HeaderButton = styled.button`
 	}
 `
 
-export default function PageHeader(props){
+interface propsInterface {
+	title: string,
+}
+
+export default function PageHeader(props : propsInterface){
 	return (
 		<StyledHeader>
 			<HeaderButton icon={BlueMenuIcon}/>

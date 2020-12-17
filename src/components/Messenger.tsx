@@ -5,6 +5,7 @@ import Avatar from './Avatar'
 import { NavLink } from 'react-router-dom'
 import PageHeader from './PageHeader'
 import Card from './Card'
+import {dataInterface, messageInterface} from '../store'
 
 const PageContent = styled(Card)`
 	margin-top: 6px;
@@ -52,7 +53,12 @@ const Date = styled.p`
 	margin: 12px;
 `
 
-export default function Messenger(props){
+interface propsInterface {
+	data: dataInterface,
+	getDialogs : () => Array<messageInterface>
+}
+
+export default function Messenger(props : propsInterface){
 	useEffect(() => {
 		document.title = 'Chats'
 	}, []);

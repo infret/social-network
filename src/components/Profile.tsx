@@ -9,6 +9,7 @@ import GreyFriendsIcon from '../resources/grey-friends-icon.svg'
 import GreyHomeIcon from '../resources/grey-home-icon.svg'
 import GreyGiftIcon from '../resources/grey-gift-icon.svg'
 import BlueNextIcon from '../resources/blue-next-icon.svg'
+import {dataInterface, postInterface} from '../store'
 
 const PageContent = styled.div`
 	margin-top: 6px;
@@ -58,7 +59,15 @@ const DetailIcon = styled.img`
 	width: 24px;
 	margin: 8px;
 `
-export default function Profile(props){
+
+interface propsInterface {
+	data: dataInterface,
+	userId: number,
+	getPosts : (sender_id? : number) => Array<postInterface>
+	addPost : (postText : string) => void
+}
+
+export default function Profile(props : propsInterface){
 	document.title = props.data.users[props.userId].name
 	return (
 		<div>
@@ -69,7 +78,7 @@ export default function Profile(props){
 						src={props.data.users[props.userId].avatar}
 					/>
 					<Name>{props.data.users[props.userId].name}</Name>
-					<Status>{props.data.users[props.userId].status}</Status>
+					<Status>{props.data.users[props.userId].online}</Status>
 					<ProfileDetails>
 						<ProfileDetail>
 							<DetailIcon src={GreyFriendsIcon} />

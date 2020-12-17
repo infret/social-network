@@ -7,6 +7,7 @@ import BlueFriendsIcon from '../resources/blue-friends-icon.svg'
 import MessengerIcon from '../resources/messenger-icon.svg'
 import BlueSearchIcon from '../resources/blue-search-icon.svg'
 import BigLogo from '../resources/big-logo.svg'
+import {dataInterface, messageInterface} from '../store'
 
 const StyledNavbar = styled.nav`
 	width: 250px;
@@ -47,12 +48,16 @@ const Navlinks = styled.div`
 	margin-top: 13px;
 `
 
-export default function Navbar(props) {
+interface propsInterface {
+	data : dataInterface
+}
+
+export default function Navbar(props: propsInterface) {
 	return (
 			<StyledNavbar>
 				<AppLogo src={BigLogo}/>
 				<Navlinks>
-					<StyledLink to={'/user/' + props.currentUserId}><StyledImg src={ProfileIcon}/>Profile</StyledLink>
+					<StyledLink to={'/user/' + props.data.currentUserId}><StyledImg src={ProfileIcon}/>Profile</StyledLink>
 					<StyledLink to='/feed'><StyledImg src={FeedIcon}/>Feed</StyledLink>
 					<StyledLink to='/messenger'><StyledImg src={MessengerIcon}/>Messenger</StyledLink>
 					<StyledLink to='/friends'><StyledImg src={BlueFriendsIcon}/>Friends</StyledLink>

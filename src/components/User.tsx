@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Avatar from './Avatar'
+import {dataInterface, postInterface} from '../store'
 
 const StyledUser = styled.div`
 	width: 100%;
@@ -31,7 +32,13 @@ const Home = styled.p`
 	color: #999;
 `
 
-export default function User(props){
+interface propsInterface {
+	avatar: string,
+	name: string,
+	home: string
+}
+
+export default function User(props : propsInterface){
 	return (
 		<StyledUser>
 			<StyledAvatar src={props.avatar} />

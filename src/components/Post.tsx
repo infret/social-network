@@ -38,7 +38,14 @@ const Text = styled.pre`
 	margin: 0 12px 12px 12px;
 `
 
-export default function Post(props){
+interface propsInterface {
+	name: string,
+	avatar: string,
+	text: string,
+	date: string
+}
+
+export default function Post(props : propsInterface){
 	return (
 		<StyledPost>
 			<StyledAvatar src={props.avatar} />

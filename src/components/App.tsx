@@ -10,7 +10,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Dialog from "./Dialog";
 import {
 	data,
-	getCurrentDate,
+	getCurrentDate, messageInterface, postInterface,
 } from "../store";
 
 const AppContainer = styled.div`
@@ -39,7 +39,7 @@ export default function App() {
 	const [posts, setPost] = useState(data.posts);
 	const [messages, setMessage] = useState(data.messages);
 
-	function addPost(postText) {
+	function addPost(postText: string) {
 		if (postText) {
 			setPost((prev) => [...prev, {
 				sender_id: data.currentUserId,
@@ -49,21 +49,21 @@ export default function App() {
 		}
 	}
 
-	function addMessage(messageText) {
+	function addMessage(messageText : string) {
 		if (messageText) {
 			setMessage((prev) => [...prev, {
 				sender_id: data.currentUserId,
-				recipient_id: '1',
+				recipient_id: 1,
 				text: messageText,
 				date: getCurrentDate(),
 			}]);
 		}
 	}
 
-	function getPosts(sender_id = 'all') {
-		let postsToRender = []
+	function getPosts(sender_id : number = -1) {
+		let postsToRender : Array<postInterface> = []
 		posts.forEach((item, i) => {
-			if (sender_id === 'all') {
+			if (sender_id === -1) {
 				postsToRender.push({
 					name: data.users[posts[i].sender_id].name,
 					avatar: data.users[posts[i].sender_id].avatar,
@@ -84,8 +84,8 @@ export default function App() {
 		return postsToRender
 	}
 
-	function getMessages(companion_id) {
-		let messagesToRender = []
+	function getMessages(companion_id : number) {
+		let messagesToRender : Array<messageInterface> = []
 		messages.forEach((item, i) => {
 			if ((messages[i].sender_id === companion_id && messages[i].recipient_id === data.currentUserId) || (messages[i].sender_id === data.currentUserId && messages[i].recipient_id === companion_id)) {
 				messagesToRender.push({
@@ -100,11 +100,11 @@ export default function App() {
 	}
 
 	function getDialogs() {
-		let dialogsToRender = []
+		let dialogsToRender : Array<messageInterface> = []
 		messages.forEach((item, i) => {
 			if (messages[i].recipient_id === data.currentUserId) {
 				dialogsToRender.push({
-					companion_id: data.users[messages[i].sender_id].id,
+					companion_id: messages[i].sender_id,
 					name: data.users[messages[i].sender_id].name,
 					avatar: data.users[messages[i].sender_id].avatar,
 					text: messages[i].text,
@@ -119,12 +119,12 @@ export default function App() {
 			<BrowserRouter>
 				<AppHeader/>
 				<AppContainer>
-					<Navbar currentUserId={data.currentUserId}/>
+					<Navbar data={data}/>
 					<AppContent>
-						<Route path='/user/' component={() => <Profile data={data} userId={window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)} getPosts={getPosts} addPost={addPost}/>}/>
+						<Route path='/user/' component={() => <Profile data={data} userId={parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))} getPosts={getPosts} addPost={addPost}/>}/>
 						<Route path='/feed' component={() => (<Feed getPosts={getPosts} addPost={addPost}/>)}/>
 						<Route path='/messenger' component={() => <Messenger data={data} getDialogs={getDialogs}/>}/>
-						<Route path='/dialog/' component={() => (<Dialog data={data} userId={window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)} getMessages={getMessages} addMessage={addMessage}/>)}/>
+						<Route path='/dialog/' component={() => (<Dialog data={data} userId={parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))} getMessages={getMessages} addMessage={addMessage}/>)}/>
 						<Route path='/friends' component={() => <Friendlist data={data}/>}/>
 						<Route path='/search' component={() => <Search data={data}/>}/>
 					</AppContent>

@@ -4,6 +4,7 @@ import Post from './Post'
 import PageHeader from './PageHeader'
 import TextareaForm from './TextareaForm'
 import BlueNextIcon from '../resources/blue-next-icon.svg'
+import {dataInterface, postInterface} from '../store'
 
 const PageContent = styled.div`
 	overflow-y: scroll;
@@ -11,7 +12,12 @@ const PageContent = styled.div`
 	max-height: calc(100vh - 58px);
 `
 
-export default function Feed(props) {
+interface propsInterface {
+	getPosts : (sender_id? : number) => Array<postInterface>
+	addPost : (postText : string) => void
+}
+
+export default function Feed(props: propsInterface) {
 	document.title = 'News'
 	return (
 			<div>

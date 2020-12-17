@@ -4,12 +4,17 @@ import User from './User'
 import Card from './Card'
 import PageHeader from './PageHeader'
 import styled from 'styled-components'
+import {dataInterface} from '../store'
 
 const PageContent = styled(Card)`
 	margin-top: 6px;
 `
 
-export default function Friendlist(props){
+interface propsInterface {
+	data: dataInterface,
+}
+
+export default function Friendlist(props: propsInterface){
 	useEffect(() => {
 		document.title = 'Friends'
 	}, []);
@@ -20,7 +25,7 @@ export default function Friendlist(props){
 				<Searchbar />
 				<User
 					name={props.data.users[1].name}
-					id={props.data.users[1].id}
+					id={1}
 					avatar={props.data.users[1].avatar}
 					home={props.data.users[1].home}
 				/>
