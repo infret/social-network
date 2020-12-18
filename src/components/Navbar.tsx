@@ -49,7 +49,7 @@ const Navlinks = styled.div`
 `
 
 interface propsInterface {
-	data : dataInterface
+	currentUserId : number
 }
 
 export default function Navbar(props: propsInterface) {
@@ -57,7 +57,7 @@ export default function Navbar(props: propsInterface) {
 			<StyledNavbar>
 				<AppLogo src={BigLogo}/>
 				<Navlinks>
-					<StyledLink to={'/user/' + props.data.currentUserId}><StyledImg src={ProfileIcon}/>Profile</StyledLink>
+					<StyledLink to={'/user/' + props.currentUserId}><StyledImg src={ProfileIcon}/>Profile</StyledLink>
 					<StyledLink to='/feed'><StyledImg src={FeedIcon}/>Feed</StyledLink>
 					<StyledLink to='/messenger'><StyledImg src={MessengerIcon}/>Messenger</StyledLink>
 					<StyledLink to='/friends'><StyledImg src={BlueFriendsIcon}/>Friends</StyledLink>

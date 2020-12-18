@@ -1,7 +1,6 @@
-import React, {createRef} from 'react'
+import React, {MutableRefObject, useRef} from 'react'
 import styled from 'styled-components'
 import Card from './Card'
-import {dataInterface, postInterface} from '../store'
 
 const StyledForm = styled(Card)`
   margin-top: 6px;
@@ -24,7 +23,7 @@ const StyledTextarea = styled.textarea`
   }
 `
 
-const StyledSubmit = styled.submit<{icon: string;}>`
+const StyledSubmit = styled.button<{icon: string;}>`
   background-color: var(--white);
   background-image: url(${(props) => props.icon});
   background-repeat: no-repeat;
@@ -38,30 +37,29 @@ const StyledSubmit = styled.submit<{icon: string;}>`
 interface propsInterface {
   placeholder: string,
   icon: string,
-  userId: number,
   onclick : (postText : string) => void
 }
 
 export default function TextareaForm(props : propsInterface){
 
-  let textarea = createRef<HTMLInputElement>()
+  let textareaRef = useRef() as MutableRefObject<HTMLTextAreaElement>
 
-  function autoGrow (oField : HTMLInputElement) {
-    if (oField.scrollHeight > oField.clientHeight) {
-      oField.style.height = oField.scrollHeight + "px";
+  function handleKeyUp(){
+    if (textareaRef.current.scrollHeight > textareaRef.current.clientHeight) {
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
     }
   }
 
   return (
       <StyledForm>
         <StyledTextarea
+            ref={textareaRef}
             placeholder={props.placeholder}
-            onKeyDown={autoGrow(this : HTMLInputElement)}
+            onKeyUp={handleKeyUp}
         />
         <StyledSubmit
-            type='submit'
             value=''
-            onClick={() => props.onclick(textarea.current?.value)}
+            onClick={() => props.onclick(textareaRef.current.value)}
             icon={props.icon}
         />
       </StyledForm>

@@ -4,7 +4,7 @@ import Post from './Post'
 import PageHeader from './PageHeader'
 import TextareaForm from './TextareaForm'
 import BlueNextIcon from '../resources/blue-next-icon.svg'
-import {dataInterface, postInterface} from '../store'
+import {dataInterface, postInterface, renderInterface} from '../store'
 
 const PageContent = styled.div`
 	overflow-y: scroll;
@@ -13,7 +13,7 @@ const PageContent = styled.div`
 `
 
 interface propsInterface {
-	getPosts : (sender_id? : number) => Array<postInterface>
+	getPosts : (sender_id? : number) => Array<renderInterface>
 	addPost : (postText : string) => void
 }
 

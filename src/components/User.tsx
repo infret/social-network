@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import Avatar from './Avatar'
-import {dataInterface, postInterface} from '../store'
 
 const StyledUser = styled.div`
 	width: 100%;

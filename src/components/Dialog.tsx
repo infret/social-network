@@ -5,7 +5,7 @@ import Card from './Card'
 import Avatar from './Avatar'
 import TextareaForm from './TextareaForm'
 import BlueSendIcon from '../resources/blue-send-icon.svg'
-import {dataInterface, messageInterface} from '../store'
+import {dataInterface, renderInterface} from '../store'
 
 const PageContent = styled.div`
 	margin-top: 6px;
@@ -62,7 +62,7 @@ const Text = styled.pre`
 interface propsInterface {
 	data: dataInterface,
 	userId: number,
-	getMessages : (companion_id : number) => Array<messageInterface>
+	getMessages : (companion_id : number) => Array<renderInterface>
 	addMessage : (messageText : string) => void
 }
 
@@ -74,7 +74,7 @@ export default function Dialog(props: propsInterface) {
 						title={props.data.users[props.userId].name}/>
 				<PageContent>
 					<Messages>
-						{props.getMessages(1).map((message : messageInterface, index: number) => (
+						{props.getMessages(parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))).map((message, index) => (
 								<StyledMessage key={index}>
 									<StyledAvatar src={message.avatar}/>
 									<Name>{message.name}</Name>

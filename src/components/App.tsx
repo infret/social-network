@@ -10,7 +10,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Dialog from "./Dialog";
 import {
 	data,
-	getCurrentDate, messageInterface, postInterface,
+	getCurrentDate, renderInterface, renderDialogInterface,
 } from "../store";
 
 const AppContainer = styled.div`
@@ -49,7 +49,7 @@ export default function App() {
 		}
 	}
 
-	function addMessage(messageText : string) {
+	function addMessage(messageText: string) {
 		if (messageText) {
 			setMessage((prev) => [...prev, {
 				sender_id: data.currentUserId,
@@ -60,8 +60,8 @@ export default function App() {
 		}
 	}
 
-	function getPosts(sender_id : number = -1) {
-		let postsToRender : Array<postInterface> = []
+	function getPosts(sender_id: number = -1) {
+		let postsToRender: Array<renderInterface> = []
 		posts.forEach((item, i) => {
 			if (sender_id === -1) {
 				postsToRender.push({
@@ -84,8 +84,8 @@ export default function App() {
 		return postsToRender
 	}
 
-	function getMessages(companion_id : number) {
-		let messagesToRender : Array<messageInterface> = []
+	function getMessages(companion_id: number) {
+		let messagesToRender: Array<renderInterface> = []
 		messages.forEach((item, i) => {
 			if ((messages[i].sender_id === companion_id && messages[i].recipient_id === data.currentUserId) || (messages[i].sender_id === data.currentUserId && messages[i].recipient_id === companion_id)) {
 				messagesToRender.push({
@@ -100,7 +100,7 @@ export default function App() {
 	}
 
 	function getDialogs() {
-		let dialogsToRender : Array<messageInterface> = []
+		let dialogsToRender: Array<renderDialogInterface> = []
 		messages.forEach((item, i) => {
 			if (messages[i].recipient_id === data.currentUserId) {
 				dialogsToRender.push({
@@ -119,12 +119,16 @@ export default function App() {
 			<BrowserRouter>
 				<AppHeader/>
 				<AppContainer>
-					<Navbar data={data}/>
+					<Navbar currentUserId={data.currentUserId}/>
 					<AppContent>
-						<Route path='/user/' component={() => <Profile data={data} userId={parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))} getPosts={getPosts} addPost={addPost}/>}/>
+						<Route path='/user/' component={() => <Profile data={data}
+																													 userId={parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))}
+																													 getPosts={getPosts} />}/>
 						<Route path='/feed' component={() => (<Feed getPosts={getPosts} addPost={addPost}/>)}/>
 						<Route path='/messenger' component={() => <Messenger data={data} getDialogs={getDialogs}/>}/>
-						<Route path='/dialog/' component={() => (<Dialog data={data} userId={parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))} getMessages={getMessages} addMessage={addMessage}/>)}/>
+						<Route path='/dialog/' component={() => (<Dialog data={data}
+																														 userId={parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))}
+																														 getMessages={getMessages} addMessage={addMessage}/>)}/>
 						<Route path='/friends' component={() => <Friendlist data={data}/>}/>
 						<Route path='/search' component={() => <Search data={data}/>}/>
 					</AppContent>

@@ -8,21 +8,16 @@ export interface userInterface {
 }
 
 export interface messageInterface {
-	sender_id?: number,
-	recipient_id?: number,
+	sender_id: number,
+	recipient_id: number,
 	text: string,
 	date: string,
-	name? : string,
-	avatar? : string,
-	companion_id?: number
 }
 
 export interface postInterface {
-	sender_id?: number,
+	sender_id: number,
 	text: string,
 	date: string
-	name : string,
-	avatar : string
 }
 
 export interface dataInterface {
@@ -30,6 +25,28 @@ export interface dataInterface {
 	users: Array<userInterface>,
 	messages: Array<messageInterface>
 	posts: Array<postInterface>
+}
+
+export interface renderInterface {
+	text: string,
+	date: string,
+	name: string,
+	avatar: string
+}
+
+export interface renderUserInterface {
+	name: string,
+	id: string,
+	avatar: string,
+	home: string
+}
+
+export interface renderDialogInterface {
+	text: string,
+	date: string,
+	name: string,
+	avatar: string,
+	companion_id: number
 }
 
 export let data = {

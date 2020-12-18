@@ -4,12 +4,10 @@ import Avatar from './Avatar'
 import PageHeader from './PageHeader'
 import Card from './Card'
 import Post from './Post'
-import TextareaForm from './TextareaForm'
 import GreyFriendsIcon from '../resources/grey-friends-icon.svg'
 import GreyHomeIcon from '../resources/grey-home-icon.svg'
 import GreyGiftIcon from '../resources/grey-gift-icon.svg'
-import BlueNextIcon from '../resources/blue-next-icon.svg'
-import {dataInterface, postInterface} from '../store'
+import {dataInterface, renderInterface} from '../store'
 
 const PageContent = styled.div`
 	margin-top: 6px;
@@ -63,8 +61,7 @@ const DetailIcon = styled.img`
 interface propsInterface {
 	data: dataInterface,
 	userId: number,
-	getPosts : (sender_id? : number) => Array<postInterface>
-	addPost : (postText : string) => void
+	getPosts : (sender_id? : number) => Array<renderInterface>
 }
 
 export default function Profile(props : propsInterface){
@@ -94,11 +91,6 @@ export default function Profile(props : propsInterface){
 						</ProfileDetail>
 					</ProfileDetails>
 				</ProfileDescription>
-				<TextareaForm
-					icon={BlueNextIcon}
-					placeholder="What's new?"
-					onclick={props.addPost}
-				/>
 				{props.getPosts(props.userId).map((post, index) => (
 						<Post
 								key={index}
