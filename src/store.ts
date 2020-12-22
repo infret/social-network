@@ -31,7 +31,7 @@ export interface renderInterface {
 	text: string,
 	date: string,
 	name: string,
-	avatar: string
+	avatar: string,
 }
 
 export interface renderUserInterface {

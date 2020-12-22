@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Avatar from './Avatar'
 import Card from './Card'
+import Username from './Username'
 
 const StyledPost = styled(Card)`
 	display: grid;
@@ -17,11 +18,6 @@ const StyledAvatar = styled(Avatar)`
 	width: 50px;
 	margin: 12px;
 	grid-area: avatar;
-`
-
-const Name = styled.p`
-	grid-area: name;
-	align-self: start;
 `
 
 const Date = styled.p`
@@ -43,13 +39,14 @@ interface propsInterface {
 	avatar: string,
 	text: string,
 	date: string
+	id: number
 }
 
 export default function Post(props : propsInterface){
 	return (
 		<StyledPost>
 			<StyledAvatar src={props.avatar} />
-			<Name>{props.name}</Name>
+			<Username userId={props.id} name={props.name}/>
 			<Text>{props.text}</Text>
 			<Date>{props.date}</Date>
 		</StyledPost>

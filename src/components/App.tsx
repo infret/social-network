@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import styled from "styled-components";
-import Navbar from "./Navbar";
+import Sidebar from "./Sidebar";
 import Feed from "./Feed";
 import Profile from "./Profile";
 import Messenger from "./Messenger";
@@ -12,6 +12,7 @@ import {
 	data,
 	getCurrentDate, renderInterface, renderDialogInterface,
 } from "../store";
+import Bottombar from './Bottombar'
 
 const AppContainer = styled.div`
 	max-width: 900px;
@@ -119,19 +120,18 @@ export default function App() {
 			<BrowserRouter>
 				<AppHeader/>
 				<AppContainer>
-					<Navbar currentUserId={data.currentUserId}/>
+					<Sidebar currentUserId={data.currentUserId}/>
 					<AppContent>
-						<Route path='/user/' component={() => <Profile data={data}
-																													 userId={parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))}
-																													 getPosts={getPosts} />}/>
+						<Route path='/user/' component={() =>
+								<Profile data={data} userId={parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))} getPosts={getPosts}/>}/>
 						<Route path='/feed' component={() => (<Feed getPosts={getPosts} addPost={addPost}/>)}/>
 						<Route path='/messenger' component={() => <Messenger data={data} getDialogs={getDialogs}/>}/>
-						<Route path='/dialog/' component={() => (<Dialog data={data}
-																														 userId={parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))}
-																														 getMessages={getMessages} addMessage={addMessage}/>)}/>
+						<Route path='/dialog/' component={() => (
+								<Dialog data={data} userId={parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))} getMessages={getMessages} addMessage={addMessage}/>)}/>
 						<Route path='/friends' component={() => <Friendlist data={data}/>}/>
 						<Route path='/search' component={() => <Search data={data}/>}/>
 					</AppContent>
+					<Bottombar currentUserId={data.currentUserId}/>
 				</AppContainer>
 			</BrowserRouter>
 	);

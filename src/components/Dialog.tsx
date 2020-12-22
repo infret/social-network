@@ -56,7 +56,10 @@ const Date = styled.p`
 const Text = styled.pre`
 	color: #333;
 	grid-area: text;
+	overflow: hidden;
+	white-space: pre-wrap;
 	align-self: center;
+	padding-right: 6px;
 `
 
 interface propsInterface {
@@ -70,8 +73,7 @@ export default function Dialog(props: propsInterface) {
 	document.title = 'Dialog'
 	return (
 			<div>
-				<PageHeader
-						title={props.data.users[props.userId].name}/>
+				<PageHeader title={props.data.users[props.userId].name}/>
 				<PageContent>
 					<Messages>
 						{props.getMessages(parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))).map((message, index) => (

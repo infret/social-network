@@ -93,6 +93,7 @@ export default function Profile(props : propsInterface){
 				</ProfileDescription>
 				{props.getPosts(props.userId).map((post, index) => (
 						<Post
+								id={index}
 								key={index}
 								name={post.name}
 								avatar={post.avatar}

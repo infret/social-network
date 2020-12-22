@@ -45,7 +45,7 @@ export default function TextareaForm(props : propsInterface){
   let textareaRef = useRef() as MutableRefObject<HTMLTextAreaElement>
 
   function handleKeyUp(){
-    if (textareaRef.current.scrollHeight > textareaRef.current.clientHeight) {
+    if ((textareaRef.current.scrollHeight > textareaRef.current.clientHeight) && (textareaRef.current.clientHeight < 200)) {
       textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
     }
   }

@@ -63,7 +63,7 @@ export default function Messenger(props: propsInterface) {
 	document.title = 'Chats'
 	return (
 			<div>
-				<PageHeader title='Chats'/>
+				<PageHeader title='Chats' />
 				<PageContent>
 					<Searchbar/>
 					{props.getDialogs().map((dialog, i) => (

@@ -4,7 +4,7 @@ import Post from './Post'
 import PageHeader from './PageHeader'
 import TextareaForm from './TextareaForm'
 import BlueNextIcon from '../resources/blue-next-icon.svg'
-import {dataInterface, postInterface, renderInterface} from '../store'
+import {renderInterface} from '../store'
 
 const PageContent = styled.div`
 	overflow-y: scroll;
@@ -31,6 +31,7 @@ export default function Feed(props: propsInterface) {
 					{props.getPosts().map((post, index) => (
 							<Post
 									key={index}
+									id={index}
 									name={post.name}
 									avatar={post.avatar}
 									text={post.text}
