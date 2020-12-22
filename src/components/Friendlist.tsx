@@ -21,13 +21,12 @@ export default function Friendlist(props: propsInterface){
 			<PageHeader title='Friends' />
 			<PageContent>
 				<Searchbar />
-				{/*<User*/}
-				{/*	name={props.data.users[1].name}*/}
-				{/*	id={1}*/}
-				{/*	avatar={props.data.users[1].avatar}*/}
-				{/*	home={props.data.users[1].home}*/}
-				{/*/>*/}
-				TODO
+				<User
+					name={props.data.users[1].name}
+					id={1}
+					avatar={props.data.users[1].avatar}
+					home={props.data.users[1].home}
+				/>
 			</PageContent>
 		</div>
 	)

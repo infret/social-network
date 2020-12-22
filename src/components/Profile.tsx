@@ -21,9 +21,10 @@ const ProfileDescription = styled(Card)`
 	margin-top: 6px;
 `
 
-const StyledAvatar = styled(Avatar)`
+const StyledAvatar = styled.img`
 	height: 78px;
 	width: 78px;
+	border-radius: 50%;
 	margin: 12px;
 `
 

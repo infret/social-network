@@ -5,7 +5,7 @@ import Avatar from './Avatar'
 import {NavLink} from 'react-router-dom'
 import PageHeader from './PageHeader'
 import Card from './Card'
-import {dataInterface, renderDialogInterface} from '../store'
+import {dataInterface, renderInterface} from '../store'
 
 const PageContent = styled(Card)`
 	margin-top: 6px;
@@ -56,7 +56,7 @@ const Date = styled.p`
 
 interface propsInterface {
 	data: dataInterface,
-	getDialogs: () => Array<renderDialogInterface>
+	getDialogs: () => Array<renderInterface>
 }
 
 export default function Messenger(props: propsInterface) {
@@ -67,8 +67,8 @@ export default function Messenger(props: propsInterface) {
 				<PageContent>
 					<Searchbar/>
 					{props.getDialogs().map((dialog, i) => (
-							<DialogLink key={i} to={'/dialog/' + dialog.companion_id}>
-								<StyledAvatar src={dialog.avatar}/>
+							<DialogLink key={i} to={'/dialog/' + dialog.sender_id}>
+								<StyledAvatar src={dialog.avatar} userId={dialog.sender_id}/>
 								<Name>{dialog.name}</Name>
 								<Date>{dialog.date}</Date>
 								<LastMessage>{dialog.text}</LastMessage>

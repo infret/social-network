@@ -14,6 +14,7 @@ const StyledNav = styled.nav`
 	bottom: 0;
 	height: 50px;
 	display: flex;
+	box-shadow: var(--elevation);
 	justify-content: space-evenly;
 	align-content: center;
 	@media (min-width: 720px) {

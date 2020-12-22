@@ -12,6 +12,7 @@ const StyledNav = styled.nav`
 	width: 250px;
 	position: sticky;
 	top: 0;
+	margin: 6px;
 	height: 300px;
 	background-color: var(--light-grey);
 	@media (max-width: 720px) {
@@ -32,19 +33,15 @@ const StyledLink = styled(NavLink)`
 	}
 `
 
-const StyledImg = styled.img`
-	margin: 0 8px 0 8px;
-	width: auto;
+const AppLogo = styled.img`
+	margin: 6px 0 12px 10px;
 	height: 28px;
 `
 
-const AppLogo = styled.img`
-	margin: 11px 0 0 7px;
-	height: 30px;
-`
-
-const Navlinks = styled.div`
-	margin-top: 13px;
+const StyledImg = styled.img`
+	margin: 0 10px;
+	width: auto;
+	height: 28px;
 `
 
 interface propsInterface {
@@ -55,13 +52,11 @@ export default function Sidebar(props: propsInterface) {
 	return (
 			<StyledNav>
 				<AppLogo src={BigLogo}/>
-				<Navlinks>
 					<StyledLink to={'/user/' + props.currentUserId}><StyledImg src={ProfileIcon}/>Profile</StyledLink>
 					<StyledLink to='/feed'><StyledImg src={FeedIcon}/>Feed</StyledLink>
 					<StyledLink to='/messenger'><StyledImg src={MessengerIcon}/>Messenger</StyledLink>
 					<StyledLink to='/friends'><StyledImg src={BlueFriendsIcon}/>Friends</StyledLink>
 					<StyledLink to='/search'><StyledImg src={BlueSearchIcon}/>Search</StyledLink>
-				</Navlinks>
 			</StyledNav>
 	)
 }

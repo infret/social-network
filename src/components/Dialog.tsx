@@ -78,7 +78,7 @@ export default function Dialog(props: propsInterface) {
 					<Messages>
 						{props.getMessages(parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))).map((message, index) => (
 								<StyledMessage key={index}>
-									<StyledAvatar src={message.avatar}/>
+									<StyledAvatar src={message.avatar} userId={message.sender_id}/>
 									<Name>{message.name}</Name>
 									<Text>{message.text}</Text>
 									<Date>{message.date}</Date>

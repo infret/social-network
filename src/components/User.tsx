@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Avatar from './Avatar'
+import Username from './Username'
 
 const StyledUser = styled.div`
 	width: 100%;
@@ -19,11 +20,6 @@ const StyledAvatar = styled(Avatar)`
 	grid-area: avatar;
 `
 
-const Name = styled.p`
-	grid-area: name;
-	align-self: start;
-`
-
 const Home = styled.p`
 	grid-area: text;
 	align-self: end;
@@ -34,14 +30,15 @@ const Home = styled.p`
 interface propsInterface {
 	avatar: string,
 	name: string,
-	home: string
+	home: string,
+	id: number
 }
 
 export default function User(props : propsInterface){
 	return (
 		<StyledUser>
-			<StyledAvatar src={props.avatar} />
-			<Name>{props.name}</Name>
+			<StyledAvatar src={props.avatar} userId={props.id}/>
+			<Username userId={props.id} name={props.name}/>
 			<Home>{props.home}</Home>
 		</StyledUser>
 	)

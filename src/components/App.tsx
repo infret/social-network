@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, { useState} from "react";
 import styled from "styled-components";
 import Sidebar from "./Sidebar";
 import Feed from "./Feed";
@@ -10,7 +10,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Dialog from "./Dialog";
 import {
 	data,
-	getCurrentDate, renderInterface, renderDialogInterface,
+	getCurrentDate, renderInterface,
 } from "../store";
 import Bottombar from './Bottombar'
 
@@ -26,7 +26,7 @@ const AppContainer = styled.div`
 
 const AppHeader = styled.header`
 	background-color: var(--white);
-	height: 52px;
+	height: 50px;
 	width: 100%;
 	position: fixed;
 	box-shadow: var(--elevation);
@@ -66,6 +66,7 @@ export default function App() {
 		posts.forEach((item, i) => {
 			if (sender_id === -1) {
 				postsToRender.push({
+					sender_id: posts[i].sender_id,
 					name: data.users[posts[i].sender_id].name,
 					avatar: data.users[posts[i].sender_id].avatar,
 					text: posts[i].text,
@@ -74,6 +75,7 @@ export default function App() {
 			} else {
 				if (posts[i].sender_id === sender_id) {
 					postsToRender.push({
+						sender_id: posts[i].sender_id,
 						name: data.users[sender_id].name,
 						avatar: data.users[sender_id].avatar,
 						text: posts[i].text,
@@ -90,6 +92,7 @@ export default function App() {
 		messages.forEach((item, i) => {
 			if ((messages[i].sender_id === companion_id && messages[i].recipient_id === data.currentUserId) || (messages[i].sender_id === data.currentUserId && messages[i].recipient_id === companion_id)) {
 				messagesToRender.push({
+					sender_id: messages[i].sender_id,
 					name: data.users[messages[i].sender_id].name,
 					avatar: data.users[messages[i].sender_id].avatar,
 					text: messages[i].text,
@@ -101,11 +104,11 @@ export default function App() {
 	}
 
 	function getDialogs() {
-		let dialogsToRender: Array<renderDialogInterface> = []
+		let dialogsToRender: Array<renderInterface> = []
 		messages.forEach((item, i) => {
 			if (messages[i].recipient_id === data.currentUserId) {
 				dialogsToRender.push({
-					companion_id: messages[i].sender_id,
+					sender_id: messages[i].sender_id,
 					name: data.users[messages[i].sender_id].name,
 					avatar: data.users[messages[i].sender_id].avatar,
 					text: messages[i].text,

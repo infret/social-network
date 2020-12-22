@@ -4,7 +4,7 @@ import BlueMoreIcon from '../resources/blue-more-icon.svg'
 
 const StyledHeader = styled.header`
 	background-color: var(--white);
-	height: 52px;
+	height: 50px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;

@@ -45,7 +45,7 @@ interface propsInterface {
 export default function Post(props : propsInterface){
 	return (
 		<StyledPost>
-			<StyledAvatar src={props.avatar} />
+			<StyledAvatar src={props.avatar} userId={props.id}/>
 			<Username userId={props.id} name={props.name}/>
 			<Text>{props.text}</Text>
 			<Date>{props.date}</Date>

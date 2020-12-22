@@ -32,21 +32,14 @@ export interface renderInterface {
 	date: string,
 	name: string,
 	avatar: string,
+	sender_id: number
 }
 
 export interface renderUserInterface {
 	name: string,
-	id: string,
+	id: number,
 	avatar: string,
 	home: string
-}
-
-export interface renderDialogInterface {
-	text: string,
-	date: string,
-	name: string,
-	avatar: string,
-	companion_id: number
 }
 
 export let data = {
