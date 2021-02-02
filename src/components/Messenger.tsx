@@ -22,7 +22,7 @@ const DialogLink = styled(NavLink)`
 	grid-template-rows: 37px 37px;
 
 	&:hover {
-		background-color: var(--darker-grey);
+		background-color: gainsboro;
 	}
 `
 

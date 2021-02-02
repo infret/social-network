@@ -1,4 +1,4 @@
-import React, {MutableRefObject, useRef} from 'react'
+import React, { MutableRefObject, useRef } from 'react'
 import styled from 'styled-components'
 import Card from './Card'
 
@@ -10,7 +10,6 @@ const StyledForm = styled(Card)`
 `
 
 const StyledTextarea = styled.textarea`
-  background-color: var(--grey);
   width: 100%;
   border: none;
   border-radius: 4px;
@@ -19,12 +18,10 @@ const StyledTextarea = styled.textarea`
   height: 20px;
 
   &:hover {
-    background-color: var(--darker-grey);
   }
 `
 
-const StyledSubmit = styled.button<{icon: string;}>`
-  background-color: var(--white);
+const StyledSubmit = styled.button<{ icon: string }>`
   background-image: url(${(props) => props.icon});
   background-repeat: no-repeat;
   background-position: center;
@@ -35,33 +32,35 @@ const StyledSubmit = styled.button<{icon: string;}>`
 `
 
 interface propsInterface {
-  placeholder: string,
-  icon: string,
-  onclick : (postText : string) => void
+  placeholder: string
+  icon: string
+  onclick: (postText: string) => void
 }
 
-export default function TextareaForm(props : propsInterface){
-
+export default function TextareaForm(props: propsInterface) {
   let textareaRef = useRef() as MutableRefObject<HTMLTextAreaElement>
 
-  function handleKeyUp(){
-    if ((textareaRef.current.scrollHeight > textareaRef.current.clientHeight) && (textareaRef.current.clientHeight < 200)) {
-      textareaRef.current.style.height = textareaRef.current.scrollHeight + "px";
+  function handleKeyUp() {
+    if (
+      textareaRef.current.scrollHeight > textareaRef.current.clientHeight &&
+      textareaRef.current.clientHeight < 200
+    ) {
+      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px'
     }
   }
 
   return (
-      <StyledForm>
-        <StyledTextarea
-            ref={textareaRef}
-            placeholder={props.placeholder}
-            onKeyUp={handleKeyUp}
-        />
-        <StyledSubmit
-            value=''
-            onClick={() => props.onclick(textareaRef.current.value)}
-            icon={props.icon}
-        />
-      </StyledForm>
+    <StyledForm>
+      <StyledTextarea
+        ref={textareaRef}
+        placeholder={props.placeholder}
+        onKeyUp={handleKeyUp}
+      />
+      <StyledSubmit
+        value=''
+        onClick={() => props.onclick(textareaRef.current.value)}
+        icon={props.icon}
+      />
+    </StyledForm>
   )
 }

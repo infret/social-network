@@ -30,7 +30,6 @@ const StyledMessage = styled.div`
 	grid-template-areas: 'avatar name date' 'avatar text text';
 	grid-template-columns: 74px 1fr 148px;
 	grid-template-rows: 37px 1fr;
-	border-bottom: 1px solid var(--grey);
 `
 
 const StyledAvatar = styled(Avatar)`

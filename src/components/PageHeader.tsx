@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import BlueMoreIcon from '../resources/blue-more-icon.svg'
 
 const StyledHeader = styled.header`
-	background-color: var(--white);
 	height: 50px;
 	display: flex;
 	align-items: center;
