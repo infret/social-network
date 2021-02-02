@@ -4,92 +4,99 @@ import PageHeader from './PageHeader'
 import Card from './Card'
 import Avatar from './Avatar'
 import TextareaForm from './TextareaForm'
-import BlueSendIcon from '../resources/blue-send-icon.svg'
-import {dataInterface, renderInterface} from '../store'
+import { stateInterface, renderInterface } from '../types'
 
 const PageContent = styled.div`
-	margin-top: 6px;
-	height: calc(100vh - 58px);
-	max-height: calc(100vh - 58px);
-	display: flex;
-	flex-direction: column;
+  margin-top: 6px;
+  height: calc(100vh - 58px);
+  max-height: calc(100vh - 58px);
+  display: flex;
+  flex-direction: column;
 `
 
 const Messages = styled(Card)`
-	overflow-y: scroll;
-	height: calc(100vh - 58px);
-	max-height: calc(100vh - 58px);
+  overflow-y: scroll;
+  height: calc(100vh - 58px);
+  max-height: calc(100vh - 58px);
 `
 
 const StyledMessage = styled.div`
-	width: 100%;
-	height: auto;
-	text-decoration: none;
-	color: black;
-	display: grid;
-	grid-template-areas: 'avatar name date' 'avatar text text';
-	grid-template-columns: 74px 1fr 148px;
-	grid-template-rows: 37px 1fr;
+  width: 100%;
+  height: auto;
+  text-decoration: none;
+  color: black;
+  display: grid;
+  grid-template-areas: 'avatar name date' 'avatar text text';
+  grid-template-columns: 74px 1fr 148px;
+  grid-template-rows: 37px 1fr;
 `
 
 const StyledAvatar = styled(Avatar)`
-	height: 50px;
-	width: 50px;
-	margin: 12px;
-	grid-area: avatar;
+  height: 50px;
+  width: 50px;
+  margin: 12px;
+  grid-area: avatar;
 `
 
 const Name = styled.p`
-	grid-area: name;
-	align-self: start;
+  grid-area: name;
+  align-self: start;
 `
 
 const Date = styled.p`
-	color: #999;
-	font-size: 14px;
-	grid-area: date;
-	text-align: end;
-	margin: 12px;
+  color: #999;
+  font-size: 14px;
+  grid-area: date;
+  text-align: end;
+  margin: 12px;
 `
 
 const Text = styled.pre`
-	color: #333;
-	grid-area: text;
-	overflow: hidden;
-	white-space: pre-wrap;
-	align-self: center;
-	padding-right: 6px;
+  color: #333;
+  grid-area: text;
+  overflow: hidden;
+  white-space: pre-wrap;
+  align-self: center;
+  padding-right: 6px;
 `
 
 interface propsInterface {
-	data: dataInterface,
-	userId: number,
-	getMessages : (companion_id : number) => Array<renderInterface>
-	addMessage : (messageText : string) => void
+  data: stateInterface
+  userId: number
+  getMessages: (companion_id: number) => renderInterface[]
+  addMessage: (messageText: string) => void
 }
 
 export default function Dialog(props: propsInterface) {
-	document.title = 'Dialog'
-	return (
-			<div>
-				<PageHeader title={props.data.users[props.userId].name}/>
-				<PageContent>
-					<Messages>
-						{props.getMessages(parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))).map((message, index) => (
-								<StyledMessage key={index}>
-									<StyledAvatar src={message.avatar} userId={message.sender_id}/>
-									<Name>{message.name}</Name>
-									<Text>{message.text}</Text>
-									<Date>{message.date}</Date>
-								</StyledMessage>
-						))}
-					</Messages>
-					<TextareaForm
-							icon={BlueSendIcon}
-							placeholder='Your message'
-							onclick={props.addMessage}
-					/>
-				</PageContent>
-			</div>
-	)
+  document.title = 'Dialog'
+  return (
+    <div>
+      <PageHeader title={props.data.users[props.userId].username} />
+      <PageContent>
+        <Messages>
+          {props
+            .getMessages(
+              parseInt(
+                window.location.pathname.substring(
+                  window.location.pathname.lastIndexOf('/') + 1
+                )
+              )
+            )
+            .map((message, index) => (
+              <StyledMessage key={index}>
+                <StyledAvatar src={message.avatar} userId={message.sender_id} />
+                <Name>{message.name}</Name>
+                <Text>{message.text}</Text>
+                <Date>{message.date}</Date>
+              </StyledMessage>
+            ))}
+        </Messages>
+        {/* <TextareaForm
+          icon={BlueSendIcon}
+          placeholder='Your message'
+          onclick={props.addMessage}
+        /> */}
+      </PageContent>
+    </div>
+  )
 }

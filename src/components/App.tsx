@@ -1,39 +1,44 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Sidebar from './Sidebar'
+import Navbar from './Navbar'
 import Feed from './Feed'
 import Profile from './Profile'
 import Messenger from './Messenger'
-import Friendlist from './Friendlist'
 import Search from './Search'
 import { BrowserRouter, Route } from 'react-router-dom'
 import Dialog from './Dialog'
-import { data, getCurrentDate, renderInterface } from '../store'
-import Bottombar from './Bottombar'
+import { initialState, getCurrentDate } from '../store'
+import { renderInterface } from '../types'
 import BigLogo from '../resources/logo.svg'
 
-const AppContainer = styled.div`
+const AppContainer = styled.div<{ height: string }>`
+  position: relative;
   max-width: 800px;
   width: 100vw;
+  height: ${(props) => props.height};
   margin: 0 auto;
   display: flex;
-  padding-top: 60px;
 `
 
 const AppHeader = styled.header`
   height: 50px;
   width: 100%;
   position: fixed;
+  border-bottom: 1px solid gainsboro;
 `
 
 const HeaderContainer = styled.div`
   width: 100vw;
   max-width: 800px;
-  height: 50px;
-  padding: 10px 300px;
+  height: 100%;
+  margin: 0 auto;
+  font-weight: bold;
+  font-size: 18px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  @media (max-width: 480px) {
+    display: none;
+  }
 `
 
 const AppContent = styled.div`
@@ -41,28 +46,20 @@ const AppContent = styled.div`
 `
 
 const AppLogo = styled.img`
-  margin: 8px;
-  height: 36px;
-`
-
-const LogoContainer = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  font-weight: bold;
-  font-size: 20px;
+  margin: 0 8px 0 16px;
+  height: 32px;
 `
 
 export default function App() {
-  const [posts, setPost] = useState(data.posts)
-  const [messages, setMessage] = useState(data.messages)
+  const [posts, setPost] = useState(initialState.posts)
+  const [messages, setMessage] = useState(initialState.messages)
 
   function addPost(postText: string) {
     if (postText) {
       setPost((prev) => [
         ...prev,
         {
-          sender_id: data.currentUserId,
+          sender_id: initialState.currentUserId,
           text: postText,
           date: getCurrentDate()
         }
@@ -75,7 +72,7 @@ export default function App() {
       setMessage((prev) => [
         ...prev,
         {
-          sender_id: data.currentUserId,
+          sender_id: initialState.currentUserId,
           recipient_id: 1,
           text: messageText,
           date: getCurrentDate()
@@ -85,13 +82,13 @@ export default function App() {
   }
 
   function getPosts(sender_id: number = -1) {
-    let postsToRender: Array<renderInterface> = []
+    let postsToRender: renderInterface[] = []
     posts.forEach((item, i) => {
       if (sender_id === -1) {
         postsToRender.push({
           sender_id: posts[i].sender_id,
-          name: data.users[posts[i].sender_id].name,
-          avatar: data.users[posts[i].sender_id].avatar,
+          name: initialState.users[posts[i].sender_id].username,
+          avatar: initialState.users[posts[i].sender_id].avatar,
           text: posts[i].text,
           date: posts[i].date
         })
@@ -99,8 +96,8 @@ export default function App() {
         if (posts[i].sender_id === sender_id) {
           postsToRender.push({
             sender_id: posts[i].sender_id,
-            name: data.users[sender_id].name,
-            avatar: data.users[sender_id].avatar,
+            name: initialState.users[sender_id].username,
+            avatar: initialState.users[sender_id].avatar,
             text: posts[i].text,
             date: posts[i].date
           })
@@ -111,18 +108,18 @@ export default function App() {
   }
 
   function getMessages(companion_id: number) {
-    let messagesToRender: Array<renderInterface> = []
+    let messagesToRender: renderInterface[] = []
     messages.forEach((item, i) => {
       if (
         (messages[i].sender_id === companion_id &&
-          messages[i].recipient_id === data.currentUserId) ||
-        (messages[i].sender_id === data.currentUserId &&
+          messages[i].recipient_id === initialState.currentUserId) ||
+        (messages[i].sender_id === initialState.currentUserId &&
           messages[i].recipient_id === companion_id)
       ) {
         messagesToRender.push({
           sender_id: messages[i].sender_id,
-          name: data.users[messages[i].sender_id].name,
-          avatar: data.users[messages[i].sender_id].avatar,
+          name: initialState.users[messages[i].sender_id].username,
+          avatar: initialState.users[messages[i].sender_id].avatar,
           text: messages[i].text,
           date: messages[i].date
         })
@@ -132,13 +129,13 @@ export default function App() {
   }
 
   function getDialogs() {
-    let dialogsToRender: Array<renderInterface> = []
+    let dialogsToRender: renderInterface[] = []
     messages.forEach((item, i) => {
-      if (messages[i].recipient_id === data.currentUserId) {
+      if (messages[i].recipient_id === initialState.currentUserId) {
         dialogsToRender.push({
           sender_id: messages[i].sender_id,
-          name: data.users[messages[i].sender_id].name,
-          avatar: data.users[messages[i].sender_id].avatar,
+          name: initialState.users[messages[i].sender_id].username,
+          avatar: initialState.users[messages[i].sender_id].avatar,
           text: messages[i].text,
           date: messages[i].date
         })
@@ -151,21 +148,18 @@ export default function App() {
     <BrowserRouter>
       <AppHeader>
         <HeaderContainer>
-          <LogoContainer>
-            {' '}
-            <AppLogo src={BigLogo} />
-            Social network
-          </LogoContainer>
-          <Sidebar currentUserId={data.currentUserId} />
+          <AppLogo src={BigLogo} />
+          Social network
         </HeaderContainer>
       </AppHeader>
-      <AppContainer>
+      <AppContainer height={window.innerHeight + 'px'}>
+        <Navbar currentUserId={initialState.currentUserId} />
         <AppContent>
           <Route
             path='/user/'
             component={() => (
               <Profile
-                data={data}
+                data={initialState}
                 userId={parseInt(
                   window.location.pathname.substring(
                     window.location.pathname.lastIndexOf('/') + 1
@@ -176,18 +170,21 @@ export default function App() {
             )}
           />
           <Route
-            path='/feed'
+            path='/'
+            exact
             component={() => <Feed getPosts={getPosts} addPost={addPost} />}
           />
           <Route
             path='/messenger'
-            component={() => <Messenger data={data} getDialogs={getDialogs} />}
+            component={() => (
+              <Messenger data={initialState} getDialogs={getDialogs} />
+            )}
           />
           <Route
             path='/dialog/'
             component={() => (
               <Dialog
-                data={data}
+                data={initialState}
                 userId={parseInt(
                   window.location.pathname.substring(
                     window.location.pathname.lastIndexOf('/') + 1
@@ -198,10 +195,7 @@ export default function App() {
               />
             )}
           />
-          <Route path='/friends' component={() => <Friendlist data={data} />} />
-          <Route path='/search' component={() => <Search data={data} />} />
         </AppContent>
-        <Bottombar currentUserId={data.currentUserId} />
       </AppContainer>
     </BrowserRouter>
   )
