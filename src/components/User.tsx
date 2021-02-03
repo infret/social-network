@@ -14,8 +14,6 @@ const StyledUser = styled.div`
 `
 
 const StyledAvatar = styled(Avatar)`
-  height: 50px;
-  width: 50px;
   margin: 12px;
   grid-area: avatar;
 `

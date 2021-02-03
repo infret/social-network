@@ -4,12 +4,12 @@ import Navbar from './Navbar'
 import Feed from './Feed'
 import Profile from './Profile'
 import Messenger from './Messenger'
-import Search from './Search'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, NavLink } from 'react-router-dom'
 import Dialog from './Dialog'
 import { initialState, getCurrentDate } from '../store'
 import { renderInterface } from '../types'
-import BigLogo from '../resources/logo.svg'
+import LogoIcon from '../resources/logo.svg'
+import Search from './Search'
 
 const AppContainer = styled.div<{ height: string }>`
   position: relative;
@@ -21,17 +21,19 @@ const AppContainer = styled.div<{ height: string }>`
 `
 
 const AppHeader = styled.header`
-  height: 50px;
+  height: 52px;
   width: 100%;
   position: fixed;
   border-bottom: 1px solid gainsboro;
 `
 
-const HeaderContainer = styled.div`
+const HeaderLogo = styled(NavLink)`
   width: 100vw;
   max-width: 800px;
   height: 100%;
   margin: 0 auto;
+  color: black;
+  text-decoration: none;
   font-weight: bold;
   font-size: 18px;
   display: flex;
@@ -45,9 +47,9 @@ const AppContent = styled.div`
   width: 100%;
 `
 
-const AppLogo = styled.img`
+const Logo = styled.img`
   margin: 0 8px 0 16px;
-  height: 32px;
+  height: 28px;
 `
 
 export default function App() {
@@ -147,14 +149,29 @@ export default function App() {
   return (
     <BrowserRouter>
       <AppHeader>
-        <HeaderContainer>
-          <AppLogo src={BigLogo} />
+        <HeaderLogo to='/'>
+          <Logo src={LogoIcon} />
           Social network
-        </HeaderContainer>
+        </HeaderLogo>
       </AppHeader>
       <AppContainer height={window.innerHeight + 'px'}>
         <Navbar currentUserId={initialState.currentUserId} />
         <AppContent>
+          <Route
+            path='/'
+            exact
+            component={() => <Feed getPosts={getPosts} addPost={addPost} />}
+          />
+          <Route
+            path='/search'
+            component={() => <Search data={initialState} />}
+          />
+          <Route
+            path='/messenger'
+            component={() => (
+              <Messenger data={initialState} getDialogs={getDialogs} />
+            )}
+          />
           <Route
             path='/user/'
             component={() => (
@@ -167,17 +184,6 @@ export default function App() {
                 )}
                 getPosts={getPosts}
               />
-            )}
-          />
-          <Route
-            path='/'
-            exact
-            component={() => <Feed getPosts={getPosts} addPost={addPost} />}
-          />
-          <Route
-            path='/messenger'
-            component={() => (
-              <Messenger data={initialState} getDialogs={getDialogs} />
             )}
           />
           <Route

@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import PageHeader from './PageHeader'
-import Card from './Card'
 import Avatar from './Avatar'
 import TextareaForm from './TextareaForm'
 import { stateInterface, renderInterface } from '../types'
@@ -14,7 +13,7 @@ const PageContent = styled.div`
   flex-direction: column;
 `
 
-const Messages = styled(Card)`
+const Messages = styled.div`
   overflow-y: scroll;
   height: calc(100vh - 58px);
   max-height: calc(100vh - 58px);
@@ -32,8 +31,6 @@ const StyledMessage = styled.div`
 `
 
 const StyledAvatar = styled(Avatar)`
-  height: 50px;
-  width: 50px;
   margin: 12px;
   grid-area: avatar;
 `
@@ -70,7 +67,7 @@ interface propsInterface {
 export default function Dialog(props: propsInterface) {
   document.title = 'Dialog'
   return (
-    <div>
+    <>
       <PageHeader title={props.data.users[props.userId].username} />
       <PageContent>
         <Messages>
@@ -97,6 +94,6 @@ export default function Dialog(props: propsInterface) {
           onclick={props.addMessage}
         /> */}
       </PageContent>
-    </div>
+    </>
   )
 }

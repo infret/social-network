@@ -10,28 +10,26 @@ const StyledNav = styled.nav`
   position: absolute;
   top: 0;
   right: 0;
-  height: 50px;
+  width: 220px;
+  height: 52px;
   display: flex;
+  justify-content: space-evenly;
+  z-index: 100;
   @media (max-width: 480px) {
     width: 100%;
     top: auto;
     bottom: 0;
-    justify-content: space-evenly;
     border-top: 1px solid gainsboro;
   }
 `
 
 const StyledLink = styled(NavLink)`
-  height: 100%;
-  width: 60px;
-  display: flex;
-  align-items: center;
+  padding: 13px;
 `
 
 const StyledImg = styled.img`
-  margin: 0 10px;
   width: auto;
-  height: 28px;
+  height: 26px;
 `
 
 interface propsInterface {
@@ -41,7 +39,7 @@ interface propsInterface {
 export default function Sidebar(props: propsInterface) {
   return (
     <StyledNav>
-      <StyledLink to='/feed'>
+      <StyledLink to='/'>
         <StyledImg src={HomeIcon} />
       </StyledLink>
       <StyledLink to='/search'>

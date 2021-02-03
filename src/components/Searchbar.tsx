@@ -1,27 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import WhiteSearchIcon from '../resources/white-search-icon.svg'
-
-const StyledSearchbar = styled.form`
-  height: 34px;
-  display: flex;
-  align-items: center;
-  padding: 12px;
-`
 
 const StyledInput = styled.input`
-  width: calc(100% - 40px);
-  font-size: 14px;
+  width: 100%;
+  max-width: 300px;
   border: none;
   border-radius: 4px 0 0 6px;
-  height: 34px;
-  padding-left: 12px;
+  height: 26px;
+  padding: 4px;
+  display: block;
+  font-size: 15px;
+  text-align: center;
+  margin: 8px auto;
+  border: 1px solid gainsboro;
+  border-radius: 4px;
 `
 
 export default function Searchbar() {
-  return (
-    <StyledSearchbar>
-      <StyledInput type='text' placeholder='Search' />
-    </StyledSearchbar>
-  )
+  return <StyledInput type='text' placeholder='Search' />
 }

@@ -1,8 +1,7 @@
 import React, { MutableRefObject, useRef } from 'react'
 import styled from 'styled-components'
-import Card from './Card'
 
-const StyledForm = styled(Card)`
+const StyledForm = styled.div`
   margin-top: 6px;
   display: flex;
   align-items: center;
@@ -16,9 +15,6 @@ const StyledTextarea = styled.textarea`
   padding: 12px;
   font-size: 15px;
   height: 20px;
-
-  &:hover {
-  }
 `
 
 const StyledSubmit = styled.button<{ icon: string }>`

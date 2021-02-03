@@ -1,11 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import PageHeader from './PageHeader'
-import Card from './Card'
 import Post from './Post'
 import { stateInterface, renderInterface } from '../types'
 
-const ProfileDescription = styled(Card)`
+const ProfileDescription = styled.div`
   display: flex;
 `
 
