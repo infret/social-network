@@ -21,7 +21,7 @@ const AppContainer = styled.div<{ height: string }>`
 `
 
 const AppHeader = styled.header`
-  height: 52px;
+  height: 50px;
   width: 100%;
   position: fixed;
   border-bottom: 1px solid gainsboro;
@@ -45,6 +45,7 @@ const HeaderLogo = styled(NavLink)`
 
 const AppContent = styled.div`
   width: 100%;
+  padding: 0 12px;
 `
 
 const Logo = styled.img`

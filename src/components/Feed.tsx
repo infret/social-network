@@ -10,10 +10,9 @@ interface propsInterface {
 }
 
 export default function Feed(props: propsInterface) {
-  document.title = 'Home'
   return (
     <>
-      <PageHeader title='Home' />
+      <PageHeader title='Social Network' />
       {props.getPosts().map((post, index) => (
         <Post
           key={index}

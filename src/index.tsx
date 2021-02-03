@@ -16,6 +16,12 @@ const GlobalStyle = createGlobalStyle`
 		outline: none;
 	}
 
+	button {
+		background-color: transparent;
+		border: none;
+		padding: none;
+	}
+
 	textarea, pre {
 		resize: none;
 		overflow: auto;

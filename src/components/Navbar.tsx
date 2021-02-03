@@ -11,7 +11,7 @@ const StyledNav = styled.nav`
   top: 0;
   right: 0;
   width: 220px;
-  height: 52px;
+  height: 50px;
   display: flex;
   justify-content: space-evenly;
   z-index: 100;
@@ -29,7 +29,7 @@ const StyledLink = styled(NavLink)`
 
 const StyledImg = styled.img`
   width: auto;
-  height: 26px;
+  height: 24px;
 `
 
 interface propsInterface {
