@@ -27,7 +27,7 @@ interface propsInterface {
 export default function User(props: propsInterface) {
   return (
     <StyledUser>
-      <StyledAvatar src={props.avatar} userId={props.id} />
+      {/* <StyledAvatar src={props.avatar} userId={props.id} /> */}
       <Username userId={props.id} name={props.name} />
     </StyledUser>
   )

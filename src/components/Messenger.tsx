@@ -56,7 +56,7 @@ export default function Messenger(props: propsInterface) {
       <Searchbar />
       {props.getDialogs().map((dialog, i) => (
         <DialogLink key={i} to={'/dialog/' + dialog.sender_id}>
-          <StyledAvatar src={dialog.avatar} userId={dialog.sender_id} />
+          {/* <StyledAvatar src={dialog.avatar} userId={dialog.sender_id} /> */}
           <Name>{dialog.name}</Name>
           <Date>{dialog.date}</Date>
           <LastMessage>{dialog.text}</LastMessage>

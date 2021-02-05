@@ -24,6 +24,8 @@ const AppHeader = styled.header`
   height: 50px;
   width: 100%;
   position: fixed;
+  z-index: 10;
+  background: white;
   border-bottom: 1px solid gainsboro;
 `
 

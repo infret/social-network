@@ -9,7 +9,6 @@ const GlobalStyle = createGlobalStyle`
 		font-family: sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		overflow: hidden;
 	}
 
 	:focus {

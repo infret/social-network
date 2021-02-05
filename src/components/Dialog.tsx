@@ -81,7 +81,7 @@ export default function Dialog(props: propsInterface) {
             )
             .map((message, index) => (
               <StyledMessage key={index}>
-                <StyledAvatar src={message.avatar} userId={message.sender_id} />
+                {/* <StyledAvatar src={message.avatar} userId={message.sender_id} /> */}
                 <Name>{message.name}</Name>
                 <Text>{message.text}</Text>
                 <Date>{message.date}</Date>

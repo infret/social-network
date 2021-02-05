@@ -9,7 +9,7 @@ import MessageIcon from '../resources/message.svg'
 const StyledPost = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 12px;
+  margin: 12px auto;
   border: 1px solid gainsboro;
   border-radius: 4px;
   max-width: 600px;
@@ -22,6 +22,8 @@ const PostHeader = styled.div`
 
 const StyledAvatar = styled(Avatar)`
   margin: 12px;
+  height: 20px;
+  width: 20px;
 `
 
 const Date = styled.p`
@@ -32,15 +34,17 @@ const Date = styled.p`
 
 const MenuButton = styled.button`
   margin: 0 6px 0 auto;
+  height: 25px;
 `
 
 const ImgActions = styled.div`
-  margin: 4px 8px;
   display: flex;
   align-items: center;
 `
 
-const ImgButton = styled.button``
+const ImgButton = styled.button`
+  margin: 12px -4px 0 4px;
+`
 
 const PostImg = styled.img`
   height: 300px;
@@ -51,7 +55,7 @@ const PostImg = styled.img`
 const Text = styled.pre`
   white-space: pre-wrap;
   word-wrap: break-word;
-  margin: 12px;
+  margin: 6px 12px 12px 12px;
 `
 
 interface propsInterface {
@@ -66,7 +70,7 @@ export default function Post(props: propsInterface) {
   return (
     <StyledPost>
       <PostHeader>
-        <StyledAvatar src={props.avatar} userId={props.id} />
+        <StyledAvatar src={props.avatar} userId={props.id} size='30px' />
         <Username userId={props.id} name={props.name} />
         <Date>{props.date}</Date>
         <MenuButton>
