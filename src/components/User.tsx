@@ -13,11 +13,6 @@ const StyledUser = styled.div`
   margin-bottom: 6px;
 `
 
-const StyledAvatar = styled(Avatar)`
-  margin: 12px;
-  grid-area: avatar;
-`
-
 interface propsInterface {
   avatar: string
   name: string
@@ -27,7 +22,7 @@ interface propsInterface {
 export default function User(props: propsInterface) {
   return (
     <StyledUser>
-      {/* <StyledAvatar src={props.avatar} userId={props.id} /> */}
+      <Avatar src={props.avatar} userId={props.id} />
       <Username userId={props.id} name={props.name} />
     </StyledUser>
   )

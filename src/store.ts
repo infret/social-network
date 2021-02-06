@@ -37,7 +37,7 @@ export let initialState = {
   posts: [
     {
       sender_id: 0,
-      text: 'Somebody once told me',
+      text: 'Атомный бан',
       date: '11 Nov, 17:08'
     },
     {

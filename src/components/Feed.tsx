@@ -1,8 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import Post from './Post'
-import PageHeader from './PageHeader'
 import { renderInterface } from '../types'
+
+const Container = styled.div`
+  width: 100%;
+  padding: 6px 12px;
+`
 
 interface propsInterface {
   getPosts: (sender_id?: number) => renderInterface[]
@@ -10,9 +14,9 @@ interface propsInterface {
 }
 
 export default function Feed(props: propsInterface) {
+  document.title = 'Posts'
   return (
-    <>
-      <PageHeader title='Social Network' />
+    <Container>
       {props.getPosts().map((post, index) => (
         <Post
           key={index}
@@ -23,6 +27,6 @@ export default function Feed(props: propsInterface) {
           date={post.date}
         />
       ))}
-    </>
+    </Container>
   )
 }

@@ -1,58 +1,25 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Navbar from './Navbar'
 import Feed from './Feed'
 import Profile from './Profile'
 import Messenger from './Messenger'
-import { BrowserRouter, Route, NavLink } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import Dialog from './Dialog'
 import { initialState, getCurrentDate } from '../store'
 import { renderInterface } from '../types'
-import LogoIcon from '../resources/logo.svg'
 import Search from './Search'
+import Header from './Header'
 
 const AppContainer = styled.div<{ height: string }>`
-  position: relative;
   max-width: 800px;
-  width: 100vw;
+  width: 100%;
   height: ${(props) => props.height};
   margin: 0 auto;
   display: flex;
 `
 
-const AppHeader = styled.header`
-  height: 50px;
-  width: 100%;
-  position: fixed;
-  z-index: 10;
-  background: white;
-  border-bottom: 1px solid gainsboro;
-`
-
-const HeaderLogo = styled(NavLink)`
-  width: 100vw;
-  max-width: 800px;
-  height: 100%;
-  margin: 0 auto;
-  color: black;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 18px;
+const Container = styled.div`
   display: flex;
-  align-items: center;
-  @media (max-width: 480px) {
-    display: none;
-  }
-`
-
-const AppContent = styled.div`
-  width: 100%;
-  padding: 0 12px;
-`
-
-const Logo = styled.img`
-  margin: 0 8px 0 16px;
-  height: 28px;
 `
 
 export default function App() {
@@ -151,60 +118,60 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      <AppHeader>
-        <HeaderLogo to='/'>
-          <Logo src={LogoIcon} />
-          Social network
-        </HeaderLogo>
-      </AppHeader>
+      <Header currentUserId={initialState.currentUserId} />
       <AppContainer height={window.innerHeight + 'px'}>
-        <Navbar currentUserId={initialState.currentUserId} />
-        <AppContent>
-          <Route
-            path='/'
-            exact
-            component={() => <Feed getPosts={getPosts} addPost={addPost} />}
-          />
-          <Route
-            path='/search'
-            component={() => <Search data={initialState} />}
-          />
-          <Route
-            path='/messenger'
-            component={() => (
+        <Route
+          path='/'
+          exact
+          component={() => <Feed getPosts={getPosts} addPost={addPost} />}
+        />
+        <Route
+          path='/search'
+          component={() => <Search data={initialState} />}
+        />
+        <Route
+          path='/messenger'
+          render={() => (
+            <Container>
               <Messenger data={initialState} getDialogs={getDialogs} />
-            )}
-          />
-          <Route
-            path='/user/'
-            component={() => (
-              <Profile
-                data={initialState}
-                userId={parseInt(
-                  window.location.pathname.substring(
-                    window.location.pathname.lastIndexOf('/') + 1
-                  )
-                )}
-                getPosts={getPosts}
-              />
-            )}
-          />
-          <Route
-            path='/dialog/'
-            component={() => (
               <Dialog
                 data={initialState}
-                userId={parseInt(
-                  window.location.pathname.substring(
-                    window.location.pathname.lastIndexOf('/') + 1
-                  )
-                )}
+                userId={0}
                 getMessages={getMessages}
                 addMessage={addMessage}
               />
-            )}
-          />
-        </AppContent>
+            </Container>
+          )}
+        />
+        <Route
+          path='/user/'
+          component={() => (
+            <Profile
+              data={initialState}
+              userId={parseInt(
+                window.location.pathname.substring(
+                  window.location.pathname.lastIndexOf('/') + 1
+                )
+              )}
+              getPosts={getPosts}
+            />
+          )}
+        />
+        <Route
+          path='/dialog/'
+          component={() => (
+            <Dialog
+              data={initialState}
+              userId={parseInt(
+                window.location.pathname.substring(
+                  window.location.pathname.lastIndexOf('/') + 1
+                )
+              )}
+              getMessages={getMessages}
+              addMessage={addMessage}
+            />
+          )}
+        />
       </AppContainer>
     </BrowserRouter>
   )

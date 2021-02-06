@@ -1,12 +1,12 @@
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 
-const StyledLink = styled(NavLink)<{ size: string | null }>`
+const StyledLink = styled(NavLink)`
   color: black;
   text-decoration: none;
-  height: ${(props) => props.size};
-  width: ${(props) => props.size};
-  margin: 12px;
+  height: 48px;
+  width: 48px;
+  margin: 10px;
 `
 
 const StyledImg = styled.img`
@@ -18,14 +18,10 @@ const StyledImg = styled.img`
 interface propsInterface {
   userId: number
   src: string
-  size: string | null
 }
 
 const Avatar = (props: propsInterface) => (
-  <StyledLink
-    to={'/user/' + props.userId}
-    size={props.size ? props.size : '50px'}
-  >
+  <StyledLink to={'/user/' + props.userId}>
     <StyledImg src={props.src} />
   </StyledLink>
 )

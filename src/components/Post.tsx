@@ -2,16 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import Avatar from './Avatar'
 import Username from './Username'
-import MenuIcon from '../resources/menu.svg'
 import HeartIcon from '../resources/heart.svg'
 import MessageIcon from '../resources/message.svg'
 
 const StyledPost = styled.div`
-  display: flex;
-  flex-direction: column;
   margin: 12px auto;
   border: 1px solid gainsboro;
   border-radius: 4px;
+  min-width: 360px;
+  width: 100%;
   max-width: 600px;
 `
 
@@ -20,21 +19,10 @@ const PostHeader = styled.div`
   align-items: center;
 `
 
-const StyledAvatar = styled(Avatar)`
-  margin: 12px;
-  height: 20px;
-  width: 20px;
-`
-
 const Date = styled.p`
   color: #999;
   font-size: 14px;
   margin-left: 12px;
-`
-
-const MenuButton = styled.button`
-  margin: 0 6px 0 auto;
-  height: 25px;
 `
 
 const ImgActions = styled.div`
@@ -70,12 +58,9 @@ export default function Post(props: propsInterface) {
   return (
     <StyledPost>
       <PostHeader>
-        <StyledAvatar src={props.avatar} userId={props.id} size='30px' />
+        <Avatar src={props.avatar} userId={props.id} />
         <Username userId={props.id} name={props.name} />
         <Date>{props.date}</Date>
-        <MenuButton>
-          <img src={MenuIcon} alt='' />
-        </MenuButton>
       </PostHeader>
       <PostImg src='https://images.unsplash.com/photo-1612367197703-1e9839b09f63?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60' />
       <ImgActions>

@@ -1,18 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
-import PageHeader from './PageHeader'
 import Post from './Post'
 import { stateInterface, renderInterface } from '../types'
+import Avatar from './Avatar'
 
 const ProfileDescription = styled.div`
   display: flex;
-`
-
-const StyledAvatar = styled.img`
-  height: 78px;
-  width: 78px;
-  border-radius: 50%;
-  margin: 16px;
 `
 
 const Name = styled.h2`
@@ -33,12 +26,14 @@ interface propsInterface {
 }
 
 export default function Profile(props: propsInterface) {
-  document.title = props.data.users[props.userId].username
+  document.title = props.data.users[props.userId].username + 'profile'
   return (
     <>
-      <PageHeader title='Profile' />
       <ProfileDescription>
-        <StyledAvatar src={props.data.users[props.userId].avatar} />
+        <Avatar
+          src={props.data.users[props.userId].avatar}
+          userId={props.userId}
+        />
         <Name>{props.data.users[props.userId].username}</Name>
         <Status>Ban</Status>
       </ProfileDescription>

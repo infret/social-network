@@ -1,23 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
-import PageHeader from './PageHeader'
 import Avatar from './Avatar'
 import TextareaForm from './TextareaForm'
 import { stateInterface, renderInterface } from '../types'
 
 const PageContent = styled.div`
   margin-top: 6px;
-  height: calc(100vh - 58px);
-  max-height: calc(100vh - 58px);
   display: flex;
   flex-direction: column;
 `
 
-const Messages = styled.div`
-  overflow-y: scroll;
-  height: calc(100vh - 58px);
-  max-height: calc(100vh - 58px);
-`
+const Messages = styled.div``
 
 const StyledMessage = styled.div`
   width: 100%;
@@ -28,11 +21,6 @@ const StyledMessage = styled.div`
   grid-template-areas: 'avatar name date' 'avatar text text';
   grid-template-columns: 74px 1fr 148px;
   grid-template-rows: 37px 1fr;
-`
-
-const StyledAvatar = styled(Avatar)`
-  margin: 12px;
-  grid-area: avatar;
 `
 
 const Name = styled.p`
@@ -51,7 +39,6 @@ const Date = styled.p`
 const Text = styled.pre`
   color: #333;
   grid-area: text;
-  overflow: hidden;
   white-space: pre-wrap;
   align-self: center;
   padding-right: 6px;
@@ -65,10 +52,9 @@ interface propsInterface {
 }
 
 export default function Dialog(props: propsInterface) {
-  document.title = 'Dialog'
+  document.title = 'Dialog with ' + props.data.users[props.userId].username
   return (
     <>
-      <PageHeader title={props.data.users[props.userId].username} />
       <PageContent>
         <Messages>
           {props
@@ -81,7 +67,7 @@ export default function Dialog(props: propsInterface) {
             )
             .map((message, index) => (
               <StyledMessage key={index}>
-                {/* <StyledAvatar src={message.avatar} userId={message.sender_id} /> */}
+                <Avatar src={message.avatar} userId={message.sender_id} />
                 <Name>{message.name}</Name>
                 <Text>{message.text}</Text>
                 <Date>{message.date}</Date>
