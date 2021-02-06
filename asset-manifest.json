@@ -1,22 +1,23 @@
 {
   "files": {
-    "main.js": "/social-network/static/js/main.e2c51395.chunk.js",
-    "main.js.map": "/social-network/static/js/main.e2c51395.chunk.js.map",
+    "main.js": "/social-network/static/js/main.4540f13b.chunk.js",
+    "main.js.map": "/social-network/static/js/main.4540f13b.chunk.js.map",
     "runtime-main.js": "/social-network/static/js/runtime-main.e2634906.js",
     "runtime-main.js.map": "/social-network/static/js/runtime-main.e2634906.js.map",
-    "static/js/2.8ff69550.chunk.js": "/social-network/static/js/2.8ff69550.chunk.js",
-    "static/js/2.8ff69550.chunk.js.map": "/social-network/static/js/2.8ff69550.chunk.js.map",
+    "static/js/2.5c6296a3.chunk.js": "/social-network/static/js/2.5c6296a3.chunk.js",
+    "static/js/2.5c6296a3.chunk.js.map": "/social-network/static/js/2.5c6296a3.chunk.js.map",
     "index.html": "/social-network/index.html",
-    "static/js/2.8ff69550.chunk.js.LICENSE.txt": "/social-network/static/js/2.8ff69550.chunk.js.LICENSE.txt",
-    "static/media/home.5658da3a.svg": "/social-network/static/media/home.5658da3a.svg",
-    "static/media/logo.16ca5561.svg": "/social-network/static/media/logo.16ca5561.svg",
-    "static/media/message.f566edd5.svg": "/social-network/static/media/message.f566edd5.svg",
-    "static/media/profile.80378613.svg": "/social-network/static/media/profile.80378613.svg",
-    "static/media/search.26aebde9.svg": "/social-network/static/media/search.26aebde9.svg"
+    "static/js/2.5c6296a3.chunk.js.LICENSE.txt": "/social-network/static/js/2.5c6296a3.chunk.js.LICENSE.txt",
+    "static/media/heart.b0e6508e.svg": "/social-network/static/media/heart.b0e6508e.svg",
+    "static/media/home.12653022.svg": "/social-network/static/media/home.12653022.svg",
+    "static/media/logo.3a1ea0a8.svg": "/social-network/static/media/logo.3a1ea0a8.svg",
+    "static/media/message.e5053226.svg": "/social-network/static/media/message.e5053226.svg",
+    "static/media/profile.cce85dcf.svg": "/social-network/static/media/profile.cce85dcf.svg",
+    "static/media/search.9e893c64.svg": "/social-network/static/media/search.9e893c64.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.e2634906.js",
-    "static/js/2.8ff69550.chunk.js",
-    "static/js/main.e2c51395.chunk.js"
+    "static/js/2.5c6296a3.chunk.js",
+    "static/js/main.4540f13b.chunk.js"
   ]
 }
