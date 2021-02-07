@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Post from './Post'
 import { renderInterface } from '../types'
+import { observer } from 'mobx-react-lite'
+import store, { IPost, IStore } from '../mobx-store'
+import { getSnapshot } from 'mobx-state-tree'
 
 const Container = styled.div`
   width: 100%;
@@ -13,20 +16,19 @@ interface propsInterface {
   addPost: (postText: string) => void
 }
 
-export default function Feed(props: propsInterface) {
-  document.title = 'Posts'
-  return (
-    <Container>
-      {props.getPosts().map((post, index) => (
-        <Post
-          key={index}
-          id={index}
-          name={post.name}
-          avatar={post.avatar}
-          text={post.text}
-          date={post.date}
-        />
-      ))}
-    </Container>
-  )
-}
+const Feed = observer((props: propsInterface) => (
+  <Container>
+    <button onClick={() => store.createPost(2, 'ban', '1 april')}>Add post</button>
+    {Object.values(getSnapshot(store).posts).map((post, index) => (
+      <Post
+        key={index}
+        id={index}
+        name={'vpech'}
+        avatar={'a'}
+        text={post.text}
+        date={post.date}
+      />
+    ))}
+  </Container>
+))
+export default Feed

@@ -4,8 +4,8 @@ import styled from 'styled-components'
 const StyledLink = styled(NavLink)`
   color: black;
   text-decoration: none;
-  height: 48px;
-  width: 48px;
+  height: 40px;
+  width: 40px;
   margin: 10px;
 `
 
