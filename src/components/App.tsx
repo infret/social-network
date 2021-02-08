@@ -9,6 +9,7 @@ import { initialState, getCurrentDate } from '../store'
 import { renderInterface } from '../types'
 import Search from './Search'
 import Header from './Header'
+import store from '../mobx-store'
 
 const AppContainer = styled.div<{ height: string }>`
   max-width: 800px;
@@ -123,7 +124,7 @@ export default function App() {
         <Route
           path='/'
           exact
-          component={() => <Feed getPosts={getPosts} addPost={addPost} />}
+          component={() => <Feed getPosts={getPosts} addPost={addPost} store={store}/>}
         />
         <Route
           path='/search'
