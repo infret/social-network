@@ -54,9 +54,6 @@ const Store = types
         date: getCurrentDate()
       })
     },
-    filterPosts(sender_id?: number) {
-      return sender_id ? self.posts.filter((post) => post.sender_id === sender_id) : self.posts
-    },
     filterMessages(sender_id: number, recipient_id: number) {
       return self.messages.filter(
         (message) => message.sender_id === sender_id && message.recipient_id === recipient_id

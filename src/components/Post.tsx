@@ -11,7 +11,7 @@ const StyledPost = styled.div`
   border-radius: 4px;
   min-width: 360px;
   width: 100%;
-  max-width: 600px;
+  max-width: 700px;
 `
 
 const PostHeader = styled.div`
@@ -35,7 +35,8 @@ const ImgButton = styled.button`
 `
 
 const PostImg = styled.img`
-  height: 300px;
+  height: 100%;
+  max-height: 700px;
   width: 100%;
   object-fit: cover;
 `

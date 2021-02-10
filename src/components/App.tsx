@@ -24,21 +24,7 @@ const Container = styled.div`
 `
 
 export default function App() {
-  const [posts, setPost] = useState(initialState.posts)
   const [messages, setMessage] = useState(initialState.messages)
-
-  function addPost(postText: string) {
-    if (postText) {
-      setPost((prev) => [
-        ...prev,
-        {
-          sender_id: initialState.currentUserId,
-          text: postText,
-          date: getCurrentDate()
-        }
-      ])
-    }
-  }
 
   function addMessage(messageText: string) {
     if (messageText) {
@@ -52,32 +38,6 @@ export default function App() {
         }
       ])
     }
-  }
-
-  function getPosts(sender_id: number = -1) {
-    let postsToRender: renderInterface[] = []
-    posts.forEach((item, i) => {
-      if (sender_id === -1) {
-        postsToRender.push({
-          sender_id: posts[i].sender_id,
-          name: initialState.users[posts[i].sender_id].username,
-          avatar: initialState.users[posts[i].sender_id].avatar,
-          text: posts[i].text,
-          date: posts[i].date
-        })
-      } else {
-        if (posts[i].sender_id === sender_id) {
-          postsToRender.push({
-            sender_id: posts[i].sender_id,
-            name: initialState.users[sender_id].username,
-            avatar: initialState.users[sender_id].avatar,
-            text: posts[i].text,
-            date: posts[i].date
-          })
-        }
-      }
-    })
-    return postsToRender
   }
 
   function getMessages(companion_id: number) {
@@ -121,15 +81,8 @@ export default function App() {
     <BrowserRouter>
       <Header currentUserId={initialState.currentUserId} />
       <AppContainer height={window.innerHeight + 'px'}>
-        <Route
-          path='/'
-          exact
-          component={() => <Feed getPosts={getPosts} addPost={addPost} store={store}/>}
-        />
-        <Route
-          path='/search'
-          component={() => <Search data={initialState} />}
-        />
+        <Route path='/' exact component={() => <Feed store={store} />} />
+        <Route path='/search' component={() => <Search data={initialState} />} />
         <Route
           path='/messenger'
           render={() => (
@@ -148,13 +101,10 @@ export default function App() {
           path='/user/'
           component={() => (
             <Profile
-              data={initialState}
               userId={parseInt(
-                window.location.pathname.substring(
-                  window.location.pathname.lastIndexOf('/') + 1
-                )
+                window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
               )}
-              getPosts={getPosts}
+              store={store}
             />
           )}
         />
@@ -164,9 +114,7 @@ export default function App() {
             <Dialog
               data={initialState}
               userId={parseInt(
-                window.location.pathname.substring(
-                  window.location.pathname.lastIndexOf('/') + 1
-                )
+                window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
               )}
               getMessages={getMessages}
               addMessage={addMessage}

@@ -23,9 +23,7 @@ const GlobalStyle = createGlobalStyle`
 
 	textarea, pre {
 		resize: none;
-		overflow: auto;
 		font-family: sans-serif;
-		font-style: normal;
 	}
 `
 
