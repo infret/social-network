@@ -76,15 +76,8 @@ const Profile = observer((props: propsInterface) => {
       <Container>
         {props.store.posts
           .filter((post) => post.sender_id === props.userId)
-          .map((post, index) => (
-            <Post
-              id={index}
-              key={index}
-              name={post.sender_username}
-              avatar={post.sender_avatar}
-              text={post.text}
-              date={post.date}
-            />
+          .map((post) => (
+            <Post user={props.store.users[post.sender_id]} date={post.date} text={post.text} />
           ))}
       </Container>
     </div>

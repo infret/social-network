@@ -1,29 +1,31 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
+import { IUser } from '../store'
 import Avatar from './Avatar'
-import Username from './Username'
 
 const StyledUser = styled.div`
   width: 100%;
-  display: grid;
-  grid-template-areas: 'avatar name' 'avatar text';
-  grid-template-columns: 74px 1fr;
-  grid-template-rows: 37px 37px;
+  display: flex;
+  align-items: center;
+`
+
+const Username = styled(NavLink)`
+  color: black;
   text-decoration: none;
-  margin-bottom: 6px;
+  font-weight: 600;
 `
 
 interface propsInterface {
-  avatar: string
-  name: string
-  id: number
+  user: IUser
+  link: string
 }
 
 export default function User(props: propsInterface) {
   return (
     <StyledUser>
-      <Avatar src={props.avatar} userId={props.id} />
-      <Username userId={props.id} name={props.name} />
+      <Avatar userId={props.user.id} src={props.user.avatar} />
+      <Username to={props.link + props.user.id}>{props.user.username}</Username>
     </StyledUser>
   )
 }

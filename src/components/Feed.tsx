@@ -16,13 +16,7 @@ interface Props {
 const Feed = observer((props: Props) => (
   <Container>
     {props.store.posts.map((post, index) => (
-      <Post
-        id={index}
-        name={post.sender_username}
-        avatar={post.sender_avatar}
-        text={post.text}
-        date={post.date}
-      />
+      <Post user={props.store.users[post.sender_id]} date={post.date} text={post.text} />
     ))}
   </Container>
 ))

@@ -55,9 +55,7 @@ const Store = types
       })
     },
     filterMessages(sender_id: number, recipient_id: number) {
-      return self.messages.filter(
-        (message) => message.sender_id === sender_id && message.recipient_id === recipient_id
-      )
+      return self.messages.filter((message) => message.sender_id === sender_id && message.recipient_id === recipient_id)
     }
   }))
 
@@ -138,5 +136,6 @@ const getCurrentDate = () =>
   }).format(Date.now())
 
 export interface IStore extends Instance<typeof store> {}
+export interface IUser extends Instance<typeof User> {}
 
 export default store
