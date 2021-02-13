@@ -3,8 +3,8 @@ import styled from 'styled-components'
 import Searchbar from './Searchbar'
 import Avatar from './Avatar'
 import { NavLink } from 'react-router-dom'
-import { stateInterface, renderInterface } from '../types'
-import Dialog from './Dialog'
+import Chat from './Chat'
+import { IStore } from '../store'
 
 const Page = styled.div`
   display: flex;
@@ -48,24 +48,25 @@ const Date = styled.p`
 `
 
 interface propsInterface {
-  data: stateInterface
-  getDialogs: () => renderInterface[]
+  store: IStore
 }
 
-export default function Messenger(props: propsInterface) {
+export default function Chats(props: propsInterface) {
   document.title = 'Chats'
   return (
     <Page>
       <Container>
         <Searchbar />
-        {props.getDialogs().map((dialog, i) => (
-          <DialogLink key={i} to={'/dialog/' + dialog.sender_id}>
-            <Avatar src={dialog.avatar} userId={dialog.sender_id} />
-            <Name>{dialog.name}</Name>
-            <Date>{dialog.date}</Date>
-            <LastMessage>{dialog.text}</LastMessage>
-          </DialogLink>
-        ))}
+        {props.store.messages
+          .filter((message) => message.sender_id === props.store.currentUserId)
+          .map((dialog, i) => (
+            <DialogLink key={i} to={'/chat/' + dialog.sender_id}>
+              <Avatar src={dialog.sender_avatar} userId={dialog.sender_id} />
+              <Name>{dialog.sender_username}</Name>
+              <Date>{dialog.date}</Date>
+              <LastMessage>{dialog.text}</LastMessage>
+            </DialogLink>
+          ))}
       </Container>
     </Page>
   )

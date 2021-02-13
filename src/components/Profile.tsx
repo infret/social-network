@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Post from './Post'
 import Avatar from './Avatar'
-import { IStore } from '../mobx-store'
+import { IStore } from '../store'
 import { observer } from 'mobx-react-lite'
 
 const ProfileHead = styled.div`

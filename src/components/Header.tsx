@@ -76,7 +76,7 @@ const Header = (props: propsInterface) => {
           <StyledLink to='/create' active={url.includes('/create')}>
             <img src={PlusIcon} alt='' />
           </StyledLink>
-          <StyledLink to='/messenger' active={url.includes('/messenger')}>
+          <StyledLink to='/chats' active={url.includes('/messenger')}>
             <img src={MessengerIcon} alt='' />
           </StyledLink>
           <StyledLink to={'/user/' + props.currentUserId} active={url.includes('/user')}>

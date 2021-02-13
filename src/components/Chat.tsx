@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Avatar from './Avatar'
 import TextareaForm from './TextareaForm'
-import { stateInterface, renderInterface } from '../types'
+import { IStore } from '../store'
 
 const PageContent = styled.div`
   margin-top: 6px;
@@ -45,30 +45,30 @@ const Text = styled.pre`
 `
 
 interface propsInterface {
-  data: stateInterface
+  store: IStore
   userId: number
-  getMessages: (companion_id: number) => renderInterface[]
-  addMessage: (messageText: string) => void
 }
 
-export default function Dialog(props: propsInterface) {
-  document.title = 'Dialog with ' + props.data.users[props.userId].username
+export default function Chat(props: propsInterface) {
+  document.title = 'Dialog with ' + props.store.users[props.userId].username
   return (
     <>
       <PageContent>
         <Messages>
-          {props
-            .getMessages(
-              parseInt(
-                window.location.pathname.substring(
-                  window.location.pathname.lastIndexOf('/') + 1
-                )
-              )
+          {props.store.messages
+            .filter(
+              (message) =>
+                message.sender_id ===
+                  parseInt(
+                    window.location.pathname.substring(
+                      window.location.pathname.lastIndexOf('/') + 1
+                    )
+                  ) && message.recipient_id === props.store.currentUserId
             )
             .map((message, index) => (
               <StyledMessage key={index}>
-                <Avatar src={message.avatar} userId={message.sender_id} />
-                <Name>{message.name}</Name>
+                <Avatar src={message.sender_avatar} userId={message.sender_id} />
+                <Name>{message.sender_username}</Name>
                 <Text>{message.text}</Text>
                 <Date>{message.date}</Date>
               </StyledMessage>

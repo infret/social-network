@@ -1,9 +1,9 @@
 import React from 'react'
 import Searchbar from './Searchbar'
-import { stateInterface } from '../types'
+import { IStore } from '../store'
 
 interface propsInterface {
-  data: stateInterface
+  store: IStore
 }
 
 export default function Search(props: propsInterface) {
