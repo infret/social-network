@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Feed from './components/Feed'
 import Profile from './components/Profile'
 import Chats from './components/Chats'
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route } from 'react-router-dom'
 import Chat from './components/Chat'
 import Search from './components/Search'
 import Header from './components/Header'
@@ -35,6 +35,7 @@ ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
     <BrowserRouter>
+      <Redirect to='/' />
       <Header currentUserId={store.currentUserId} />
       <App height={window.innerHeight + 'px'}>
         <Route path='/' exact component={() => <Feed store={store} />} />
