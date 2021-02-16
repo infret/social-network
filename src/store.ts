@@ -3,7 +3,8 @@ import { Instance, types } from 'mobx-state-tree'
 const User = types.model({
   id: types.number,
   username: types.string,
-  avatar: types.string
+  avatar: types.string,
+  status: types.string
 })
 
 const Post = types.model({
@@ -55,7 +56,9 @@ const Store = types
       })
     },
     filterMessages(sender_id: number, recipient_id: number) {
-      return self.messages.filter((message) => message.sender_id === sender_id && message.recipient_id === recipient_id)
+      return self.messages.filter(
+        (message) => message.sender_id === sender_id && message.recipient_id === recipient_id
+      )
     }
   }))
 
@@ -66,25 +69,30 @@ const store = Store.create({
       id: 0,
       username: 'vpech',
       avatar:
-        'https://images.unsplash.com/photo-1503212556734-c0ca0c49c8b0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fHNpbGhvdWV0dGV8ZW58MHwyfDB8&auto=format&fit=crop&w=400&q=60'
+        'https://images.unsplash.com/photo-1503212556734-c0ca0c49c8b0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fHNpbGhvdWV0dGV8ZW58MHwyfDB8&auto=format&fit=crop&w=400&q=60',
+      status: `"The Creator 
+...of everything there
+in person"`
     },
     {
       id: 1,
       username: 'nnull',
       avatar:
-        'https://images.unsplash.com/photo-1581456495146-65a71b2c8e52?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80'
+        'https://images.unsplash.com/photo-1544502062-f82887f03d1c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1427&q=80',
+      status: `Somewhat busy nowadays`
     },
     {
       id: 2,
       username: 'sergejar',
       avatar:
-        'https://images.unsplash.com/photo-1500389723459-ca24a5564899?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MXx8aHVtYW4lMjBzaGFkb3d8ZW58MHx8MHw%3D&auto=format&fit=crop&w=400&q=60'
+        'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1778&q=80',
+      status: `All everybody wants is to drink molten chocolate in front of the window in the rainy day`
     }
   ],
   posts: [
     {
       sender_id: 0,
-      text: 'Sample post, u know',
+      text: 'Simple sample, sample simple post',
       date: '11 Nov, 17:08',
       sender_username: 'vpech',
       sender_avatar:
@@ -92,7 +100,7 @@ const store = Store.create({
     },
     {
       sender_id: 1,
-      text: 'Another sample post',
+      text: 'Another sample post from me',
       date: '12 Nov, 17:42',
       sender_username: 'nnull',
       sender_avatar:

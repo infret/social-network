@@ -4,31 +4,33 @@ import Post from './Post'
 import Avatar from './Avatar'
 import { IStore } from '../store'
 import { observer } from 'mobx-react-lite'
+import { NavLink } from 'react-router-dom'
 
 const Page = styled.div`
   width: 100%;
   padding: 6px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 
 const ProfileDetails = styled.div`
   display: flex;
-  max-width: 500px;
-  margin: 0 auto;
   padding-right: 8px;
   align-items: center;
+  width: 100%;
+  max-width: 500px;
 `
 
 const Name = styled.h2`
   font-size: 20px;
 `
 
-const Text = styled.p``
-
 const ProfileDesc = styled.pre`
   margin: 8px;
-  width: 100%;
-  word-break: break-all;
+  word-break: break-word;
   white-space: pre-wrap;
+  width: 100%;
 `
 
 const BigAvatar = styled.img`
@@ -36,6 +38,7 @@ const BigAvatar = styled.img`
   width: 120px;
   border-radius: 50%;
   margin-right: 8px;
+  object-fit: cover;
 `
 
 const Container = styled.div`
@@ -52,6 +55,19 @@ const Button = styled.button`
   border: 1px solid gainsboro;
   padding: 6px 12px;
   margin: 6px;
+  font-size: 14px;
+`
+
+const LinkButton = styled(NavLink)`
+  border-radius: 4px;
+  border: 1px solid gainsboro;
+  padding: 6px 12px;
+  margin: 6px;
+  font-size: 14px;
+`
+
+const StyledDiv = styled.div`
+  width: 100%;
 `
 
 interface propsInterface {
@@ -65,29 +81,25 @@ const Profile = observer((props: propsInterface) => {
     <Page>
       <ProfileDetails>
         <BigAvatar src={props.store.users[props.userId].avatar} />
-        <div>
+        <StyledDiv>
           <Container>
             <Name>{props.store.users[props.userId].username}</Name>
             <div>
-              <Button>Message</Button>
+              <LinkButton to={'/chat/' + props.userId}>Message</LinkButton>
               <Button>Follow</Button>
             </div>
           </Container>
-          <ProfileDesc>
-            {`The Creator in person
-             Very long description of profile with
-              some text and even
-              probably links`}
-          </ProfileDesc>
+          <ProfileDesc>{props.store.users[props.userId].status}</ProfileDesc>
           <Container>
-            <Text>
+            <p>
               {props.store.posts.filter((post) => post.sender_id === props.userId).length} post
-              {props.store.posts.filter((post) => post.sender_id === props.userId).length > 1 && 's'}
-            </Text>
-            <Text>20 followers</Text>
-            <Text>20 following</Text>
+              {props.store.posts.filter((post) => post.sender_id === props.userId).length != 1 &&
+                's'}
+            </p>
+            <p>20 followers</p>
+            <p>20 following</p>
           </Container>
-        </div>
+        </StyledDiv>
       </ProfileDetails>
       {props.store.posts
         .filter((post) => post.sender_id === props.userId)

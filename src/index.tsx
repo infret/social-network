@@ -20,6 +20,8 @@ const GlobalStyle = createGlobalStyle`
 		resize: none;
 		outline: none;
 		background-color: transparent;
+    color: black;
+    text-decoration: none;
 	}
 `
 
@@ -35,7 +37,7 @@ ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
     <BrowserRouter>
-      <Redirect to='/' />
+      {/* <Redirect to='/' /> */}
       <Header currentUserId={store.currentUserId} />
       <App height={window.innerHeight + 'px'}>
         <Route path='/' exact component={() => <Feed store={store} />} />
@@ -45,7 +47,9 @@ ReactDOM.render(
           path='/user/'
           component={() => (
             <Profile
-              userId={parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))}
+              userId={parseInt(
+                window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
+              )}
               store={store}
             />
           )}
@@ -55,7 +59,9 @@ ReactDOM.render(
           component={() => (
             <Chat
               store={store}
-              userId={parseInt(window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1))}
+              userId={parseInt(
+                window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
+              )}
             />
           )}
         />
