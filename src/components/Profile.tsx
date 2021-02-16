@@ -104,7 +104,12 @@ const Profile = observer((props: propsInterface) => {
       {props.store.posts
         .filter((post) => post.sender_id === props.userId)
         .map((post) => (
-          <Post user={props.store.users[post.sender_id]} date={post.date} text={post.text} />
+          <Post
+            user={props.store.users[post.sender_id]}
+            date={post.date}
+            text={post.text}
+            img={post.img}
+          />
         ))}
     </Page>
   )
