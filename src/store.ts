@@ -68,11 +68,10 @@ const Store = types
     toggleLike(id: number) {
       self.users[self.currentUserId].likedPosts.includes(id)
         ? self.users[self.currentUserId].likedPosts.splice(
-            toJS(self.users[self.currentUserId]).likedPosts.indexOf(id),
+            self.users[self.currentUserId].likedPosts.indexOf(id),
             1
           )
         : self.users[self.currentUserId].likedPosts.push(id)
-      console.log(toJS(self.users[self.currentUserId]).likedPosts)
     }
   }))
 

@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import Avatar from './Avatar'
 import HeartIcon from '../resources/heart.svg'
+import HeartFillIcon from '../resources/heart-fill.svg'
 import MessageIcon from '../resources/message.svg'
-import { IUser } from '../store'
+import { IStore, IUser } from '../store'
 import User from './User'
 
 const StyledPost = styled.div`
@@ -50,13 +51,13 @@ const ImgAction = styled.button`
 `
 
 interface propsInterface {
+  store: IStore
   id: number
   user: IUser
   date: string
   text: string
   img: string
   likes: number
-  toggleLike: (id: number) => void
 }
 
 export default function Post(props: propsInterface) {
@@ -68,8 +69,8 @@ export default function Post(props: propsInterface) {
       </PostHeader>
       <PostImg src={props.img} />
       <ImgActions>
-        <ImgAction onClick={() => props.toggleLike(props.id)}>
-          <img src={HeartIcon} alt='' />
+        <ImgAction onClick={() => props.store.toggleLike(props.id)}>
+          {props.store.users[props.store.currentUserId].likedPosts.includes(props.id) ? <img src={HeartFillIcon} alt='' /> : <img src={HeartIcon} alt='' />}
         </ImgAction>
         {props.likes > 0 && props.likes}
         <ImgAction>

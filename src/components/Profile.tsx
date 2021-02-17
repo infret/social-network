@@ -112,7 +112,7 @@ const Profile = observer((props: propsInterface) => {
             text={post.text}
             img={post.img}
             likes={props.store.users.filter((user) => user.likedPosts.includes(index)).length}
-            toggleLike={props.store.toggleLike}
+            store={props.store}
           />
         ))}
     </Page>

@@ -23,7 +23,7 @@ const Feed = observer((props: Props) => (
         text={post.text}
         img={post.img}
         likes={props.store.users.filter((user) => user.likedPosts.includes(index)).length}
-        toggleLike={props.store.toggleLike}
+        store={props.store}
       />
     ))}
   </Container>
