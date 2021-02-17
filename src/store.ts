@@ -1,3 +1,4 @@
+import { toJS } from 'mobx'
 import { Instance, types } from 'mobx-state-tree'
 
 let set = false
@@ -6,17 +7,19 @@ const User = types.model({
   id: types.number,
   username: types.string,
   avatar: types.string,
-  status: types.string
+  status: types.string,
+  likedPosts: types.array(types.number)
 })
 
 const Post = types.model({
+  id: types.number,
   sender_id: types.number,
   sender_username: types.string,
   sender_avatar: types.string,
   text: types.string,
   img: types.string,
   date: types.string,
-  likes: types.number,
+  likes: types.number
 })
 
 const Message = types.model({
@@ -40,6 +43,7 @@ const Store = types
   .actions((self) => ({
     createPost(sender_id: number, text: string, img: string) {
       self.posts.push({
+        id: self.posts.length,
         sender_id,
         sender_username: self.users[sender_id].username,
         sender_avatar: self.users[sender_id].avatar,
@@ -62,8 +66,13 @@ const Store = types
       })
     },
     toggleLike(id: number) {
-      set ? self.posts[id].likes-- : self.posts[id].likes++
-      set = !set
+      self.users[self.currentUserId].likedPosts.includes(id)
+        ? self.users[self.currentUserId].likedPosts.splice(
+            toJS(self.users[self.currentUserId]).likedPosts.indexOf(id),
+            1
+          )
+        : self.users[self.currentUserId].likedPosts.push(id)
+      console.log(toJS(self.users[self.currentUserId]).likedPosts)
     }
   }))
 
@@ -77,25 +86,29 @@ const store = Store.create({
         'https://images.unsplash.com/photo-1503212556734-c0ca0c49c8b0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fHNpbGhvdWV0dGV8ZW58MHwyfDB8&auto=format&fit=crop&w=400&q=60',
       status: `"The Creator 
 ...of everything there
-in person"`
+in person"`,
+      likedPosts: [1]
     },
     {
       id: 1,
       username: 'nnull',
       avatar:
         'https://images.unsplash.com/photo-1544502062-f82887f03d1c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1427&q=80',
-      status: `Somewhat busy nowadays`
+      status: `Somewhat busy nowadays`,
+      likedPosts: []
     },
     {
       id: 2,
       username: 'sergejar',
       avatar:
         'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1778&q=80',
-      status: `All everybody wants is to drink molten chocolate in front of the window in the rainy day`
+      status: `All everybody wants is to drink molten chocolate in front of the window in the rainy day`,
+      likedPosts: []
     }
   ],
   posts: [
     {
+      id: 0,
       sender_id: 0,
       text: 'Simple sample, sample simple post',
       date: '11 Nov, 17:08',
@@ -107,6 +120,7 @@ in person"`
       likes: 1832
     },
     {
+      id: 1,
       sender_id: 1,
       text: 'Another sample post from me',
       date: '12 Nov, 17:42',

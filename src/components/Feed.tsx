@@ -17,12 +17,12 @@ const Feed = observer((props: Props) => (
   <Container>
     {props.store.posts.map((post, index) => (
       <Post
-      id={index}
+        id={index}
         user={props.store.users[post.sender_id]}
         date={post.date}
         text={post.text}
         img={post.img}
-        likes={post.likes}
+        likes={props.store.users.filter((user) => user.likedPosts.includes(index)).length}
         toggleLike={props.store.toggleLike}
       />
     ))}

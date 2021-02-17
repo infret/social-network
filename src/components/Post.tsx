@@ -46,7 +46,7 @@ const Text = styled.pre`
 `
 
 const ImgAction = styled.button`
-  margin: 10px 4px 6px 12px;
+  margin: 10px 6px 6px 12px;
 `
 
 interface propsInterface {
