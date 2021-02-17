@@ -30,9 +30,6 @@ const Date = styled.p`
 const ImgActions = styled.div`
   display: flex;
   align-items: center;
-  width: 80px;
-  margin-top: 8px;
-  justify-content: space-evenly;
 `
 
 const PostImg = styled.img`
@@ -48,11 +45,18 @@ const Text = styled.pre`
   margin: 6px 12px 12px 12px;
 `
 
+const ImgAction = styled.button`
+  margin: 10px 4px 6px 12px;
+`
+
 interface propsInterface {
+  id: number
   user: IUser
   date: string
   text: string
   img: string
+  likes: number
+  toggleLike: (id: number) => void
 }
 
 export default function Post(props: propsInterface) {
@@ -64,12 +68,13 @@ export default function Post(props: propsInterface) {
       </PostHeader>
       <PostImg src={props.img} />
       <ImgActions>
-        <button>
+        <ImgAction onClick={() => props.toggleLike(props.id)}>
           <img src={HeartIcon} alt='' />
-        </button>
-        <button>
+        </ImgAction>
+        {props.likes > 0 && props.likes}
+        <ImgAction>
           <img src={MessageIcon} alt='' />
-        </button>
+        </ImgAction>
       </ImgActions>
       <Text>{props.text}</Text>
     </StyledPost>

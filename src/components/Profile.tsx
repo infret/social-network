@@ -20,6 +20,7 @@ const ProfileDetails = styled.div`
   align-items: center;
   width: 100%;
   max-width: 500px;
+  margin: 12px 0;
 `
 
 const Name = styled.h2`
@@ -103,12 +104,15 @@ const Profile = observer((props: propsInterface) => {
       </ProfileDetails>
       {props.store.posts
         .filter((post) => post.sender_id === props.userId)
-        .map((post) => (
+        .map((post, index) => (
           <Post
+          id={index}
             user={props.store.users[post.sender_id]}
             date={post.date}
             text={post.text}
             img={post.img}
+            likes={post.likes}
+            toggleLike={props.store.toggleLike}
           />
         ))}
     </Page>
