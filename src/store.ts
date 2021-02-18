@@ -14,12 +14,9 @@ const User = types.model({
 const Post = types.model({
   id: types.number,
   sender_id: types.number,
-  sender_username: types.string,
-  sender_avatar: types.string,
   text: types.string,
   img: types.string,
-  date: types.string,
-  likes: types.number
+  date: types.string
 })
 
 const Message = types.model({
@@ -45,12 +42,9 @@ const Store = types
       self.posts.push({
         id: self.posts.length,
         sender_id,
-        sender_username: self.users[sender_id].username,
-        sender_avatar: self.users[sender_id].avatar,
         img,
         text,
-        date: getCurrentDate(),
-        likes: 0
+        date: getCurrentDate()
       })
     },
     createMessage(sender_id: number, recipient_id: number, text: string) {
@@ -80,28 +74,42 @@ const store = Store.create({
   users: [
     {
       id: 0,
-      username: 'vpech',
+      username: 'vladislavpechkin',
       avatar:
         'https://images.unsplash.com/photo-1503212556734-c0ca0c49c8b0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fHNpbGhvdWV0dGV8ZW58MHwyfDB8&auto=format&fit=crop&w=400&q=60',
-      status: `"The Creator 
-...of everything there
-in person"`,
-      likedPosts: [1]
-    },
-    {
-      id: 1,
-      username: 'nnull',
-      avatar:
-        'https://images.unsplash.com/photo-1544502062-f82887f03d1c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1427&q=80',
-      status: `Somewhat busy nowadays`,
+      status: `The Creator in person`,
       likedPosts: []
     },
     {
+      id: 1,
+      username: 'ryanmiller',
+      avatar:
+        'https://images.unsplash.com/photo-1544502062-f82887f03d1c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1427&q=80',
+      status: `Somewhat busy nowadays`,
+      likedPosts: [1]
+    },
+    {
       id: 2,
-      username: 'sergejar',
+      username: 'russelcooper',
       avatar:
         'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1778&q=80',
       status: `All everybody wants is to drink molten chocolate in front of the window in the rainy day`,
+      likedPosts: []
+    },
+    {
+      id: 3,
+      username: 'anastasialeonore',
+      avatar:
+        'https://images.unsplash.com/photo-1511963211013-83bba110595d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
+      status: `Self-taught photographer`,
+      likedPosts: [1]
+    },
+    {
+      id: 4,
+      username: 'alicehierro',
+      avatar:
+        'https://images.unsplash.com/photo-1483884105135-c06ea81a7a80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8c2lsaG91ZXR0ZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
+      status: `be better than you were yesterday!`,
       likedPosts: []
     }
   ],
@@ -109,26 +117,41 @@ in person"`,
     {
       id: 0,
       sender_id: 0,
-      text: 'Simple sample, sample simple post',
+      text: 'Sample post with text and image',
       date: '11 Nov, 17:08',
-      sender_username: 'vpech',
-      sender_avatar:
-        'https://images.unsplash.com/photo-1503212556734-c0ca0c49c8b0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fHNpbGhvdWV0dGV8ZW58MHwyfDB8&auto=format&fit=crop&w=400&q=60',
       img:
-        'https://images.unsplash.com/photo-1613416731055-5a41b4930378?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80',
-      likes: 1832
+        'https://images.unsplash.com/photo-1613572596126-23969094b944?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
     },
     {
       id: 1,
       sender_id: 1,
       text: 'Another sample post from me',
-      date: '12 Nov, 17:42',
-      sender_username: 'nnull',
-      sender_avatar:
-        'https://images.unsplash.com/photo-1581456495146-65a71b2c8e52?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80',
+      date: '1 Feb, 7:12',
       img:
-        'https://images.unsplash.com/photo-1612367197703-1e9839b09f63?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60',
-      likes: 210
+        'https://images.unsplash.com/photo-1613568409506-e70370442e6e?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1MXx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60'
+    },
+    {
+      id: 2,
+      sender_id: 2,
+      text: 'Post without image but with some text',
+      date: '22 Aug, 11:22',
+      img: ''
+    },
+    {
+      id: 3,
+      sender_id: 4,
+      text: '',
+      date: '4 Jan, 13:59',
+      img:
+        'https://images.unsplash.com/photo-1613591767283-c120294bb16b?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0Nnx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60'
+    },
+    {
+      id: 4,
+      sender_id: 0,
+      text: '',
+      date: '30 May, 4:11',
+      img:
+        'https://images.unsplash.com/photo-1613586020253-fb6fe0b04269?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4MXx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60'
     }
   ],
   messages: [
