@@ -109,7 +109,9 @@ const Profile = observer((props: propsInterface) => {
               {props.store.users.filter((user) => user.following.includes(props.userId)).length !=
                 1 && 's'}
             </NavLink>
-            <p>{props.store.users[props.userId].following.length} following</p>
+            <NavLink to={'/user/' + props.userId + '/following'}>
+              {props.store.users[props.userId].following.length} following
+            </NavLink>
           </Container>
         </StyledDiv>
       </ProfileDetails>

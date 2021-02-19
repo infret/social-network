@@ -10,6 +10,8 @@ import Chat from './components/Chat'
 import Search from './components/Search'
 import Header from './components/Header'
 import store from './store'
+import Followers from './components/Followers'
+import Following from './components/Following'
 
 const GlobalStyle = createGlobalStyle`
 	* {
@@ -44,18 +46,38 @@ ReactDOM.render(
         <Route path='/search' component={() => <Search store={store} />} />
         <Route path='/chats' render={() => <Chats store={store} />} />
         <Route
-          path='/user/'
+          exact
+          path='/user/:userId'
           component={() => (
             <Profile
-              userId={parseInt(
-                window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
-              )}
+              userId={parseInt(window.location.pathname.replace(/[^0-9\.]+/g, ''))}
               store={store}
             />
           )}
         />
         <Route
-          path='/chat/'
+          exact
+          path={'/user/:userId/followers'}
+          component={() => (
+            <Followers
+              userId={parseInt(window.location.pathname.replace(/[^0-9\.]+/g, ''))}
+              store={store}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={'/user/:userId/following'}
+          component={() => (
+            <Following
+              userId={parseInt(window.location.pathname.replace(/[^0-9\.]+/g, ''))}
+              store={store}
+            />
+          )}
+        />
+        <Route
+          exact
+          path='/chat/:userId'
           component={() => (
             <Chat
               store={store}

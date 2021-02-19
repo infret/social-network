@@ -96,7 +96,7 @@ const store = Store.create({
       avatar:
         'https://images.unsplash.com/photo-1544502062-f82887f03d1c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1427&q=80',
       status: `Somewhat busy nowadays`,
-      following: [1],
+      following: [0],
       likedPosts: [1]
     },
     {
@@ -105,7 +105,7 @@ const store = Store.create({
       avatar:
         'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1778&q=80',
       status: `All everybody wants is to drink molten chocolate in front of the window in the rainy day`,
-      following: [1, 2, 3, 4],
+      following: [0, 1, 4],
       likedPosts: [3]
     },
     {
@@ -114,7 +114,7 @@ const store = Store.create({
       avatar:
         'https://images.unsplash.com/photo-1511963211013-83bba110595d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
       status: `Self-taught photographer`,
-      following: [2],
+      following: [0, 2],
       likedPosts: [1, 3, 4]
     },
     {
