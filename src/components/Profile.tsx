@@ -85,10 +85,16 @@ const Profile = observer((props: propsInterface) => {
         <StyledDiv>
           <Container>
             <Name>{props.store.users[props.userId].username}</Name>
-            <div>
-              <LinkButton to={'/chat/' + props.userId}>Message</LinkButton>
-              <Button>Follow</Button>
-            </div>
+            {props.userId != props.store.currentUserId && (
+              <div>
+                <LinkButton to={'/chat/' + props.userId}>Message</LinkButton>
+                <Button onClick={() => props.store.toggleFollow(props.userId)}>
+                  {props.store.users[props.store.currentUserId].following.includes(props.userId)
+                    ? 'Unfollow'
+                    : 'Follow'}
+                </Button>
+              </div>
+            )}
           </Container>
           <ProfileDesc>{props.store.users[props.userId].status}</ProfileDesc>
           <Container>
@@ -97,8 +103,13 @@ const Profile = observer((props: propsInterface) => {
               {props.store.posts.filter((post) => post.sender_id === props.userId).length != 1 &&
                 's'}
             </p>
-            <p>20 followers</p>
-            <p>20 following</p>
+            <NavLink to={'/user/' + props.userId + '/followers'}>
+              {props.store.users.filter((user) => user.following.includes(props.userId)).length}{' '}
+              follower
+              {props.store.users.filter((user) => user.following.includes(props.userId)).length !=
+                1 && 's'}
+            </NavLink>
+            <p>{props.store.users[props.userId].following.length} following</p>
           </Container>
         </StyledDiv>
       </ProfileDetails>

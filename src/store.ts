@@ -8,6 +8,7 @@ const User = types.model({
   username: types.string,
   avatar: types.string,
   status: types.string,
+  following: types.array(types.number),
   likedPosts: types.array(types.number)
 })
 
@@ -66,6 +67,14 @@ const Store = types
             1
           )
         : self.users[self.currentUserId].likedPosts.push(id)
+    },
+    toggleFollow(id: number) {
+      self.users[self.currentUserId].following.includes(id)
+        ? self.users[self.currentUserId].following.splice(
+            self.users[self.currentUserId].following.indexOf(id),
+            1
+          )
+        : self.users[self.currentUserId].following.push(id)
     }
   }))
 
@@ -78,6 +87,7 @@ const store = Store.create({
       avatar:
         'https://images.unsplash.com/photo-1503212556734-c0ca0c49c8b0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fHNpbGhvdWV0dGV8ZW58MHwyfDB8&auto=format&fit=crop&w=400&q=60',
       status: `The Creator in person`,
+      following: [],
       likedPosts: []
     },
     {
@@ -86,6 +96,7 @@ const store = Store.create({
       avatar:
         'https://images.unsplash.com/photo-1544502062-f82887f03d1c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1427&q=80',
       status: `Somewhat busy nowadays`,
+      following: [1],
       likedPosts: [1]
     },
     {
@@ -94,7 +105,8 @@ const store = Store.create({
       avatar:
         'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1778&q=80',
       status: `All everybody wants is to drink molten chocolate in front of the window in the rainy day`,
-      likedPosts: []
+      following: [1, 2, 3, 4],
+      likedPosts: [3]
     },
     {
       id: 3,
@@ -102,7 +114,8 @@ const store = Store.create({
       avatar:
         'https://images.unsplash.com/photo-1511963211013-83bba110595d?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
       status: `Self-taught photographer`,
-      likedPosts: [1]
+      following: [2],
+      likedPosts: [1, 3, 4]
     },
     {
       id: 4,
@@ -110,6 +123,7 @@ const store = Store.create({
       avatar:
         'https://images.unsplash.com/photo-1483884105135-c06ea81a7a80?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8c2lsaG91ZXR0ZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
       status: `be better than you were yesterday!`,
+      following: [0, 1],
       likedPosts: []
     }
   ],
