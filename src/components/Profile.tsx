@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import Post from './Post'
-import Avatar from './Avatar'
 import { IStore } from '../store'
 import { observer } from 'mobx-react-lite'
 import { NavLink } from 'react-router-dom'

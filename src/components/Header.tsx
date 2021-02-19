@@ -46,7 +46,7 @@ const StyledNav = styled.nav`
   display: flex;
 `
 
-const StyledLink = styled(NavLink)<{ active: boolean }>`
+const StyledLink = styled(NavLink)<{active: boolean}>`
   border-bottom: ${(props) => props.active && '2px solid black'};
   padding: 13px;
 `
@@ -70,7 +70,7 @@ const Header = (props: propsInterface) => {
           <StyledLink to='/' active={url === '/'}>
             <img src={HomeIcon} alt='' />
           </StyledLink>
-          <StyledLink to='/search' active={url.includes('/search')}>
+          <StyledLink to='/explore' active={url.includes('/explore')}>
             <img src={SearchIcon} alt='' />
           </StyledLink>
           <StyledLink to='/create' active={url.includes('/create')}>

@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Avatar from './Avatar'
 import HeartIcon from '../resources/heart.svg'
 import HeartFillIcon from '../resources/heart-fill.svg'
 import MessageIcon from '../resources/message.svg'

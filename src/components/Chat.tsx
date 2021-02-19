@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Avatar from './Avatar'
 import TextareaForm from './TextareaForm'
 import { IStore } from '../store'
 
@@ -67,7 +66,6 @@ export default function Chat(props: propsInterface) {
             )
             .map((message, index) => (
               <StyledMessage key={index}>
-                <Avatar src={message.sender_avatar} userId={message.sender_id} />
                 <Name>{message.sender_username}</Name>
                 <Text>{message.text}</Text>
                 <Date>{message.date}</Date>

@@ -7,7 +7,7 @@ import Profile from './components/Profile'
 import Chats from './components/Chats'
 import { BrowserRouter, Redirect, Route } from 'react-router-dom'
 import Chat from './components/Chat'
-import Search from './components/Search'
+import Explore from './components/Explore'
 import Header from './components/Header'
 import store from './store'
 import Followers from './components/Followers'
@@ -39,11 +39,11 @@ ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
     <BrowserRouter>
-      {/* <Redirect to='/' /> */}
+      {window.location.pathname.includes('/social-network') && <Redirect to='/' />}
       <Header currentUserId={store.currentUserId} />
       <App height={window.innerHeight + 'px'}>
         <Route path='/' exact component={() => <Feed store={store} />} />
-        <Route path='/search' component={() => <Search store={store} />} />
+        <Route path='/explore' component={() => <Explore store={store} />} />
         <Route path='/chats' render={() => <Chats store={store} />} />
         <Route
           exact

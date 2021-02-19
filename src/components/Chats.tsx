@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
 import Searchbar from './Searchbar'
-import Avatar from './Avatar'
 import { NavLink } from 'react-router-dom'
 import Chat from './Chat'
 import { IStore } from '../store'
