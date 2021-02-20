@@ -3,28 +3,12 @@ import styled from 'styled-components'
 import TextareaForm from './TextareaForm'
 import { IStore } from '../store'
 
-const PageContent = styled.div`
-  margin-top: 6px;
-  display: flex;
-  flex-direction: column;
-`
-
-const Messages = styled.div``
-
 const StyledMessage = styled.div`
-  width: 100%;
+  width: 200px;
   height: auto;
   text-decoration: none;
   color: black;
   display: grid;
-  grid-template-areas: 'avatar name date' 'avatar text text';
-  grid-template-columns: 74px 1fr 148px;
-  grid-template-rows: 37px 1fr;
-`
-
-const Name = styled.p`
-  grid-area: name;
-  align-self: start;
 `
 
 const Date = styled.p`
@@ -49,35 +33,21 @@ interface propsInterface {
 }
 
 export default function Chat(props: propsInterface) {
-  document.title = 'Dialog with ' + props.store.users[props.userId].username
+  document.title = 'Chat with ' + props.store.users[props.userId].username
   return (
     <>
-      <PageContent>
-        <Messages>
-          {props.store.messages
-            .filter(
-              (message) =>
-                message.sender_id ===
-                  parseInt(
-                    window.location.pathname.substring(
-                      window.location.pathname.lastIndexOf('/') + 1
-                    )
-                  ) && message.recipient_id === props.store.currentUserId
-            )
-            .map((message, index) => (
-              <StyledMessage key={index}>
-                <Name>{message.sender_username}</Name>
-                <Text>{message.text}</Text>
-                <Date>{message.date}</Date>
-              </StyledMessage>
-            ))}
-        </Messages>
-        {/* <TextareaForm
+      <div>
+        {props.store.users[props.store.currentUserId].messages
+          .filter((message) => message.recipient_id === props.userId)
+          .map((message) => (
+            <StyledMessage>{message.text}</StyledMessage>
+          ))}
+      </div>
+      {/* <TextareaForm
           icon={BlueSendIcon}
           placeholder='Your message'
           onclick={props.addMessage}
         /> */}
-      </PageContent>
     </>
   )
 }

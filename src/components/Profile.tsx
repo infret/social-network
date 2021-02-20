@@ -98,9 +98,8 @@ const Profile = observer((props: propsInterface) => {
           <ProfileDesc>{props.store.users[props.userId].status}</ProfileDesc>
           <Container>
             <p>
-              {props.store.posts.filter((post) => post.sender_id === props.userId).length} post
-              {props.store.posts.filter((post) => post.sender_id === props.userId).length != 1 &&
-                's'}
+              {props.store.users[props.userId].posts.length} post
+              {props.store.users[props.userId].posts.length != 1 && 's'}
             </p>
             <NavLink to={'/user/' + props.userId + '/followers'}>
               {props.store.users.filter((user) => user.following.includes(props.userId)).length}{' '}
@@ -114,19 +113,17 @@ const Profile = observer((props: propsInterface) => {
           </Container>
         </StyledDiv>
       </ProfileDetails>
-      {props.store.posts
-        .filter((post) => post.sender_id === props.userId)
-        .map((post, index) => (
-          <Post
-            id={post.id}
-            user={props.store.users[post.sender_id]}
-            date={post.date}
-            text={post.text}
-            img={post.img}
-            likes={props.store.users.filter((user) => user.likedPosts.includes(post.id)).length}
-            store={props.store}
-          />
-        ))}
+      {props.store.users[props.userId].posts.map((post) => (
+        <Post
+          id={post.id}
+          user={props.store.users[props.userId]}
+          date={post.date}
+          text={post.text}
+          img={post.img}
+          likes={props.store.users.filter((user) => user.likedPosts.includes(post.id)).length}
+          store={props.store}
+        />
+      ))}
     </Page>
   )
 })

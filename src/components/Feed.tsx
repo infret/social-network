@@ -15,17 +15,17 @@ interface Props {
 
 const Feed = observer((props: Props) => (
   <Container>
-    {props.store.posts.map((post, index) => (
-      <Post
-        id={post.id}
-        user={props.store.users[post.sender_id]}
-        date={post.date}
-        text={post.text}
-        img={post.img}
-        likes={props.store.users.filter((user) => user.likedPosts.includes(post.id)).length}
-        store={props.store}
-      />
-    ))}
+    {props.store.users.filter((user) => props.store.users[props.store.currentUserId].following.includes(user.id)).map(user => user.posts.map((post) => (
+        <Post
+          id={post.id}
+          user={props.store.users[user.id]}
+          date={post.date}
+          text={post.text}
+          img={post.img}
+          likes={props.store.users.filter((user) => user.likedPosts.includes(post.id)).length}
+          store={props.store}
+        />
+      )))}
   </Container>
 ))
 export default Feed

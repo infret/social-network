@@ -25,10 +25,10 @@ export default function Chats(props: propsInterface) {
     <Page>
       <Container>
         <Searchbar />
-        {props.store.messages
-          .filter((message) => message.sender_id === props.store.currentUserId)
-          .map((chat) => (
-            <User user={props.store.users[chat.sender_id]} link='/chat/' />
+        {props.store.users
+          .filter((user) => user.messages.filter(message => message.recipient_id === props.store.currentUserId))
+          .map((user) => (
+            <User user={user} link='/chat/' />
           ))}
       </Container>
     </Page>
