@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import HeartIcon from '../resources/heart.svg'
 import HeartFillIcon from '../resources/heart-fill.svg'
 import MessageIcon from '../resources/message.svg'
-import { IStore, IUser } from '../store'
+import { IStore, IUser, timeSince } from '../store'
 import User from './User'
 
 const StyledPost = styled.div`
@@ -55,7 +55,7 @@ interface propsInterface {
   store: IStore
   id: number
   user: IUser
-  date: string
+  date: number
   text: string
   img: string
   likes: number
@@ -66,7 +66,7 @@ export default function Post(props: propsInterface) {
     <StyledPost>
       <PostHeader>
         <User user={props.user} link='/user/' />
-        <Date>{props.date}</Date>
+        <Date>{timeSince(props.date)}</Date>
       </PostHeader>
       {props.img && <PostImg src={props.img} />}
       {props.text && <Text>{props.text}</Text>}

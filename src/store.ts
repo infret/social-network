@@ -5,13 +5,13 @@ const Post = types.model({
   id: types.number,
   text: types.string,
   img: types.string,
-  date: types.string
+  date: types.number
 })
 
 const Message = types.model({
   recipient_id: types.number,
   text: types.string,
-  date: types.string
+  date: types.number
 })
 
 const User = types.model({
@@ -38,14 +38,14 @@ const Store = types
         id: self.posts.length,
         img,
         text,
-        date: getCurrentDate()
+        date: Date.now() / 1000
       })
     },
     createMessage(recipient_id: number, text: string) {
       self.messages.push({
         recipient_id,
         text,
-        date: getCurrentDate()
+        date: Date.now() / 1000
       })
     },
     toggleLike(id: number) {
@@ -79,14 +79,14 @@ const store = Store.create({
         {
           id: 0,
           text: 'Sample post with text and image',
-          date: '11 Nov, 17:08',
+          date: 1613840000,
           img:
             'https://images.unsplash.com/photo-1613572596126-23969094b944?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
         },
         {
           id: 4,
           text: '',
-          date: '30 May, 4:11',
+          date: 1613849000,
           img:
             'https://images.unsplash.com/photo-1613586020253-fb6fe0b04269?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4MXx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60'
         }
@@ -95,10 +95,10 @@ const store = Store.create({
         {
           recipient_id: 1,
           text: 'Sup',
-          date: '11 Nov, 10:08'
+          date: 1613847000
         }
       ],
-      following: [3, 4],
+      following: [1, 2, 3, 4],
       likedPosts: []
     },
     {
@@ -110,18 +110,19 @@ const store = Store.create({
       posts: [
         {
           id: 1,
-          text: 'Another sample post from me',
-          date: '1 Feb, 7:12',
+          text: 'Sample post from me',
+          date: 1613820000,
           img:
             'https://images.unsplash.com/photo-1613568409506-e70370442e6e?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1MXx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60'
         }
       ],
       messages: [
         {
-          recipient_id: 0, 
+          recipient_id: 0,
           text: 'Hey',
-          date: '11 Nov, 10:47'
-        }],
+          date: 1613848000
+        }
+      ],
       following: [0],
       likedPosts: [1]
     },
@@ -135,7 +136,7 @@ const store = Store.create({
         {
           id: 2,
           text: 'Post without image but with some text',
-          date: '22 Aug, 11:22',
+          date: 1613840000,
           img: ''
         }
       ],
@@ -164,7 +165,7 @@ const store = Store.create({
         {
           id: 3,
           text: '',
-          date: '4 Jan, 13:59',
+          date: 1613841000,
           img:
             'https://images.unsplash.com/photo-1613591767283-c120294bb16b?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0Nnx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60'
         }
@@ -176,13 +177,27 @@ const store = Store.create({
   ]
 })
 
-const getCurrentDate = () =>
-  new Intl.DateTimeFormat('en-GB', {
-    month: 'short',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric'
-  }).format(Date.now())
+export function timeSince(date: number) {
+  let time: number = Math.round((Date.now() / 1000 - date) / 60)
+  if (time <= 1) {
+    return 'just now'
+  }
+  if (time > 1 && time < 60) {
+    return Math.round(time) + ' minutes ago'
+  }
+  if (time > 60 && time < 1440) {
+    return Math.round(time / 60) + ' hours ago'
+  }
+  if (time > 1440 && time < 34560) {
+    return Math.round(time / 60 / 24) + ' days ago'
+  }
+  if (time > 34560 && time < 1051898.4) {
+    return Math.round(time / 60 / 24 / 30.436875) + ' months ago'
+  }
+  if (time > 1051898.4 && time < 34560) {
+    return Math.round(time / 60 / 24 / 30.436875 / 12) + ' years ago'
+  }
+}
 
 export interface IStore extends Instance<typeof store> {}
 export interface IUser extends Instance<typeof User> {}

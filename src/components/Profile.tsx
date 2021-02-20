@@ -113,17 +113,20 @@ const Profile = observer((props: propsInterface) => {
           </Container>
         </StyledDiv>
       </ProfileDetails>
-      {props.store.users[props.userId].posts.map((post) => (
-        <Post
-          id={post.id}
-          user={props.store.users[props.userId]}
-          date={post.date}
-          text={post.text}
-          img={post.img}
-          likes={props.store.users.filter((user) => user.likedPosts.includes(post.id)).length}
-          store={props.store}
-        />
-      ))}
+      {props.store.users[props.userId].posts
+        .slice()
+        .sort((a, b) => a.date - b.date)
+        .map((post) => (
+          <Post
+            id={post.id}
+            user={props.store.users[props.userId]}
+            date={post.date}
+            text={post.text}
+            img={post.img}
+            likes={props.store.users.filter((user) => user.likedPosts.includes(post.id)).length}
+            store={props.store}
+          />
+        ))}
     </Page>
   )
 })
