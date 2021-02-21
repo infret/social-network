@@ -11,13 +11,13 @@ const Page = styled.div`
 `
 
 const Heading = styled.h1`
-  font-size: 20px;
+  font-size: 18px;
   margin: 10px 0;
   text-align: center;
 `
 
 const StyledLink = styled(NavLink)`
-  color: #779ecb;
+  color: #2e8bc0;
 `
 
 interface Props {

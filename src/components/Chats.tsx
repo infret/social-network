@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Searchbar from './Searchbar'
 import { NavLink } from 'react-router-dom'
 import Chat from './Chat'
 import { IStore } from '../store'
@@ -15,18 +14,19 @@ const Container = styled.div`
   flex-direction: column;
 `
 
-interface propsInterface {
+interface Props {
   store: IStore
 }
 
-export default function Chats(props: propsInterface) {
+export default function Chats(props: Props) {
   document.title = 'Chats'
   return (
     <Page>
       <Container>
-        <Searchbar />
         {props.store.users
-          .filter((user) => user.messages.filter(message => message.recipient_id === props.store.currentUserId))
+          .filter((user) =>
+            user.messages.filter((message) => message.recipient_id === props.store.currentUserId)
+          )
           .map((user) => (
             <User user={user} link='/chat/' />
           ))}

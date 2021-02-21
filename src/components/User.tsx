@@ -23,12 +23,12 @@ const Avatar = styled.img`
   object-fit: cover;
 `
 
-interface propsInterface {
+interface Props {
   user: IUser
   link: string
 }
 
-export default function User(props: propsInterface) {
+export default function User(props: Props) {
   return (
     <Component to={props.link + props.user.id}>
       <Avatar src={props.user.avatar} />

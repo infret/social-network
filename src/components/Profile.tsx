@@ -70,12 +70,12 @@ const StyledDiv = styled.div`
   width: 100%;
 `
 
-interface propsInterface {
+interface Props {
   store: IStore
   userId: number
 }
 
-const Profile = observer((props: propsInterface) => {
+const Profile = observer((props: Props) => {
   document.title = props.store.users[props.userId].username + ' profile'
   return (
     <Page>

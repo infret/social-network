@@ -28,6 +28,7 @@ const User = types.model({
 const Store = types
   .model({
     currentUserId: types.number,
+    searchBy: types.string,
     users: types.array(User),
     posts: types.array(Post),
     messages: types.array(Message)
@@ -63,11 +64,15 @@ const Store = types
             1
           )
         : self.users[self.currentUserId].following.push(id)
+    },
+    setSearch(search: string) {
+      self.searchBy = search
     }
   }))
 
 const store = Store.create({
   currentUserId: 0,
+  searchBy: '',
   users: [
     {
       id: 0,

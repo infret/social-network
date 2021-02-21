@@ -27,13 +27,13 @@ const StyledSubmit = styled.button<{ icon: string }>`
   margin-left: 12px;
 `
 
-interface propsInterface {
+interface Props {
   placeholder: string
   icon: string
   onclick: (postText: string) => void
 }
 
-export default function TextareaForm(props: propsInterface) {
+export default function TextareaForm(props: Props) {
   let textareaRef = useRef() as MutableRefObject<HTMLTextAreaElement>
 
   function handleKeyUp() {
@@ -47,11 +47,7 @@ export default function TextareaForm(props: propsInterface) {
 
   return (
     <StyledForm>
-      <StyledTextarea
-        ref={textareaRef}
-        placeholder={props.placeholder}
-        onKeyUp={handleKeyUp}
-      />
+      <StyledTextarea ref={textareaRef} placeholder={props.placeholder} onKeyUp={handleKeyUp} />
       <StyledSubmit
         value=''
         onClick={() => props.onclick(textareaRef.current.value)}

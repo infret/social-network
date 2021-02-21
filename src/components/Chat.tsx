@@ -27,12 +27,12 @@ const Text = styled.pre`
   padding-right: 6px;
 `
 
-interface propsInterface {
+interface Props {
   store: IStore
   userId: number
 }
 
-export default function Chat(props: propsInterface) {
+export default function Chat(props: Props) {
   document.title = 'Chat with ' + props.store.users[props.userId].username
   return (
     <>

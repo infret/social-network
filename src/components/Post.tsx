@@ -51,7 +51,7 @@ const ImgAction = styled.button`
   margin: 8px 6px 8px 12px;
 `
 
-interface propsInterface {
+interface Props {
   store: IStore
   id: number
   user: IUser
@@ -61,7 +61,7 @@ interface propsInterface {
   likes: number
 }
 
-export default function Post(props: propsInterface) {
+export default function Post(props: Props) {
   return (
     <StyledPost>
       <PostHeader>

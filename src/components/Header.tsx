@@ -52,11 +52,11 @@ const StyledLink = styled(NavLink)<{ active: boolean }>`
   padding: 13px;
 `
 
-interface propsInterface {
+interface Props {
   currentUserId: number
 }
 
-const Header = (props: propsInterface) => {
+const Header = (props: Props) => {
   let [url, setUrl] = useState(window.location.pathname)
 
   useHistory().listen((location) => {
