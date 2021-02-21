@@ -33,7 +33,7 @@ export default function Followers(props: Props) {
       {props.store.users
         .filter((user) => user.following.includes(props.userId))
         .map((user) => (
-          <User user={user} link='/user/' />
+          <User user={user} link='/social-network/user/' />
         ))}
     </Page>
   )

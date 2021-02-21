@@ -65,7 +65,7 @@ export default function Post(props: Props) {
   return (
     <StyledPost>
       <PostHeader>
-        <User user={props.user} link='/user/' />
+        <User user={props.user} link='/social-network/user/' />
         <Date>{timeSince(props.date)}</Date>
       </PostHeader>
       {props.img && <PostImg src={props.img} />}

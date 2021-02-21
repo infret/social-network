@@ -86,7 +86,7 @@ const Profile = observer((props: Props) => {
             <Name>{props.store.users[props.userId].username}</Name>
             {props.userId != props.store.currentUserId && (
               <div>
-                <LinkButton to={'/chat/' + props.userId}>Message</LinkButton>
+                <LinkButton to={'/social-network/chat/' + props.userId}>Message</LinkButton>
                 <Button onClick={() => props.store.toggleFollow(props.userId)}>
                   {props.store.users[props.store.currentUserId].following.includes(props.userId)
                     ? 'Unfollow'
@@ -101,13 +101,13 @@ const Profile = observer((props: Props) => {
               {props.store.users[props.userId].posts.length} post
               {props.store.users[props.userId].posts.length != 1 && 's'}
             </p>
-            <NavLink to={'/user/' + props.userId + '/followers'}>
+            <NavLink to={'/social-network/user/' + props.userId + '/followers'}>
               {props.store.users.filter((user) => user.following.includes(props.userId)).length}{' '}
               follower
               {props.store.users.filter((user) => user.following.includes(props.userId)).length !=
                 1 && 's'}
             </NavLink>
-            <NavLink to={'/user/' + props.userId + '/following'}>
+            <NavLink to={'/social-network/user/' + props.userId + '/following'}>
               {props.store.users[props.userId].following.length} following
             </NavLink>
           </Container>

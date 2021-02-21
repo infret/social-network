@@ -31,7 +31,7 @@ export default function Following(props: Props) {
           : props.store.users[props.userId].username + " doesn't follow anyone"}
       </Heading>
       {props.store.users[props.userId].following.map((userId) => (
-        <User user={props.store.users[userId]} link='/user/' />
+        <User user={props.store.users[userId]} link='/social-network/user/' />
       ))}
     </Page>
   )

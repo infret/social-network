@@ -66,24 +66,24 @@ const Header = (props: Props) => {
   return (
     <AppHeader>
       <HeaderContainer>
-        <HeaderLogo to='/'>social network</HeaderLogo>
+        <HeaderLogo to='/social-network'>social network</HeaderLogo>
         <StyledNav>
-          <StyledLink to='/' active={url === '/'}>
+          <StyledLink to='/social-network' active={url === '/social-network'}>
             <img src={HomeIcon} alt='' />
           </StyledLink>
-          <StyledLink to='/explore' active={url.includes('/explore')}>
+          <StyledLink to='/social-network/explore' active={url.includes('/explore')}>
             <img src={SearchIcon} alt='' />
           </StyledLink>
-          <StyledLink to='/create' active={url.includes('/create')}>
+          <StyledLink to='/social-network/create' active={url.includes('/create')}>
             <img src={PlusIcon} alt='' />
           </StyledLink>
-          <StyledLink to='/chats' active={url.includes('/messenger')}>
+          <StyledLink to='/social-network/chats' active={url.includes('/messenger')}>
             <img src={MessengerIcon} alt='' />
           </StyledLink>
-          <StyledLink to='/liked' active={url.includes('/liked')}>
+          <StyledLink to='/social-network/liked' active={url.includes('/liked')}>
             <img src={HeartIcon} alt='' />
           </StyledLink>
-          <StyledLink to={'/user/' + props.currentUserId} active={url.includes('/user')}>
+          <StyledLink to={'/social-network/user/' + props.currentUserId} active={url.includes('/user')}>
             <img src={ProfileIcon} alt='' />
           </StyledLink>
         </StyledNav>

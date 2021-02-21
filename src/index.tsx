@@ -46,12 +46,12 @@ ReactDOM.render(
     <BrowserRouter>
       <Header currentUserId={store.currentUserId} />
       <App>
-        <Route path='/' exact component={() => <Feed store={store} />} />
-        <Route path='/explore' component={() => <Explore store={store} />} />
-        <Route path='/chats' render={() => <Chats store={store} />} />
+        <Route path='/social-network' exact component={() => <Feed store={store} />} />
+        <Route path='/social-network/explore' component={() => <Explore store={store} />} />
+        <Route path='/social-network/chats' render={() => <Chats store={store} />} />
         <Route
           exact
-          path='/user/:userId'
+          path='/social-network/user/:userId'
           component={() => (
             <Profile
               userId={parseInt(window.location.pathname.replace(/[^0-9\.]+/g, ''))}
@@ -61,7 +61,7 @@ ReactDOM.render(
         />
         <Route
           exact
-          path={'/user/:userId/followers'}
+          path={'/social-network/user/:userId/followers'}
           component={() => (
             <Followers
               userId={parseInt(window.location.pathname.replace(/[^0-9\.]+/g, ''))}
@@ -71,7 +71,7 @@ ReactDOM.render(
         />
         <Route
           exact
-          path={'/user/:userId/following'}
+          path={'/social-network/user/:userId/following'}
           component={() => (
             <Following
               userId={parseInt(window.location.pathname.replace(/[^0-9\.]+/g, ''))}
@@ -80,7 +80,7 @@ ReactDOM.render(
           )}
         />
         <Route
-          path='/chat/:userId'
+          path='/social-network/chat/:userId'
           component={() => (
             <Chat
               store={store}
@@ -90,7 +90,7 @@ ReactDOM.render(
             />
           )}
         />
-        <Route exact path='/liked' component={() => <Liked store={store} />} />
+        <Route exact path='/social-network/liked' component={() => <Liked store={store} />} />
       </App>
     </BrowserRouter>
   </React.StrictMode>,

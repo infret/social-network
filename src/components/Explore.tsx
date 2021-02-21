@@ -41,7 +41,7 @@ const Explore = observer((props: Props) => {
           {props.store.users
             .filter((user) => user.username.includes(props.store.searchBy))
             .map((user) => (
-              <User user={user} link='/user/' />
+              <User user={user} link='/social-network/user/' />
             ))}
         </Overlay>
       )}

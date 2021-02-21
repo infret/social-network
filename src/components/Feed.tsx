@@ -59,7 +59,7 @@ const Feed = observer((props: Props) => {
       ) : (
         <Heading>
           You don't follow anyone yet, consider
-          <StyledLink to='/explore'> searching for people</StyledLink>
+          <StyledLink to='/social-network/explore'> searching for people</StyledLink>
         </Heading>
       )}
     </Page>

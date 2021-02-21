@@ -28,7 +28,7 @@ export default function Chats(props: Props) {
             user.messages.filter((message) => message.recipient_id === props.store.currentUserId)
           )
           .map((user) => (
-            <User user={user} link='/chat/' />
+            <User user={user} link='/social-network/chat/' />
           ))}
       </Container>
     </Page>
