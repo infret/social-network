@@ -12,7 +12,7 @@ import Header from './components/Header'
 import store from './store'
 import Followers from './components/Followers'
 import Following from './components/Following'
-import Post from './components/Post'
+import Liked from './components/Liked'
 
 const GlobalStyle = createGlobalStyle`
 	* {
@@ -33,10 +33,9 @@ const Container = styled.div`
   padding: 6px 12px;
 `
 
-const App = styled.div<{ height: string }>`
+const App = styled.div`
   max-width: 800px;
   width: 100%;
-  height: ${(props) => props.height};
   margin: 0 auto;
   display: flex;
 `
@@ -45,9 +44,8 @@ ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
     <BrowserRouter>
-      {window.location.pathname.includes('/social-network') && <Redirect to='/' />}
       <Header currentUserId={store.currentUserId} />
-      <App height={window.innerHeight + 'px'}>
+      <App>
         <Route path='/' exact component={() => <Feed store={store} />} />
         <Route path='/explore' component={() => <Explore store={store} />} />
         <Route path='/chats' render={() => <Chats store={store} />} />
@@ -92,32 +90,7 @@ ReactDOM.render(
             />
           )}
         />
-        <Route
-          exact
-          path='/liked'
-          component={() => (
-            <Container>
-              {store.users.map((user) =>
-                user.posts.map(
-                  (post) =>
-                    store.users[store.currentUserId].likedPosts.includes(post.id) && (
-                      <Post
-                        id={post.id}
-                        user={user}
-                        date={post.date}
-                        text={post.text}
-                        img={post.img}
-                        likes={
-                          store.users.filter((user) => user.likedPosts.includes(post.id)).length
-                        }
-                        store={store}
-                      />
-                    )
-                )
-              )}
-            </Container>
-          )}
-        />
+        <Route exact path='/liked' component={() => <Liked store={store} />} />
       </App>
     </BrowserRouter>
   </React.StrictMode>,

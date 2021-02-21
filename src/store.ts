@@ -98,7 +98,7 @@ const store = Store.create({
           date: 1613847000
         }
       ],
-      following: [1, 2, 3, 4],
+      following: [],
       likedPosts: [3, 4]
     },
     {

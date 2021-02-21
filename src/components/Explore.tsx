@@ -8,7 +8,7 @@ interface propsInterface {
 }
 
 export default function Explore(props: propsInterface) {
-  document.title = 'Search people'
+  document.title = 'Search and explore'
   return (
     <>
       <Searchbar />

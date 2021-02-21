@@ -6,6 +6,7 @@ import MessengerIcon from '../resources/message.svg'
 import SearchIcon from '../resources/search.svg'
 import LogoIcon from '../resources/logo.svg'
 import PlusIcon from '../resources/plus.svg'
+import HeartIcon from '../resources/heart.svg'
 import styled from 'styled-components'
 
 const AppHeader = styled.header`
@@ -46,7 +47,7 @@ const StyledNav = styled.nav`
   display: flex;
 `
 
-const StyledLink = styled(NavLink)<{active: boolean}>`
+const StyledLink = styled(NavLink)<{ active: boolean }>`
   border-bottom: ${(props) => props.active && '2px solid black'};
   padding: 13px;
 `
@@ -65,7 +66,7 @@ const Header = (props: propsInterface) => {
   return (
     <AppHeader>
       <HeaderContainer>
-        <HeaderLogo to='/'>samplegram</HeaderLogo>
+        <HeaderLogo to='/'>social network</HeaderLogo>
         <StyledNav>
           <StyledLink to='/' active={url === '/'}>
             <img src={HomeIcon} alt='' />
@@ -78,6 +79,9 @@ const Header = (props: propsInterface) => {
           </StyledLink>
           <StyledLink to='/chats' active={url.includes('/messenger')}>
             <img src={MessengerIcon} alt='' />
+          </StyledLink>
+          <StyledLink to='/liked' active={url.includes('/liked')}>
+            <img src={HeartIcon} alt='' />
           </StyledLink>
           <StyledLink to={'/user/' + props.currentUserId} active={url.includes('/user')}>
             <img src={ProfileIcon} alt='' />

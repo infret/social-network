@@ -17,7 +17,8 @@ const Page = styled.div`
 
 const Heading = styled.h1`
   font-size: 20px;
-  margin-bottom: 10px;
+  margin: 10px 0;
+  text-align: center;
 `
 
 export default function Followers(props: propsInterface) {

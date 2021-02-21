@@ -3,10 +3,21 @@ import styled from 'styled-components'
 import Post from './Post'
 import { observer } from 'mobx-react-lite'
 import { IStore, IPost } from '../store'
+import { NavLink } from 'react-router-dom'
 
-const Container = styled.div`
+const Page = styled.div`
   width: 100%;
   padding: 6px 12px;
+`
+
+const Heading = styled.h1`
+  font-size: 20px;
+  margin: 10px 0;
+  text-align: center;
+`
+
+const StyledLink = styled(NavLink)`
+  color: #779ecb;
 `
 
 interface Props {
@@ -30,21 +41,28 @@ const Feed = observer((props: Props) => {
       )
   )
   return (
-    <Container>
-      {posts
-        .sort((a, b) => b.date - a.date)
-        .map((post) => (
-          <Post
-            id={post.id}
-            user={post.user}
-            date={post.date}
-            text={post.text}
-            img={post.img}
-            likes={post.likes}
-            store={props.store}
-          />
-        ))}
-    </Container>
+    <Page>
+      {props.store.users[props.store.currentUserId].following.length ? (
+        posts
+          .sort((a, b) => b.date - a.date)
+          .map((post) => (
+            <Post
+              id={post.id}
+              user={post.user}
+              date={post.date}
+              text={post.text}
+              img={post.img}
+              likes={post.likes}
+              store={props.store}
+            />
+          ))
+      ) : (
+        <Heading>
+          You don't follow anyone yet, consider
+          <StyledLink to='/explore'> searching for people</StyledLink>
+        </Heading>
+      )}
+    </Page>
   )
 })
 export default Feed
