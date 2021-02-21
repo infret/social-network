@@ -115,7 +115,7 @@ const Profile = observer((props: propsInterface) => {
       </ProfileDetails>
       {props.store.users[props.userId].posts
         .slice()
-        .sort((a, b) => a.date - b.date)
+        .sort((a, b) => b.date - a.date)
         .map((post) => (
           <Post
             id={post.id}

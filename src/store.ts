@@ -99,7 +99,7 @@ const store = Store.create({
         }
       ],
       following: [1, 2, 3, 4],
-      likedPosts: []
+      likedPosts: [3, 4]
     },
     {
       id: 1,
@@ -136,7 +136,7 @@ const store = Store.create({
         {
           id: 2,
           text: 'Post without image but with some text',
-          date: 1613840000,
+          date: 1613700000,
           img: ''
         }
       ],
@@ -201,5 +201,6 @@ export function timeSince(date: number) {
 
 export interface IStore extends Instance<typeof store> {}
 export interface IUser extends Instance<typeof User> {}
+export interface IPost extends Instance<typeof Post> {}
 
 export default store

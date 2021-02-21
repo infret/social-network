@@ -12,6 +12,7 @@ import Header from './components/Header'
 import store from './store'
 import Followers from './components/Followers'
 import Following from './components/Following'
+import Post from './components/Post'
 
 const GlobalStyle = createGlobalStyle`
 	* {
@@ -25,6 +26,11 @@ const GlobalStyle = createGlobalStyle`
     color: black;
     text-decoration: none;
 	}
+`
+
+const Container = styled.div`
+  width: 100%;
+  padding: 6px 12px;
 `
 
 const App = styled.div<{ height: string }>`
@@ -76,7 +82,6 @@ ReactDOM.render(
           )}
         />
         <Route
-          exact
           path='/chat/:userId'
           component={() => (
             <Chat
@@ -85,6 +90,32 @@ ReactDOM.render(
                 window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
               )}
             />
+          )}
+        />
+        <Route
+          exact
+          path='/liked'
+          component={() => (
+            <Container>
+              {store.users.map((user) =>
+                user.posts.map(
+                  (post) =>
+                    store.users[store.currentUserId].likedPosts.includes(post.id) && (
+                      <Post
+                        id={post.id}
+                        user={user}
+                        date={post.date}
+                        text={post.text}
+                        img={post.img}
+                        likes={
+                          store.users.filter((user) => user.likedPosts.includes(post.id)).length
+                        }
+                        store={store}
+                      />
+                    )
+                )
+              )}
+            </Container>
           )}
         />
       </App>
