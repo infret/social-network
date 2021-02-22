@@ -14,6 +14,12 @@ const Message = types.model({
   date: types.number
 })
 
+const Comment = types.model({
+  post_id: types.number,
+  text: types.string,
+  date: types.number
+})
+
 const User = types.model({
   id: types.number,
   username: types.string,
@@ -21,6 +27,7 @@ const User = types.model({
   status: types.string,
   posts: types.array(Post),
   messages: types.array(Message),
+  comments: types.array(Comment),
   following: types.array(types.number),
   likedPosts: types.array(types.number)
 })
@@ -45,6 +52,13 @@ const Store = types
     createMessage(recipient_id: number, text: string) {
       self.messages.push({
         recipient_id,
+        text,
+        date: Date.now() / 1000
+      })
+    },
+    createComment(post_id: number, text: string) {
+      self.users[self.currentUserId].comments.push({
+        post_id,
         text,
         date: Date.now() / 1000
       })
@@ -103,6 +117,19 @@ const store = Store.create({
           date: 1613847000
         }
       ],
+      comments: [
+        {
+          post_id: 3,
+          text:
+            "Sample comment with a ton of post-related text. There are so many words that they look like they wouldn't fit, but they do with some text wrapping and comment sizing.",
+          date: 1613879000
+        },
+        {
+          post_id: 2,
+          text: 'Sample comment',
+          date: 1613847000
+        }
+      ],
       following: [1, 2, 3, 4],
       likedPosts: [3, 4]
     },
@@ -140,12 +167,20 @@ const store = Store.create({
       posts: [
         {
           id: 2,
-          text: 'Post without image but with some text',
+          text: 'Post with some text about this and that',
           date: 1613700000,
-          img: ''
+          img:
+            'https://images.unsplash.com/photo-1564869115811-96da66f0557f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8bmF0dXJlJTIwZ3JlZW58ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60'
         }
       ],
       messages: [],
+      comments: [
+        {
+          post_id: 3,
+          text: 'Another sample comment',
+          date: 1613847000
+        }
+      ],
       following: [0, 1, 4],
       likedPosts: [3]
     },
@@ -157,6 +192,13 @@ const store = Store.create({
       status: `Self-taught photographer`,
       posts: [],
       messages: [],
+      comments: [
+        {
+          post_id: 3,
+          text: 'More sample comments on this post!',
+          date: 1613849000
+        }
+      ],
       following: [0, 2],
       likedPosts: [1, 3, 4]
     },
@@ -176,6 +218,13 @@ const store = Store.create({
         }
       ],
       messages: [],
+      comments: [
+        {
+          post_id: 4,
+          text: 'Sample comment from sample user',
+          date: 1613847000
+        }
+      ],
       following: [0, 1],
       likedPosts: []
     }
@@ -191,21 +240,34 @@ export function timeSince(date: number) {
     return Math.round(time) + ' minutes ago'
   }
   if (time > 60 && time < 1440) {
-    return Math.round(time / 60) + ' hours ago'
+    return Math.round(time / 60) === 1 ? '1 hour ago' : Math.round(time / 60) + ' hours ago'
   }
-  if (time > 1440 && time < 34560) {
-    return Math.round(time / 60 / 24) + ' days ago'
+  if (time > 1440 && time < 43829.1) {
+    return Math.round(time / 1440) === 1 ? '1 day ago' : Math.round(time / 1440) + ' days ago'
   }
-  if (time > 34560 && time < 1051898.4) {
-    return Math.round(time / 60 / 24 / 30.436875) + ' months ago'
+  if (time > 43829.1 && time < 525949.2) {
+    return Math.round(time / 43829.1) === 1
+      ? '1 month ago'
+      : Math.round(time / 43829.1) + ' months ago'
   }
-  if (time > 1051898.4 && time < 34560) {
-    return Math.round(time / 60 / 24 / 30.436875 / 12) + ' years ago'
+  if (time > 525949.2) {
+    return Math.round(time / 525949.2) === 1
+      ? '1 year ago'
+      : Math.round(time / 525949.2) + 'years ago'
   }
 }
 
 export interface IStore extends Instance<typeof store> {}
 export interface IUser extends Instance<typeof User> {}
 export interface IPost extends Instance<typeof Post> {}
+
+const saveState = (state: IStore) => {
+  window.sessionStorage.setItem('app_state', JSON.stringify(state))
+}
+
+const loadState = () => {
+  const savedState = window.sessionStorage.getItem('app_state')
+  return savedState ? (JSON.parse(savedState) as IStore) : undefined
+}
 
 export default store

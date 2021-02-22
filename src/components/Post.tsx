@@ -5,14 +5,16 @@ import HeartFillIcon from '../resources/heart-fill.svg'
 import MessageIcon from '../resources/message.svg'
 import { IStore, IUser, timeSince } from '../store'
 import User from './User'
+import { NavLink } from 'react-router-dom'
+import TextareaForm from './TextareaForm'
+import { observer } from 'mobx-react-lite'
 
 const StyledPost = styled.div`
   margin: 8px auto;
   border: 1px solid gainsboro;
   border-radius: 4px;
-  min-width: 360px;
   width: 100%;
-  max-width: 700px;
+  max-width: 640px;
 `
 
 const PostHeader = styled.div`
@@ -34,9 +36,9 @@ const ImgActions = styled.div`
 
 const PostImg = styled.img`
   height: 100%;
-  max-height: 700px;
-  min-height: 0;
   width: 100%;
+  max-height: 640px;
+  max-width: 640px;
   object-fit: cover;
   margin-bottom: 2px;
 `
@@ -44,11 +46,28 @@ const PostImg = styled.img`
 const Text = styled.pre`
   white-space: pre-wrap;
   word-wrap: break-word;
-  margin: 6px 12px 8px 12px;
+  margin: 6px 12px;
 `
 
 const ImgAction = styled.button`
   margin: 8px 6px 8px 12px;
+  cursor: pointer;
+`
+
+const Comment = styled.div`
+  padding: 6px 12px;
+`
+
+const Username = styled(NavLink)`
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 6px;
+`
+
+const CommentText = styled.p`
+  font-size: 14px;
+  word-break: break-word;
+  white-space: pre-wrap;
 `
 
 interface Props {
@@ -61,28 +80,40 @@ interface Props {
   likes: number
 }
 
-export default function Post(props: Props) {
-  return (
-    <StyledPost>
-      <PostHeader>
-        <User user={props.user} link='/social-network/user/' />
-        <Date>{timeSince(props.date)}</Date>
-      </PostHeader>
-      {props.img && <PostImg src={props.img} />}
-      {props.text && <Text>{props.text}</Text>}
-      <ImgActions>
-        <ImgAction onClick={() => props.store.toggleLike(props.id)}>
-          {props.store.users[props.store.currentUserId].likedPosts.includes(props.id) ? (
-            <img src={HeartFillIcon} alt='' />
-          ) : (
-            <img src={HeartIcon} alt='' />
-          )}
-        </ImgAction>
-        {props.likes > 0 && props.likes}
-        <ImgAction>
-          <img src={MessageIcon} alt='' />
-        </ImgAction>
-      </ImgActions>
-    </StyledPost>
-  )
-}
+const Post = observer((props: Props) => (
+  <StyledPost>
+    <PostHeader>
+      <User user={props.user} link='/social-network/user/' />
+      <Date>{timeSince(props.date)}</Date>
+    </PostHeader>
+    {props.img && <PostImg src={props.img} />}
+    {props.text && <Text>{props.text}</Text>}
+    <ImgActions>
+      <ImgAction onClick={() => props.store.toggleLike(props.id)}>
+        {props.store.users[props.store.currentUserId].likedPosts.includes(props.id) ? (
+          <img src={HeartFillIcon} alt='' />
+        ) : (
+          <img src={HeartIcon} alt='' />
+        )}
+      </ImgAction>
+      {props.likes > 0 && props.likes}
+      <ImgAction>
+        <img src={MessageIcon} alt='' />
+      </ImgAction>
+    </ImgActions>
+    {props.store.users.map((user) =>
+      user.comments
+        .filter((comment) => comment.post_id === props.id)
+        .map((comment) => (
+          <Comment>
+            <CommentText>
+              <Username to={'/social-network/user/' + user.id}>{user.username}</Username>
+              {comment.text}
+            </CommentText>
+          </Comment>
+        ))
+    )}
+    <TextareaForm onclick={props.store.createComment} id={props.id} />
+  </StyledPost>
+))
+export default Post

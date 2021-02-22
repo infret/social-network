@@ -30,7 +30,6 @@ const ProfileDesc = styled.pre`
   margin: 8px;
   word-break: break-word;
   white-space: pre-wrap;
-  width: 100%;
 `
 
 const BigAvatar = styled.img`

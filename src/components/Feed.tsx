@@ -17,7 +17,7 @@ const Heading = styled.h1`
 `
 
 const StyledLink = styled(NavLink)`
-  color: #2e8bc0;
+  color: dodgerblue;
 `
 
 interface Props {

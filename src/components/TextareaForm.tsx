@@ -6,40 +6,35 @@ const StyledForm = styled.div`
   display: flex;
   align-items: center;
   padding: 12px;
+  border-top: 1px solid gainsboro;
 `
 
 const StyledTextarea = styled.textarea`
   width: 100%;
   border: none;
   border-radius: 4px;
-  padding: 12px;
   font-size: 15px;
   height: 20px;
 `
 
-const StyledSubmit = styled.button<{ icon: string }>`
-  background-image: url(${(props) => props.icon});
-  background-repeat: no-repeat;
-  background-position: center;
-  height: 28px;
-  width: 28px;
-  border: none;
-  margin-left: 12px;
+const StyledSubmit = styled.button`
+  color: dodgerblue;
+  font-size: 15px;
+  margin-left: 6px;
 `
 
 interface Props {
-  placeholder: string
-  icon: string
-  onclick: (postText: string) => void
+  id: number
+  onclick: (post_id: number, text: string) => void
 }
 
 export default function TextareaForm(props: Props) {
   let textareaRef = useRef() as MutableRefObject<HTMLTextAreaElement>
 
-  function handleKeyUp() {
+  function handleChange() {
     if (
       textareaRef.current.scrollHeight > textareaRef.current.clientHeight &&
-      textareaRef.current.clientHeight < 200
+      textareaRef.current.clientHeight < 160
     ) {
       textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px'
     }
@@ -47,12 +42,10 @@ export default function TextareaForm(props: Props) {
 
   return (
     <StyledForm>
-      <StyledTextarea ref={textareaRef} placeholder={props.placeholder} onKeyUp={handleKeyUp} />
-      <StyledSubmit
-        value=''
-        onClick={() => props.onclick(textareaRef.current.value)}
-        icon={props.icon}
-      />
+      <StyledTextarea ref={textareaRef} onChange={handleChange} placeholder='Add a comment' />
+      <StyledSubmit value='' onClick={() => props.onclick(props.id, textareaRef.current.value)}>
+        Send
+      </StyledSubmit>
     </StyledForm>
   )
 }
