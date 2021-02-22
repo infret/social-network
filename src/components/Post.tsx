@@ -43,15 +43,13 @@ const PostImg = styled.img`
   margin-bottom: 2px;
 `
 
-const Text = styled.pre`
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  margin: 6px 12px;
-`
-
 const ImgAction = styled.button`
   margin: 8px 6px 8px 12px;
   cursor: pointer;
+`
+
+const Comments = styled.div`
+  margin-bottom: 6px;
 `
 
 const Comment = styled.div`
@@ -75,45 +73,60 @@ interface Props {
   id: number
   user: IUser
   date: number
-  text: string
   img: string
   likes: number
 }
 
-const Post = observer((props: Props) => (
-  <StyledPost>
-    <PostHeader>
-      <User user={props.user} link='/social-network/user/' />
-      <Date>{timeSince(props.date)}</Date>
-    </PostHeader>
-    {props.img && <PostImg src={props.img} />}
-    {props.text && <Text>{props.text}</Text>}
-    <ImgActions>
-      <ImgAction onClick={() => props.store.toggleLike(props.id)}>
-        {props.store.users[props.store.currentUserId].likedPosts.includes(props.id) ? (
-          <img src={HeartFillIcon} alt='' />
-        ) : (
-          <img src={HeartIcon} alt='' />
-        )}
-      </ImgAction>
-      {props.likes > 0 && props.likes}
-      <ImgAction>
-        <img src={MessageIcon} alt='' />
-      </ImgAction>
-    </ImgActions>
-    {props.store.users.map((user) =>
-      user.comments
-        .filter((comment) => comment.post_id === props.id)
-        .map((comment) => (
-          <Comment>
-            <CommentText>
-              <Username to={'/social-network/user/' + user.id}>{user.username}</Username>
-              {comment.text}
-            </CommentText>
-          </Comment>
-        ))
-    )}
-    <TextareaForm onclick={props.store.createComment} id={props.id} />
-  </StyledPost>
-))
+const Post = observer((props: Props) => {
+  let comments: any[] = []
+  props.store.users.map((user) =>
+    user.comments
+      .filter((comment) => comment.post_id === props.id)
+      .sort((a, b) => b.date - a.date)
+      .map((comment) => comments.push({ user: user, text: comment.text, date: comment.date }))
+  )
+  return (
+    <StyledPost>
+      <PostHeader>
+        <User user={props.user} link='/social-network/user/' />
+        <Date>{timeSince(props.date)}</Date>
+      </PostHeader>
+      {props.img && <PostImg src={props.img} />}
+      <ImgActions>
+        <ImgAction onClick={() => props.store.toggleLike(props.id)}>
+          {props.store.users[props.store.currentUserId].likedPosts.includes(props.id) ? (
+            <img src={HeartFillIcon} alt='' />
+          ) : (
+            <img src={HeartIcon} alt='' />
+          )}
+        </ImgAction>
+        {props.likes > 0 && props.likes}
+        <ImgAction>
+          <img src={MessageIcon} alt='' />
+        </ImgAction>
+      </ImgActions>
+      {comments && (
+        <Comments>
+          {comments
+            .sort((a, b) => a.date - b.date)
+            .map((comment) => (
+              <Comment>
+                <CommentText>
+                  <Username to={'/social-network/user/' + comment.user.id}>
+                    {comment.user.username}
+                  </Username>
+                  {comment.text}
+                </CommentText>
+              </Comment>
+            ))}
+        </Comments>
+      )}
+      <TextareaForm
+        onclick={props.store.createComment}
+        id={props.id}
+        placeholder={'Add a comment'}
+      />
+    </StyledPost>
+  )
+})
 export default Post

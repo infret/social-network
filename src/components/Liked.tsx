@@ -30,7 +30,6 @@ const Liked = observer((props: Props) => (
                 id={post.id}
                 user={user}
                 date={post.date}
-                text={post.text}
                 img={post.img}
                 likes={props.store.users.filter((user) => user.likedPosts.includes(post.id)).length}
                 store={props.store}

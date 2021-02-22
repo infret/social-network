@@ -120,7 +120,6 @@ const Profile = observer((props: Props) => {
             id={post.id}
             user={props.store.users[props.userId]}
             date={post.date}
-            text={post.text}
             img={post.img}
             likes={props.store.users.filter((user) => user.likedPosts.includes(post.id)).length}
             store={props.store}

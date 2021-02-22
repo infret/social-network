@@ -34,7 +34,6 @@ const Feed = observer((props: Props) => {
           id: post.id,
           user: props.store.users[user.id],
           date: post.date,
-          text: post.text,
           img: post.img,
           likes: props.store.users.filter((user) => user.likedPosts.includes(post.id)).length
         })
@@ -50,7 +49,6 @@ const Feed = observer((props: Props) => {
               id={post.id}
               user={post.user}
               date={post.date}
-              text={post.text}
               img={post.img}
               likes={post.likes}
               store={props.store}

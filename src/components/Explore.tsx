@@ -51,7 +51,6 @@ const Explore = observer((props: Props) => {
             id={post.id}
             user={props.store.users[user.id]}
             date={post.date}
-            text={post.text}
             img={post.img}
             likes={props.store.users.filter((user) => user.likedPosts.includes(post.id)).length}
             store={props.store}

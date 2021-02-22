@@ -4,10 +4,11 @@ import ProfileIcon from '../resources/profile.svg'
 import HomeIcon from '../resources/home.svg'
 import MessengerIcon from '../resources/message.svg'
 import SearchIcon from '../resources/search.svg'
-import LogoIcon from '../resources/logo.svg'
 import PlusIcon from '../resources/plus.svg'
 import HeartIcon from '../resources/heart.svg'
 import styled from 'styled-components'
+import TextareaForm from './TextareaForm'
+import { IStore } from '../store'
 
 const AppHeader = styled.header`
   height: 50px;
@@ -42,22 +43,39 @@ const HeaderLogo = styled(NavLink)`
   font-family: 'Lobster Two';
 `
 
-const StyledNav = styled.nav`
+const Nav = styled.nav`
   height: 100%;
   display: flex;
 `
 
-const StyledLink = styled(NavLink)<{ active: boolean }>`
+const Link = styled(NavLink)<{ active: boolean }>`
   border-bottom: ${(props) => props.active && '2px solid black'};
   padding: 13px;
 `
 
+const Button = styled.button<{ active: boolean }>`
+  border-bottom: ${(props) => props.active && '2px solid black'};
+  padding: 13px;
+`
+
+const Overlay = styled.div`
+  position: fixed;
+  top: 50px;
+  width: 300px;
+  margin: 0 auto;
+  overflow-x: auto;
+  background-color: white;
+  border: 1px solid gainsboro;
+  border-radius: 4px;
+`
+
 interface Props {
-  currentUserId: number
+  store: IStore
 }
 
 const Header = (props: Props) => {
   let [url, setUrl] = useState(window.location.pathname)
+  let [overlay, setOverlay] = useState(false)
 
   useHistory().listen((location) => {
     setUrl(location.pathname)
@@ -67,26 +85,34 @@ const Header = (props: Props) => {
     <AppHeader>
       <HeaderContainer>
         <HeaderLogo to='/social-network'>social network</HeaderLogo>
-        <StyledNav>
-          <StyledLink to='/social-network' active={url === '/social-network'}>
+        <Nav>
+          <Link to='/social-network' active={url === '/social-network'}>
             <img src={HomeIcon} alt='' />
-          </StyledLink>
-          <StyledLink to='/social-network/explore' active={url.includes('/explore')}>
+          </Link>
+          <Link to='/social-network/explore' active={url.includes('/explore')}>
             <img src={SearchIcon} alt='' />
-          </StyledLink>
-          <StyledLink to='/social-network/create' active={url.includes('/create')}>
+          </Link>
+          <Button active={overlay} onClick={() => setOverlay(!overlay)}>
             <img src={PlusIcon} alt='' />
-          </StyledLink>
-          <StyledLink to='/social-network/chats' active={url.includes('/messenger')}>
+          </Button>
+          {overlay && (
+            <Overlay>
+              <TextareaForm onclick={props.store.createPost} placeholder={'Add image url here'} />
+            </Overlay>
+          )}
+          <Link to='/social-network/chats' active={url.includes('/messenger')}>
             <img src={MessengerIcon} alt='' />
-          </StyledLink>
-          <StyledLink to='/social-network/liked' active={url.includes('/liked')}>
+          </Link>
+          <Link to='/social-network/liked' active={url.includes('/liked')}>
             <img src={HeartIcon} alt='' />
-          </StyledLink>
-          <StyledLink to={'/social-network/user/' + props.currentUserId} active={url.includes('/user')}>
+          </Link>
+          <Link
+            to={'/social-network/user/' + props.store.currentUserId}
+            active={url.includes('/user')}
+          >
             <img src={ProfileIcon} alt='' />
-          </StyledLink>
-        </StyledNav>
+          </Link>
+        </Nav>
       </HeaderContainer>
     </AppHeader>
   )

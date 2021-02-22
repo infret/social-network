@@ -44,7 +44,7 @@ ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
     <BrowserRouter>
-      <Header currentUserId={store.currentUserId} />
+      <Header store={store}/>
       <App>
         <Route path='/social-network' exact component={() => <Feed store={store} />} />
         <Route path='/social-network/explore' component={() => <Explore store={store} />} />

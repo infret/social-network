@@ -1,9 +1,7 @@
-import { toJS } from 'mobx'
 import { Instance, types } from 'mobx-state-tree'
 
 const Post = types.model({
   id: types.number,
-  text: types.string,
   img: types.string,
   date: types.number
 })
@@ -41,11 +39,10 @@ const Store = types
     messages: types.array(Message)
   })
   .actions((self) => ({
-    createPost(text: string, img: string) {
+    createPost(img: string) {
       self.users[self.currentUserId].posts.push({
-        id: self.posts.length,
+        id: self.posts.length + 1000,
         img,
-        text,
         date: Date.now() / 1000
       })
     },
@@ -56,7 +53,7 @@ const Store = types
         date: Date.now() / 1000
       })
     },
-    createComment(post_id: number, text: string) {
+    createComment(text: string, post_id: number) {
       self.users[self.currentUserId].comments.push({
         post_id,
         text,
@@ -97,14 +94,12 @@ const store = Store.create({
       posts: [
         {
           id: 0,
-          text: 'Sample post with text and image',
           date: 1613840000,
           img:
             'https://images.unsplash.com/photo-1613572596126-23969094b944?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80'
         },
         {
           id: 4,
-          text: '',
           date: 1613849000,
           img:
             'https://images.unsplash.com/photo-1613586020253-fb6fe0b04269?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw4MXx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60'
@@ -119,10 +114,15 @@ const store = Store.create({
       ],
       comments: [
         {
+          post_id: 0,
+          text: 'Sample post with text and image',
+          date: 1613840000
+        },
+        {
           post_id: 3,
           text:
             "Sample comment with a ton of post-related text. There are so many words that they look like they wouldn't fit, but they do with some text wrapping and comment sizing.",
-          date: 1613879000
+          date: 1613899000
         },
         {
           post_id: 2,
@@ -142,7 +142,6 @@ const store = Store.create({
       posts: [
         {
           id: 1,
-          text: 'Sample post from me',
           date: 1613820000,
           img:
             'https://images.unsplash.com/photo-1613568409506-e70370442e6e?ixid=MXwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw1MXx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60'
@@ -153,6 +152,13 @@ const store = Store.create({
           recipient_id: 0,
           text: 'Hey',
           date: 1613848000
+        }
+      ],
+      comments: [
+        {
+          post_id: 1,
+          text: 'Sample post from me',
+          date: 1613820000
         }
       ],
       following: [0],
@@ -167,7 +173,6 @@ const store = Store.create({
       posts: [
         {
           id: 2,
-          text: 'Post with some text about this and that',
           date: 1613700000,
           img:
             'https://images.unsplash.com/photo-1564869115811-96da66f0557f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8bmF0dXJlJTIwZ3JlZW58ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60'
@@ -219,6 +224,7 @@ const store = Store.create({
       ],
       messages: [],
       comments: [
+        { post_id: 3, text: 'Post with some text about this and that', date: 1613841000 },
         {
           post_id: 4,
           text: 'Sample comment from sample user',

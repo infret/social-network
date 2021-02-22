@@ -2,11 +2,11 @@ import React, { MutableRefObject, useRef } from 'react'
 import styled from 'styled-components'
 
 const StyledForm = styled.div`
-  margin-top: 6px;
   display: flex;
   align-items: center;
   padding: 12px;
   border-top: 1px solid gainsboro;
+  height: 100%;
 `
 
 const StyledTextarea = styled.textarea`
@@ -24,8 +24,9 @@ const StyledSubmit = styled.button`
 `
 
 interface Props {
-  id: number
-  onclick: (post_id: number, text: string) => void
+  id?: any
+  onclick: (text: string, post_id: number) => void
+  placeholder: string
 }
 
 export default function TextareaForm(props: Props) {
@@ -42,8 +43,8 @@ export default function TextareaForm(props: Props) {
 
   return (
     <StyledForm>
-      <StyledTextarea ref={textareaRef} onChange={handleChange} placeholder='Add a comment' />
-      <StyledSubmit value='' onClick={() => props.onclick(props.id, textareaRef.current.value)}>
+      <StyledTextarea ref={textareaRef} onChange={handleChange} placeholder={props.placeholder} />
+      <StyledSubmit value='' onClick={() => props.onclick(textareaRef.current.value, props.id)}>
         Send
       </StyledSubmit>
     </StyledForm>
