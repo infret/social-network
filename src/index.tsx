@@ -34,7 +34,7 @@ const Container = styled.div`
 `
 
 const App = styled.div`
-  max-width: 800px;
+  max-width: 1000px;
   width: 100%;
   margin: 0 auto;
   display: flex;
@@ -44,7 +44,7 @@ ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
     <BrowserRouter>
-      <Header store={store}/>
+      <Header store={store} />
       <App>
         <Route path='/social-network' exact component={() => <Feed store={store} />} />
         <Route path='/social-network/explore' component={() => <Explore store={store} />} />

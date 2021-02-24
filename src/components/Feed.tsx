@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 
 const Page = styled.div`
   width: 100%;
-  padding: 6px 12px;
+  padding: 5px 10px;
 `
 
 const Heading = styled.h1`

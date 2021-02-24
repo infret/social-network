@@ -24,7 +24,7 @@ const AppHeader = styled.header`
 const HeaderContainer = styled.div`
   display: flex;
   width: 100%;
-  max-width: 800px;
+  max-width: 960px;
   align-items: center;
   height: 100%;
   justify-content: space-between;
