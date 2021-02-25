@@ -12,7 +12,6 @@ const Form = styled.div<{ height: number }>`
 
 const Textarea = styled.textarea`
   width: 100%;
-
   font-size: 15px;
   height: 100%;
   vertical-align: middle;

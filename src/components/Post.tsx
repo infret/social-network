@@ -31,7 +31,7 @@ const PostBody = styled.div`
 
 const Date = styled.p`
   color: grey;
-  font-size: 14px;
+  font-size: 13px;
   white-space: nowrap;
   margin-right: 10px;
 `

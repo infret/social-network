@@ -35,6 +35,17 @@ const App = styled.div`
   display: flex;
 `
 
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  grid-template-areas: 'chats chat';
+  width: 100%;
+
+  @media (max-width: 639px) {
+    grid-template-columns: 1fr;
+  }
+`
+
 ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
@@ -43,7 +54,15 @@ ReactDOM.render(
       <App>
         <Route path='/social-network' exact component={() => <Feed store={store} />} />
         <Route path='/social-network/explore' component={() => <Explore store={store} />} />
-        <Route path='/social-network/chats' render={() => <Chats store={store} />} />
+        <Route
+          path='/social-network/chats'
+          render={() => (
+            <Container>
+              <Chats store={store} />
+              {window.innerWidth >= 640 && <ChatPage store={store} userId={-1} />}
+            </Container>
+          )}
+        />
         <Route
           exact
           path='/social-network/user/:userId'
@@ -77,12 +96,15 @@ ReactDOM.render(
         <Route
           path='/social-network/chat/:userId'
           component={() => (
-            <ChatPage
-              store={store}
-              userId={parseInt(
-                window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
-              )}
-            />
+            <Container>
+              {window.innerWidth >= 640 && <Chats store={store} />}
+              <ChatPage
+                store={store}
+                userId={parseInt(
+                  window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
+                )}
+              />
+            </Container>
           )}
         />
         <Route exact path='/social-network/liked' component={() => <Liked store={store} />} />

@@ -110,6 +110,11 @@ const store = Store.create({
           recipient_id: 1,
           text: 'Sup',
           date: 1613847000
+        },
+        {
+          recipient_id: 2,
+          text: 'How are you?',
+          date: 1613840000
         }
       ],
       comments: [
@@ -178,7 +183,13 @@ const store = Store.create({
             'https://images.unsplash.com/photo-1564869115811-96da66f0557f?ixid=MXwxMjA3fDB8MHxzZWFyY2h8N3x8bmF0dXJlJTIwZ3JlZW58ZW58MHwyfDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60'
         }
       ],
-      messages: [],
+      messages: [
+        {
+          recipient_id: 0,
+          text: `I'm fine. What's about you?`,
+          date: 1613848000
+        }
+      ],
       comments: [
         {
           post_id: 3,
