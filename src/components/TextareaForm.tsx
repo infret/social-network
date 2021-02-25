@@ -1,29 +1,27 @@
-import React, { MutableRefObject, useRef } from 'react'
+import React, { MutableRefObject, useRef, useState } from 'react'
 import styled from 'styled-components'
+import ConfirmIcon from '../resources/confirm.svg'
 
-const StyledForm = styled.div`
+const Form = styled.div<{ height: number }>`
   display: flex;
+  width: 100%;
+  height: ${(props) => props.height + 'px'};
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  position: relative;
+  padding: 6px 12px;
+  margin-top: 12px;
 `
 
-const StyledTextarea = styled.textarea`
+const Textarea = styled.textarea`
   width: 100%;
   font-size: 15px;
-  height: 20px;
-  line-height: 20px;
-  bottom: 0;
-  margin-left: 12px;
+  height: 100%;
+  vertical-align: middle;
 `
 
-const StyledSubmit = styled.button`
-  color: dodgerblue;
-  font-size: 15px;
-  height: 20px;
-  line-height: 20px;
-  width: 30px;
-  margin-right: 15px;
+const Button = styled.button`
+  background-repeat: no-repeat;
+  margin-bottom: 8px;
 `
 
 interface Props {
@@ -33,23 +31,22 @@ interface Props {
 }
 
 export default function TextareaForm(props: Props) {
-  let textareaRef = useRef() as MutableRefObject<HTMLTextAreaElement>
+  let textarea = useRef() as MutableRefObject<HTMLTextAreaElement>
+  const [height, setHeight] = useState(26)
 
   function handleChange() {
-    if (
-      textareaRef.current.scrollHeight > textareaRef.current.clientHeight &&
-      textareaRef.current.clientHeight < 160
-    ) {
-      textareaRef.current.style.height = textareaRef.current.scrollHeight + 'px'
-    }
+    height < 100 && setHeight(textarea.current.scrollHeight)
+    textarea.current.value === '' && setHeight(30)
   }
 
   return (
-    <StyledForm>
-      <StyledTextarea ref={textareaRef} onChange={handleChange} placeholder={props.placeholder} />
-      <StyledSubmit onClick={() => props.onclick(textareaRef.current.value, props.id)}>
-        Send
-      </StyledSubmit>
-    </StyledForm>
+    <Form height={height}>
+      <Textarea ref={textarea} onChange={handleChange} placeholder={props.placeholder} />
+      <Button
+        onClick={() => textarea.current.value && props.onclick(textarea.current.value, props.id)}
+      >
+        <img src={ConfirmIcon} alt='Send' />
+      </Button>
+    </Form>
   )
 }

@@ -27,9 +27,7 @@ const PostHeader = styled.div`
 const PostBody = styled.div`
   width: 320px;
   height: 100%;
-  display: grid;
-  grid-template-rows: 60px 1fr 48px;
-  grid-template-areas: 'heading' 'comments' 'actions';
+  position: relative;
 `
 
 const Date = styled.p`
@@ -44,6 +42,9 @@ const Actions = styled.div`
   align-items: center;
   background: white;
   border-top: 1px solid gainsboro;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `
 
 const PostImg = styled.img`
@@ -54,7 +55,7 @@ const PostImg = styled.img`
 `
 
 const Button = styled.button`
-  margin: 5px 5px 0 10px;
+  margin: 4px 4px 0 12px;
   cursor: pointer;
 `
 
