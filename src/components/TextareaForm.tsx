@@ -4,16 +4,15 @@ import ConfirmIcon from '../resources/confirm.svg'
 
 const Form = styled.div<{ height: number }>`
   display: flex;
-  width: 100%;
   height: ${(props) => props.height + 'px'};
   align-items: center;
-  position: relative;
-  padding: 6px 12px;
-  margin-top: 12px;
+  margin: 2px 12px 4px 12px;
+  padding-top: 14px;
 `
 
 const Textarea = styled.textarea`
   width: 100%;
+
   font-size: 15px;
   height: 100%;
   vertical-align: middle;
@@ -26,7 +25,7 @@ const Button = styled.button`
 
 interface Props {
   id?: any
-  onclick: (text: string, post_id: number) => void
+  onclick: (text: string, id: number) => void
   placeholder: string
 }
 
@@ -43,7 +42,10 @@ export default function TextareaForm(props: Props) {
     <Form height={height}>
       <Textarea ref={textarea} onChange={handleChange} placeholder={props.placeholder} />
       <Button
-        onClick={() => textarea.current.value && props.onclick(textarea.current.value, props.id)}
+        onClick={function click() {
+          textarea.current.value && props.onclick(textarea.current.value, props.id)
+          textarea.current.value = ''
+        }}
       >
         <img src={ConfirmIcon} alt='Send' />
       </Button>

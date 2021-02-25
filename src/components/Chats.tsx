@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
-import Chat from './Chat'
+import ChatPage from './Chat'
 import { IStore } from '../store'
 import User from './User'
 

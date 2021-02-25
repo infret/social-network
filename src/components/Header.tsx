@@ -100,7 +100,7 @@ const Header = (props: Props) => {
               <TextareaForm onclick={props.store.createPost} placeholder={'Add image url here'} />
             </Overlay>
           )}
-          <Link to='/social-network/chats' active={url.includes('/messenger')}>
+          <Link to='/social-network/chats' active={url.includes('/chat')}>
             <img src={MessengerIcon} alt='' />
           </Link>
           <Link to='/social-network/liked' active={url.includes('/liked')}>

@@ -46,8 +46,8 @@ const Store = types
         date: Date.now() / 1000
       })
     },
-    createMessage(recipient_id: number, text: string) {
-      self.messages.push({
+    createMessage(text: string, recipient_id: number) {
+      self.users[self.currentUserId].messages.push({
         recipient_id,
         text,
         date: Date.now() / 1000

@@ -6,7 +6,7 @@ import Feed from './components/Feed'
 import Profile from './components/Profile'
 import Chats from './components/Chats'
 import { BrowserRouter, Redirect, Route } from 'react-router-dom'
-import Chat from './components/Chat'
+import ChatPage from './components/Chat'
 import Explore from './components/Explore'
 import Header from './components/Header'
 import store from './store'
@@ -26,11 +26,6 @@ const GlobalStyle = createGlobalStyle`
     color: black;
     text-decoration: none;
 	}
-`
-
-const Container = styled.div`
-  width: 100%;
-  padding: 6px 12px;
 `
 
 const App = styled.div`
@@ -82,7 +77,7 @@ ReactDOM.render(
         <Route
           path='/social-network/chat/:userId'
           component={() => (
-            <Chat
+            <ChatPage
               store={store}
               userId={parseInt(
                 window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)

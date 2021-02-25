@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import HeartIcon from '../resources/heart.svg'
 import HeartFillIcon from '../resources/heart-fill.svg'
-import MessageIcon from '../resources/message.svg'
 import { IStore, IUser, timeSince } from '../store'
 import User from './User'
 import { NavLink } from 'react-router-dom'
@@ -31,7 +30,7 @@ const PostBody = styled.div`
 `
 
 const Date = styled.p`
-  color: #999;
+  color: grey;
   font-size: 14px;
   white-space: nowrap;
   margin-right: 10px;
