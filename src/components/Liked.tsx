@@ -6,10 +6,10 @@ import { IStore, IPost } from '../store'
 
 const Page = styled.div`
   width: 100%;
-  padding: 6px 12px;
+  padding: 5px 0;
 `
 
-const Heading = styled.h1`
+const Placeholder = styled.h1`
   font-size: 18px;
   margin: 10px 0;
   text-align: center;
@@ -38,7 +38,7 @@ const Liked = observer((props: Props) => (
         )
       )
     ) : (
-      <Heading>You haven't liked any posts yet</Heading>
+      <Placeholder>You haven't liked any posts yet</Placeholder>
     )}
   </Page>
 ))

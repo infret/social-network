@@ -7,10 +7,10 @@ import { NavLink } from 'react-router-dom'
 
 const Page = styled.div`
   width: 100%;
-  padding: 5px 10px;
+  padding: 5px 0;
 `
 
-const Heading = styled.h1`
+const Placeholder = styled.h1`
   font-size: 18px;
   margin: 10px 0;
   text-align: center;
@@ -55,10 +55,10 @@ const Feed = observer((props: Props) => {
             />
           ))
       ) : (
-        <Heading>
+        <Placeholder>
           You don't follow anyone yet, consider
           <StyledLink to='/social-network/explore'> searching for people</StyledLink>
-        </Heading>
+        </Placeholder>
       )}
     </Page>
   )

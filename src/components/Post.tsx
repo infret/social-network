@@ -12,10 +12,13 @@ const StyledPost = styled.div`
   margin: 10px 0;
   width: 100%;
   border: 1px solid gainsboro;
-  border-radius: 4px;
   display: flex;
   flex-wrap: wrap;
-  height: 660px;
+  height: 680px;
+  box-sizing: border-box;
+  @media (max-width: 639px) {
+    height: auto;
+  }
 `
 
 const PostHeader = styled.div`
@@ -26,7 +29,15 @@ const PostHeader = styled.div`
 const PostBody = styled.div`
   width: 320px;
   height: 100%;
-  position: relative;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: 639px) {
+    max-height: 280px;
+    width: 100%;
+  }
 `
 
 const Date = styled.p`
@@ -41,16 +52,18 @@ const Actions = styled.div`
   align-items: center;
   background: white;
   border-top: 1px solid gainsboro;
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  margin-top: 4px;
 `
 
 const PostImg = styled.img`
   height: 100%;
-  width: 660px;
+  width: 678px;
   object-fit: cover;
-  margin-bottom: 2px;
+
+  @media (max-width: 639px) {
+    width: 100%;
+  }
 `
 
 const Button = styled.button`
@@ -76,6 +89,10 @@ const CommentText = styled.p`
 
 const Comments = styled.div`
   overflow: auto;
+  max-height: 560px;
+  @media (max-width: 639px) {
+    max-height: 160px;
+  }
 `
 
 interface Props {
@@ -99,26 +116,28 @@ const Post = observer((props: Props) => {
     <StyledPost>
       {props.img && <PostImg src={props.img} />}
       <PostBody>
-        <PostHeader>
-          <User user={props.user} link='/social-network/user/' />
-          <Date>{timeSince(props.date)}</Date>
-        </PostHeader>
-        {comments && (
-          <Comments>
-            {comments
-              .sort((a, b) => a.date - b.date)
-              .map((comment) => (
-                <Comment>
-                  <CommentText>
-                    <Username to={'/social-network/user/' + comment.user.id}>
-                      {comment.user.username}
-                    </Username>
-                    {comment.text}
-                  </CommentText>
-                </Comment>
-              ))}
-          </Comments>
-        )}
+        <div>
+          <PostHeader>
+            <User user={props.user} link='/social-network/user/' />
+            <Date>{timeSince(props.date)}</Date>
+          </PostHeader>
+          {comments && (
+            <Comments>
+              {comments
+                .sort((a, b) => a.date - b.date)
+                .map((comment) => (
+                  <Comment>
+                    <CommentText>
+                      <Username to={'/social-network/user/' + comment.user.id}>
+                        {comment.user.username}
+                      </Username>
+                      {comment.text}
+                    </CommentText>
+                  </Comment>
+                ))}
+            </Comments>
+          )}
+        </div>
         <Actions>
           <Button onClick={() => props.store.toggleLike(props.id)}>
             {props.store.users[props.store.currentUserId].likedPosts.includes(props.id) ? (

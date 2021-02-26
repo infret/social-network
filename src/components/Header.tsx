@@ -24,11 +24,16 @@ const AppHeader = styled.header`
 const HeaderContainer = styled.div`
   display: flex;
   width: 100%;
-  max-width: 960px;
+  max-width: 1000px;
   align-items: center;
   height: 100%;
   justify-content: space-between;
   margin: 0 auto;
+
+  @media (max-width: 639px) {
+    display: flex;
+    justify-content: space-evenly;
+  }
 `
 
 const HeaderLogo = styled(NavLink)`
@@ -41,6 +46,10 @@ const HeaderLogo = styled(NavLink)`
   margin-left: 12px;
   align-items: center;
   font-family: 'Lobster Two';
+
+  @media (max-width: 639px) {
+    display: none;
+  }
 `
 
 const Nav = styled.nav`

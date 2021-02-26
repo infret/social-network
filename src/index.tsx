@@ -13,6 +13,7 @@ import store from './store'
 import Followers from './components/Followers'
 import Following from './components/Following'
 import Liked from './components/Liked'
+import Login from './components/Login'
 
 const GlobalStyle = createGlobalStyle`
 	* {
@@ -26,6 +27,12 @@ const GlobalStyle = createGlobalStyle`
     color: black;
     text-decoration: none;
 	}
+`
+const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 `
 
 const App = styled.div`
@@ -50,65 +57,70 @@ ReactDOM.render(
   <React.StrictMode>
     <GlobalStyle />
     <BrowserRouter>
-      <Header store={store} />
-      <App>
-        <Route path='/social-network' exact component={() => <Feed store={store} />} />
-        <Route path='/social-network/explore' component={() => <Explore store={store} />} />
-        <Route
-          path='/social-network/chats'
-          render={() => (
-            <Container>
-              <Chats store={store} />
-              {window.innerWidth >= 640 && <ChatPage store={store} userId={-1} />}
-            </Container>
-          )}
-        />
-        <Route
-          exact
-          path='/social-network/user/:userId'
-          component={() => (
-            <Profile
-              userId={parseInt(window.location.pathname.replace(/[^0-9\.]+/g, ''))}
-              store={store}
-            />
-          )}
-        />
-        <Route
-          exact
-          path={'/social-network/user/:userId/followers'}
-          component={() => (
-            <Followers
-              userId={parseInt(window.location.pathname.replace(/[^0-9\.]+/g, ''))}
-              store={store}
-            />
-          )}
-        />
-        <Route
-          exact
-          path={'/social-network/user/:userId/following'}
-          component={() => (
-            <Following
-              userId={parseInt(window.location.pathname.replace(/[^0-9\.]+/g, ''))}
-              store={store}
-            />
-          )}
-        />
-        <Route
-          path='/social-network/chat/:userId'
-          component={() => (
-            <Container>
-              {window.innerWidth >= 640 && <Chats store={store} />}
-              <ChatPage
+      <Main>
+        <Header store={store} />
+        <App>
+          <Route path='/social-network' exact component={() => <Feed store={store} />} />
+          <Route path='/social-network/login' component={() => <Login store={store} />} />
+          <Route path='/social-network/explore' component={() => <Explore store={store} />} />
+          <Route
+            path='/social-network/chats'
+            render={() => (
+              <Container>
+                <Chats store={store} />
+                {window.innerWidth >= 640 && <ChatPage store={store} userId={-1} />}
+              </Container>
+            )}
+          />
+          <Route
+            exact
+            path='/social-network/user/:userId'
+            component={() => (
+              <Profile
+                userId={parseInt(window.location.pathname.replace(/[^0-9\.]+/g, ''))}
                 store={store}
-                userId={parseInt(
-                  window.location.pathname.substring(window.location.pathname.lastIndexOf('/') + 1)
-                )}
               />
-            </Container>
-          )}
-        />
-        <Route exact path='/social-network/liked' component={() => <Liked store={store} />} />
-      </App>
+            )}
+          />
+          <Route
+            exact
+            path={'/social-network/user/:userId/followers'}
+            component={() => (
+              <Followers
+                userId={parseInt(window.location.pathname.replace(/[^0-9\.]+/g, ''))}
+                store={store}
+              />
+            )}
+          />
+          <Route
+            exact
+            path={'/social-network/user/:userId/following'}
+            component={() => (
+              <Following
+                userId={parseInt(window.location.pathname.replace(/[^0-9\.]+/g, ''))}
+                store={store}
+              />
+            )}
+          />
+          <Route
+            path='/social-network/chat/:userId'
+            component={() => (
+              <Container>
+                {window.innerWidth >= 640 && <Chats store={store} />}
+                <ChatPage
+                  store={store}
+                  userId={parseInt(
+                    window.location.pathname.substring(
+                      window.location.pathname.lastIndexOf('/') + 1
+                    )
+                  )}
+                />
+              </Container>
+            )}
+          />
+          <Route exact path='/social-network/liked' component={() => <Liked store={store} />} />
+        </App>
+      </Main>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
