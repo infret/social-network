@@ -12,6 +12,7 @@ const Page = styled.div<{ height: string }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-sizing: border-box;
   border-left: 1px solid gainsboro;
   border-right: 1px solid gainsboro;
 `

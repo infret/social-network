@@ -75,7 +75,6 @@ const Overlay = styled.div`
   overflow-x: auto;
   background-color: white;
   border: 1px solid gainsboro;
-  border-radius: 4px;
 `
 
 interface Props {

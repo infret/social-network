@@ -78,6 +78,9 @@ const Store = types
     },
     setSearch(search: string) {
       self.searchBy = search
+    },
+    setCurrentUser(id: number) {
+      self.currentUserId = id
     }
   }))
 

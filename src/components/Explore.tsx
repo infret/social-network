@@ -24,7 +24,10 @@ const Overlay = styled.div`
   overflow-x: auto;
   background-color: white;
   border: 1px solid gainsboro;
-  border-radius: 4px;
+`
+
+const Posts = styled.div`
+  width: 100%;
 `
 
 interface Props {
@@ -45,18 +48,20 @@ const Explore = observer((props: Props) => {
             ))}
         </Overlay>
       )}
-      {props.store.users.map((user) =>
-        user.posts.map((post) => (
-          <Post
-            id={post.id}
-            user={props.store.users[user.id]}
-            date={post.date}
-            img={post.img}
-            likes={props.store.users.filter((user) => user.likedPosts.includes(post.id)).length}
-            store={props.store}
-          />
-        ))
-      )}
+      <Posts>
+        {props.store.users.map((user) =>
+          user.posts.map((post) => (
+            <Post
+              id={post.id}
+              user={props.store.users[user.id]}
+              date={post.date}
+              img={post.img}
+              likes={props.store.users.filter((user) => user.likedPosts.includes(post.id)).length}
+              store={props.store}
+            />
+          ))
+        )}
+      </Posts>
     </Page>
   )
 })

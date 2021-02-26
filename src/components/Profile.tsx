@@ -93,7 +93,7 @@ const Profile = observer((props: Props) => {
         <DescBody>
           <Container>
             <Name>{props.store.users[props.userId].username}</Name>
-            {props.userId != props.store.currentUserId && (
+            {props.userId !== props.store.currentUserId ? (
               <div>
                 <LinkButton to={'/social-network/chat/' + props.userId}>Message</LinkButton>
                 <Button onClick={() => props.store.toggleFollow(props.userId)}>
@@ -102,7 +102,7 @@ const Profile = observer((props: Props) => {
                     : 'Follow'}
                 </Button>
               </div>
-            )}
+            ) : <LinkButton to={'/social-network/login'}>Logout</LinkButton>}
           </Container>
           <Status>{props.store.users[props.userId].status}</Status>
           <Container>

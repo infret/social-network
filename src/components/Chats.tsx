@@ -6,8 +6,12 @@ import User from './User'
 
 const Page = styled.div`
   width: 320px;
-  border-left: 1px solid gainsboro;
+  margin: 0 auto;
+  padding: 5px 0;
   grid-area: 'chats';
+  @media (min-width: 639px) {
+    border-left: 1px solid gainsboro;
+  }
 `
 
 interface Props {
