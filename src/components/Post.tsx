@@ -6,7 +6,7 @@ import { IStore, IUser, timeSince } from '../store'
 import User from './User'
 import { NavLink } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
-import TextareaForm from './TextareaForm'
+import Input from './Input'
 
 const StyledPost = styled.div`
   margin: 10px 0;
@@ -128,11 +128,7 @@ const Post = observer((props: Props) => {
             )}
           </Button>
           {props.likes > 0 && props.likes}
-          <TextareaForm
-            onclick={props.store.createComment}
-            id={props.id}
-            placeholder={'Add a comment'}
-          />
+          <Input onclick={props.store.createComment} id={props.id} placeholder={'Add a comment'} />
         </Actions>
       </PostBody>
     </StyledPost>

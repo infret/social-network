@@ -7,7 +7,7 @@ import SearchIcon from '../resources/search.svg'
 import PlusIcon from '../resources/plus.svg'
 import HeartIcon from '../resources/heart.svg'
 import styled from 'styled-components'
-import TextareaForm from './TextareaForm'
+import Input from './Input'
 import { IStore } from '../store'
 
 const AppHeader = styled.header`
@@ -97,7 +97,7 @@ const Header = (props: Props) => {
           </Button>
           {overlay && (
             <Overlay>
-              <TextareaForm onclick={props.store.createPost} placeholder={'Add image url here'} />
+              <Input onclick={props.store.createPost} placeholder={'Add image url here'} />
             </Overlay>
           )}
           <Link to='/social-network/chats' active={url.includes('/chat')}>

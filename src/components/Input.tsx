@@ -6,8 +6,8 @@ const Form = styled.div<{ height: number }>`
   display: flex;
   height: ${(props) => props.height + 'px'};
   align-items: center;
-  margin: 2px 12px 4px 12px;
-  padding-top: 14px;
+  padding: 16px 0 4px 0;
+  width: 100%;
 `
 
 const Textarea = styled.textarea`
@@ -15,11 +15,17 @@ const Textarea = styled.textarea`
   font-size: 15px;
   height: 100%;
   vertical-align: middle;
+  margin: 0 0 0 12px;
 `
 
 const Button = styled.button`
   background-repeat: no-repeat;
-  margin-bottom: 8px;
+  background-position: center;
+  height: 100%;
+  width: 60px;
+  margin-bottom: 12px;
+  background-image: url(${ConfirmIcon});
+  cursor: pointer;
 `
 
 interface Props {
@@ -28,9 +34,9 @@ interface Props {
   placeholder: string
 }
 
-export default function TextareaForm(props: Props) {
+export default function Input(props: Props) {
   let textarea = useRef() as MutableRefObject<HTMLTextAreaElement>
-  const [height, setHeight] = useState(26)
+  const [height, setHeight] = useState(30)
 
   function handleChange() {
     height < 100 && setHeight(textarea.current.scrollHeight)
@@ -41,13 +47,12 @@ export default function TextareaForm(props: Props) {
     <Form height={height}>
       <Textarea ref={textarea} onChange={handleChange} placeholder={props.placeholder} />
       <Button
-        onClick={function click() {
+        onClick={() => {
           textarea.current.value && props.onclick(textarea.current.value, props.id)
           textarea.current.value = ''
+          setHeight(30)
         }}
-      >
-        <img src={ConfirmIcon} alt='Send' />
-      </Button>
+      ></Button>
     </Form>
   )
 }
