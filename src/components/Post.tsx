@@ -87,6 +87,14 @@ const CommentText = styled.p`
   white-space: pre-wrap;
 `
 
+const CommentDate = styled.p`
+  color: grey;
+  font-size: 12px;
+  white-space: nowrap;
+  margin-left: 6px;
+  display: inline;
+`
+
 const Comments = styled.div`
   overflow: auto;
   max-height: 560px;
@@ -132,6 +140,7 @@ const Post = observer((props: Props) => {
                         {comment.user.username}
                       </Username>
                       {comment.text}
+                      <CommentDate>{timeSince(comment.date)!.match(/^[0-9]*\s[a-z]/)}</CommentDate>
                     </CommentText>
                   </Comment>
                 ))}

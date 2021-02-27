@@ -9,6 +9,7 @@ import HeartIcon from '../resources/heart.svg'
 import styled from 'styled-components'
 import Input from './Input'
 import { IStore } from '../store'
+import { observer } from 'mobx-react-lite'
 
 const AppHeader = styled.header`
   height: 50px;
@@ -57,13 +58,13 @@ const Nav = styled.nav`
   display: flex;
 `
 
-const Link = styled(NavLink)<{ active: boolean }>`
-  border-bottom: ${(props) => props.active && '2px solid black'};
+const Link = styled(NavLink)<{ $active: boolean }>`
+  border-bottom: ${(props) => props.$active && '2px solid black'};
   padding: 13px;
 `
 
-const Button = styled.button<{ active: boolean }>`
-  border-bottom: ${(props) => props.active && '2px solid black'};
+const Button = styled.button<{ $active: boolean }>`
+  border-bottom: ${(props) => props.$active && '2px solid black'};
   padding: 13px;
 `
 
@@ -81,7 +82,7 @@ interface Props {
   store: IStore
 }
 
-const Header = (props: Props) => {
+const Header = observer((props: Props) => {
   let [url, setUrl] = useState(window.location.pathname)
   let [overlay, setOverlay] = useState(false)
 
@@ -94,29 +95,29 @@ const Header = (props: Props) => {
       <HeaderContainer>
         <HeaderLogo to='/social-network'>social network</HeaderLogo>
         <Nav>
-          <Link to='/social-network' active={url === '/social-network'}>
+          <Link to='/social-network' $active={url === '/social-network'}>
             <img src={HomeIcon} alt='' />
           </Link>
-          <Link to='/social-network/explore' active={url.includes('/explore')}>
+          <Link to='/social-network/explore' $active={url.includes('/explore')}>
             <img src={SearchIcon} alt='' />
           </Link>
-          <Button active={overlay} onClick={() => setOverlay(!overlay)}>
+          <Button $active={overlay} onClick={() => setOverlay(!overlay)}>
             <img src={PlusIcon} alt='' />
           </Button>
           {overlay && (
             <Overlay>
-              <Input onclick={props.store.createPost} placeholder={'Add image url here'} />
+              <Input onclick={props.store.createPost} placeholder={'Enter link to image'} />
             </Overlay>
           )}
-          <Link to='/social-network/chats' active={url.includes('/chat')}>
+          <Link to='/social-network/chats' $active={url.includes('/chat')}>
             <img src={MessengerIcon} alt='' />
           </Link>
-          <Link to='/social-network/liked' active={url.includes('/liked')}>
+          <Link to='/social-network/liked' $active={url.includes('/liked')}>
             <img src={HeartIcon} alt='' />
           </Link>
           <Link
             to={'/social-network/user/' + props.store.currentUserId}
-            active={url.includes('/user')}
+            $active={url.includes('/user')}
           >
             <img src={ProfileIcon} alt='' />
           </Link>
@@ -124,5 +125,5 @@ const Header = (props: Props) => {
       </HeaderContainer>
     </AppHeader>
   )
-}
+})
 export default Header

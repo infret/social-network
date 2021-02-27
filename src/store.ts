@@ -34,17 +34,43 @@ const Store = types
   .model({
     currentUserId: types.number,
     searchBy: types.string,
-    users: types.array(User),
-    posts: types.array(Post),
-    messages: types.array(Message)
+    users: types.array(User)
   })
   .actions((self) => ({
+    createUser(username: string, avatar: string, status: string) {
+      avatar !== ''
+        ? self.users.push({
+            id: self.users.length,
+            username,
+            avatar,
+            status,
+            posts: [],
+            messages: [],
+            comments: [],
+            following: [],
+            likedPosts: []
+          })
+        : self.users.push({
+            id: self.users.length,
+            username,
+            avatar:
+              'https://images.unsplash.com/photo-1544502062-f82887f03d1c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1427&q=80',
+            status,
+            posts: [],
+            messages: [],
+            comments: [],
+            following: [],
+            likedPosts: []
+          })
+    },
     createPost(img: string) {
-      self.users[self.currentUserId].posts.push({
-        id: self.posts.length + 1000,
-        img,
-        date: Date.now() / 1000
-      })
+      img
+        ? self.users[self.currentUserId].posts.push({
+            id: self.users[self.currentUserId].posts.length + 1,
+            img,
+            date: Date.now() / 1000
+          })
+        : alert('No image provided')
     },
     createMessage(text: string, recipient_id: number) {
       self.users[self.currentUserId].messages.push({
@@ -79,8 +105,8 @@ const Store = types
     setSearch(search: string) {
       self.searchBy = search
     },
-    setCurrentUser(id: number) {
-      self.currentUserId = id
+    setCurrentUser(username: string) {
+      self.currentUserId = self.users.filter((user) => user.username === username)[0].id
     }
   }))
 
@@ -90,7 +116,7 @@ const store = Store.create({
   users: [
     {
       id: 0,
-      username: 'vladislavpechkin',
+      username: 'infret',
       avatar:
         'https://images.unsplash.com/photo-1503212556734-c0ca0c49c8b0?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxzZWFyY2h8MjF8fHNpbGhvdWV0dGV8ZW58MHwyfDB8&auto=format&fit=crop&w=400&q=60',
       status: `The Creator in person`,
@@ -145,7 +171,7 @@ const store = Store.create({
       id: 1,
       username: 'ryanmiller',
       avatar:
-        'https://images.unsplash.com/photo-1544502062-f82887f03d1c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1427&q=80',
+        'https://images.unsplash.com/photo-1457449940276-e8deed18bfff?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60',
       status: `Somewhat busy nowadays`,
       posts: [
         {
@@ -238,7 +264,7 @@ const store = Store.create({
       ],
       messages: [],
       comments: [
-        { post_id: 3, text: 'Post with some text about this and that', date: 1613841000 },
+        { post_id: 3, text: 'Post with some text about this and that', date: 1614000000 },
         {
           post_id: 4,
           text: 'Sample comment from sample user',
