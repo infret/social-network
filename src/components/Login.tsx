@@ -79,7 +79,7 @@ const Login = observer((props: Props) => {
       <Heading>social network</Heading>
       <Container>
         <Form>
-          <Input type='text' placeholder='Enter username' ref={loginUsername} />
+          <Input type='text' placeholder='Username' ref={loginUsername} />
           <Input
             type='submit'
             value='Login'
@@ -90,7 +90,7 @@ const Login = observer((props: Props) => {
                     .length
                 ) {
                   props.store.setCurrentUser(loginUsername.current.value)
-                  history.push('/social-network')
+                  console.log(props.store.currentUserId)
                 } else {
                   alert('Incorrect username')
                 }
@@ -99,9 +99,9 @@ const Login = observer((props: Props) => {
           />
         </Form>
         <Form>
-          <Input type='text' placeholder='Enter username' ref={registerUsername} />
-          <Input type='text' placeholder='Enter link to image' ref={avatar} />
-          <Input type='text' placeholder='Write something about you' ref={status} />
+          <Input type='text' placeholder='Username' ref={registerUsername} />
+          <Input type='text' placeholder='Link to profile picture' ref={avatar} />
+          <Input type='text' placeholder='Profile status' ref={status} />
           <Input
             type='submit'
             value='Register'
@@ -118,7 +118,7 @@ const Login = observer((props: Props) => {
                     status.current.value
                   )
                   props.store.setCurrentUser(registerUsername.current.value)
-                  history.push('/social-network')
+                  console.log(props.store.currentUserId)
                 } else {
                   alert('User already exists')
                 }
@@ -128,11 +128,11 @@ const Login = observer((props: Props) => {
         </Form>
       </Container>
       <Note>
-        Note: this page is for demonstration purposes. All data and profile activity (messages,
-        posts, etc.) exist only in the current browser session and disappear when the site is
-        closed. No password is required, you can log in with any existing username (e.g.
-        <b> infret</b>) or register a new one. When registering, specify your username and
-        optionally link to your profile picture (avatar) and your profile status.
+        This is not a real app. Users are fictional,
+        photos are copyright-free. All data and profile activity (messages, posts, etc.) are
+        not sent anywhere and exist only in the current browser session. No password is required,
+        you can log in with any existing username (try
+        <b> infret</b>) or register a new one.
       </Note>
       <Link href='https://infret.github.io'>
         <i>by Infret</i>

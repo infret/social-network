@@ -105,8 +105,11 @@ const Store = types
     setSearch(search: string) {
       self.searchBy = search
     },
-    setCurrentUser(username: string) {
-      self.currentUserId = self.users.filter((user) => user.username === username)[0].id
+    setCurrentUser(username?: string) {
+      !username
+        ? (self.currentUserId = -1)
+        : (self.currentUserId = self.users.filter((user) => user.username === username)[0].id)
+     
     }
   }))
 
@@ -305,7 +308,6 @@ export function timeSince(date: number) {
 
 export interface IStore extends Instance<typeof store> {}
 export interface IUser extends Instance<typeof User> {}
-export interface IPost extends Instance<typeof Post> {}
 
 const saveState = (state: IStore) => {
   window.sessionStorage.setItem('app_state', JSON.stringify(state))

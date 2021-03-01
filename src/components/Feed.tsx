@@ -2,12 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import Post from './Post'
 import { observer } from 'mobx-react-lite'
-import { IStore, IPost } from '../store'
+import { IStore } from '../store'
 import { NavLink } from 'react-router-dom'
 
 const Page = styled.div`
   width: 100%;
   padding: 5px 0;
+  display: flex;
+  flex-direction: column; 
 `
 
 const Placeholder = styled.h1`

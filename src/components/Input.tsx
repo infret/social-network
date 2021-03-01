@@ -22,8 +22,8 @@ const Button = styled.button`
   background-repeat: no-repeat;
   background-position: center;
   height: 100%;
-  width: 60px;
-  margin-bottom: 12px;
+  width: 40px;
+  margin: 0 8px 12px 4px;
   background-image: url(${ConfirmIcon});
   cursor: pointer;
 `

@@ -9,21 +9,27 @@ import { observer } from 'mobx-react-lite'
 import Input from './Input'
 
 const StyledPost = styled.div`
-  margin: 10px 0;
-  width: 100%;
+  margin: 10px auto;
   border: 1px solid gainsboro;
-  display: flex;
+  display: inline-flex;
   flex-wrap: wrap;
-  height: 680px;
+  height: 640px;
   box-sizing: border-box;
+
   @media (max-width: 639px) {
     height: auto;
   }
 `
+const PostImg = styled.img`
+  height: 100%;
+  max-width: 678px;
+  width: 50vw;
+  object-fit: cover;
 
-const PostHeader = styled.div`
-  display: flex;
-  align-items: center;
+  @media (max-width: 639px) {
+    width: 100%;
+    max-height: 480px;
+  }
 `
 
 const PostBody = styled.div`
@@ -37,9 +43,13 @@ const PostBody = styled.div`
   @media (max-width: 639px) {
     max-height: 280px;
     width: 100%;
+    height: auto;
   }
 `
-
+const PostHeader = styled.div`
+  display: flex;
+  align-items: center;
+`
 const Date = styled.p`
   color: grey;
   font-size: 13px;
@@ -56,19 +66,14 @@ const Actions = styled.div`
   margin-top: 4px;
 `
 
-const PostImg = styled.img`
-  height: 100%;
-  width: 678px;
-  object-fit: cover;
-
-  @media (max-width: 639px) {
-    width: 100%;
-  }
-`
-
-const Button = styled.button`
-  margin: 4px 4px 0 12px;
+const Button = styled.button<{ icon: any }>`
+  margin: 0 0 0 8px;
   cursor: pointer;
+  background-image: url(${(props) => props.icon});
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 40px;
 `
 
 const Comment = styled.div`
@@ -148,13 +153,16 @@ const Post = observer((props: Props) => {
           )}
         </div>
         <Actions>
-          <Button onClick={() => props.store.toggleLike(props.id)}>
-            {props.store.users[props.store.currentUserId].likedPosts.includes(props.id) ? (
-              <img src={HeartFillIcon} alt='' />
-            ) : (
-              <img src={HeartIcon} alt='' />
-            )}
-          </Button>
+          <Button
+            onClick={() => props.store.toggleLike(props.id)}
+            icon={
+              props.store.currentUserId ||
+              props.store.users[props.store.currentUserId].likedPosts.includes(props.id)
+                ? HeartFillIcon
+                : HeartIcon
+            }
+          ></Button>
+
           {props.likes > 0 && props.likes}
           <Input onclick={props.store.createComment} id={props.id} placeholder={'Add a comment'} />
         </Actions>

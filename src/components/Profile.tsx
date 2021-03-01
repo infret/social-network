@@ -102,14 +102,14 @@ const Profile = observer((props: Props) => {
                     : 'Follow'}
                 </Button>
               </div>
-            ) : <LinkButton to={'/social-network/login'}>Logout</LinkButton>}
+            ) : (
+              <Button onClick={() => props.store.setCurrentUser()}>Logout</Button>
+            )}
           </Container>
           <Status>{props.store.users[props.userId].status}</Status>
           <Container>
-            <p>
-              {props.store.users[props.userId].posts.length} post
-              {props.store.users[props.userId].posts.length != 1 && 's'}
-            </p>
+            {props.store.users[props.userId].posts.length} post
+            {props.store.users[props.userId].posts.length != 1 && 's'}
             <NavLink to={'/social-network/user/' + props.userId + '/followers'}>
               {props.store.users.filter((user) => user.following.includes(props.userId)).length}{' '}
               follower

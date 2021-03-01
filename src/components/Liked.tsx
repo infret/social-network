@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Post from './Post'
 import { observer } from 'mobx-react-lite'
-import { IStore, IPost } from '../store'
+import { IStore } from '../store'
 
 const Page = styled.div`
   width: 100%;
