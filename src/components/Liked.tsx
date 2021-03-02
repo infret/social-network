@@ -19,27 +19,32 @@ interface Props {
   store: IStore
 }
 
-const Liked = observer((props: Props) => (
-  <Page>
-    {props.store.users[props.store.currentUserId].likedPosts.length ? (
-      props.store.users.map((user) =>
-        user.posts.map(
-          (post) =>
-            props.store.users[props.store.currentUserId].likedPosts.includes(post.id) && (
-              <Post
-                id={post.id}
-                user={user}
-                date={post.date}
-                img={post.img}
-                likes={props.store.users.filter((user) => user.likedPosts.includes(post.id)).length}
-                store={props.store}
-              />
-            )
+const Liked = observer((props: Props) => {
+  document.title = 'Liked posts'
+  return (
+    <Page>
+      {props.store.users[props.store.currentUserId].likedPosts.length ? (
+        props.store.users.map((user) =>
+          user.posts.map(
+            (post) =>
+              props.store.users[props.store.currentUserId].likedPosts.includes(post.id) && (
+                <Post
+                  id={post.id}
+                  user={user}
+                  date={post.date}
+                  img={post.img}
+                  likes={
+                    props.store.users.filter((user) => user.likedPosts.includes(post.id)).length
+                  }
+                  store={props.store}
+                />
+              )
+          )
         )
-      )
-    ) : (
-      <Placeholder>You haven't liked any posts yet</Placeholder>
-    )}
-  </Page>
-))
+      ) : (
+        <Placeholder>You haven't liked any posts yet</Placeholder>
+      )}
+    </Page>
+  )
+})
 export default Liked

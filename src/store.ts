@@ -1,3 +1,4 @@
+import { autorun, toJS } from 'mobx'
 import { Instance, types } from 'mobx-state-tree'
 
 const Post = types.model({
@@ -109,12 +110,11 @@ const Store = types
       !username
         ? (self.currentUserId = -1)
         : (self.currentUserId = self.users.filter((user) => user.username === username)[0].id)
-     
     }
   }))
 
 const store = Store.create({
-  currentUserId: 0,
+  currentUserId: -1,
   searchBy: '',
   users: [
     {
@@ -309,13 +309,22 @@ export function timeSince(date: number) {
 export interface IStore extends Instance<typeof store> {}
 export interface IUser extends Instance<typeof User> {}
 
-const saveState = (state: IStore) => {
-  window.sessionStorage.setItem('app_state', JSON.stringify(state))
+export const saveState = (state: IStore) => {
+  window.sessionStorage.setItem('state', JSON.stringify(state))
 }
 
-const loadState = () => {
-  const savedState = window.sessionStorage.getItem('app_state')
+export const loadState = () => {
+  const savedState = window.sessionStorage.getItem('state')
   return savedState ? (JSON.parse(savedState) as IStore) : undefined
 }
 
+export function autoSave(store: IStore) {
+  let firstRun = true
+  autorun(() => {
+    if (!firstRun) {
+      window.sessionStorage.setItem('state', JSON.stringify(toJS(store)))
+    }
+    firstRun = false
+  })
+}
 export default store

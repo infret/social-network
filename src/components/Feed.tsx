@@ -9,7 +9,7 @@ const Page = styled.div`
   width: 100%;
   padding: 5px 0;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
 `
 
 const Placeholder = styled.h1`
@@ -27,6 +27,7 @@ interface Props {
 }
 
 const Feed = observer((props: Props) => {
+  document.title = 'Social network'
   let posts: any[] = []
   props.store.users.map(
     (user) =>

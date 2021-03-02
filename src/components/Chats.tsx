@@ -5,11 +5,12 @@ import { IStore } from '../store'
 import User from './User'
 
 const Page = styled.div`
-  width: 320px;
+  width: 100%;
   margin: 0 auto;
   padding: 5px 0;
   grid-area: 'chats';
   @media (min-width: 639px) {
+    width: 320px;
     border-left: 1px solid gainsboro;
   }
 `

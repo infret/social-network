@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import * as ReactDOM from 'react-dom'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Feed from './components/Feed'
 import Profile from './components/Profile'
@@ -9,12 +9,13 @@ import { BrowserRouter, Redirect, Route } from 'react-router-dom'
 import ChatPage from './components/Chat'
 import Explore from './components/Explore'
 import Header from './components/Header'
-import store, { IStore } from './store'
+import store, { IStore, autoSave } from './store'
 import Followers from './components/Followers'
 import Following from './components/Following'
 import Liked from './components/Liked'
 import Login from './components/Login'
 import { observer } from 'mobx-react-lite'
+import { action, reaction, set, autorun, toJS } from 'mobx'
 
 const GlobalStyle = createGlobalStyle`
 	* {
@@ -55,8 +56,6 @@ interface Props {
 const App = observer((props: Props) => {
   return (
     <BrowserRouter>
-      {() => (document.title = 'Social network')}
-      {console.log(props.store.currentUserId)}
       {props.store.currentUserId >= 0 ? (
         <>
           <Header store={props.store} />
