@@ -20,6 +20,12 @@ const AppHeader = styled.header`
   z-index: 10;
   background: white;
   border-bottom: 1px solid gainsboro;
+  @media (max-width: 639px) {
+    border-top: 1px solid gainsboro;
+    position: fixed;
+    margin-top: auto;
+    bottom: 0;
+  }
 `
 
 const HeaderContainer = styled.div`

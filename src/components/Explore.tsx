@@ -16,8 +16,6 @@ const Page = styled.div`
 `
 
 const Overlay = styled.div`
-  position: fixed;
-  top: 100px;
   width: 300px;
   margin: 0 auto;
   max-height: 500px;

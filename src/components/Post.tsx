@@ -16,8 +16,10 @@ const Component = styled.div`
   height: 640px;
   box-sizing: border-box;
 
-  @media (max-width: 639px) {
+  @media (max-width: 640px) {
     height: auto;
+    border-left: none;
+    border-right: none;
   }
 `
 const PostImg = styled.img`
@@ -26,7 +28,7 @@ const PostImg = styled.img`
   width: 50vw;
   object-fit: cover;
 
-  @media (max-width: 639px) {
+  @media (max-width: 640px) {
     width: 100%;
     max-height: 480px;
   }
@@ -40,7 +42,7 @@ const PostBody = styled.div`
   flex-direction: column;
   justify-content: space-between;
 
-  @media (max-width: 639px) {
+  @media (max-width: 640px) {
     max-height: 280px;
     width: 100%;
     height: auto;
@@ -103,7 +105,7 @@ const CommentDate = styled.p`
 const Comments = styled.div`
   overflow: auto;
   max-height: 560px;
-  @media (max-width: 639px) {
+  @media (max-width: 640px) {
     max-height: 160px;
   }
 `
@@ -156,7 +158,6 @@ const Post = observer((props: Props) => {
           <Button
             onClick={() => props.store.toggleLike(props.id)}
             icon={
-              props.store.currentUserId ||
               props.store.users[props.store.currentUserId].likedPosts.includes(props.id)
                 ? HeartFillIcon
                 : HeartIcon

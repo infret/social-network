@@ -9,7 +9,7 @@ const Page = styled.div`
   margin: 0 auto;
   padding: 5px 0;
   grid-area: 'chats';
-  @media (min-width: 639px) {
+  @media (min-width: 640px) {
     width: 320px;
     border-left: 1px solid gainsboro;
   }

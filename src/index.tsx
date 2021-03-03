@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import ReactDOM from 'react-dom'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useLayoutEffect } from 'react'
 import styled from 'styled-components'
 import Feed from './components/Feed'
 import Profile from './components/Profile'
@@ -15,7 +15,6 @@ import Following from './components/Following'
 import Liked from './components/Liked'
 import Login from './components/Login'
 import { observer } from 'mobx-react-lite'
-import { action, reaction, set, autorun, toJS } from 'mobx'
 
 const GlobalStyle = createGlobalStyle`
 	* {
@@ -31,11 +30,16 @@ const GlobalStyle = createGlobalStyle`
 	}
 `
 
+const Body = styled.div`
+  @media (max-width: 640px) {
+    padding-bottom: 50px;
+  }
+`
+
 const Main = styled.div`
   max-width: 1000px;
   width: 100%;
   margin: 0 auto;
-  display: flex;
 `
 
 const Container = styled.div`
@@ -44,7 +48,7 @@ const Container = styled.div`
   grid-template-areas: 'chats chat';
   width: 100%;
 
-  @media (max-width: 639px) {
+  @media (max-width: 640px) {
     grid-template-columns: 1fr;
   }
 `
@@ -54,20 +58,27 @@ interface Props {
 }
 
 const App = observer((props: Props) => {
-  useEffect(() => {
-    props.store.loadStore()
-  }, [])
+  localStorage.getItem('store') &&
+    useEffect(() => {
+      props.store.loadStore()
+    }, [])
 
   useEffect(() => {
     localStorage.setItem('store', JSON.stringify(props.store))
   }, [props.store.currentUserId, props.store.users, props.store.searchBy])
 
+  const [width, setWidth] = useState(window.innerWidth)
+  useLayoutEffect(() => {
+    window.addEventListener('resize', () => setWidth(window.innerWidth))
+    return () => window.removeEventListener('resize', () => setWidth(window.innerWidth))
+  }, [])
+
   return (
     <BrowserRouter>
       {props.store.currentUserId >= 0 ? (
-        <>
-          <Header store={props.store} />
-          <Route path='/social-network/login' component={() => <Login store={props.store} />} />
+        <Body>
+          {width >= 640 && <Header store={props.store} />}
+          <Route render={() => <Redirect to='/social-network' />} />
           <Main>
             <Route
               path='/social-network/explore'
@@ -79,7 +90,7 @@ const App = observer((props: Props) => {
               render={() => (
                 <Container>
                   <Chats store={props.store} />
-                  {window.innerWidth >= 640 && <ChatPage store={props.store} userId={-1} />}
+                  {width >= 640 && <ChatPage store={props.store} userId={-1} />}
                 </Container>
               )}
             />
@@ -117,7 +128,7 @@ const App = observer((props: Props) => {
               path='/social-network/chat/:userId'
               component={() => (
                 <Container>
-                  {window.innerWidth >= 640 && <Chats store={props.store} />}
+                  {width >= 640 && <Chats store={props.store} />}
                   <ChatPage
                     store={props.store}
                     userId={parseInt(
@@ -134,8 +145,9 @@ const App = observer((props: Props) => {
               path='/social-network/liked'
               component={() => <Liked store={props.store} />}
             />
+            {width < 640 && <Header store={props.store} />}
           </Main>
-        </>
+        </Body>
       ) : (
         <Login store={props.store} />
       )}
