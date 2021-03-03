@@ -65,7 +65,7 @@ const App = observer((props: Props) => {
 
   useEffect(() => {
     localStorage.setItem('store', JSON.stringify(props.store))
-  }, [props.store.currentUserId, props.store.users, props.store.searchBy])
+  }, [props.store.currentUserId, props.store.users])
 
   const [width, setWidth] = useState(window.innerWidth)
   useLayoutEffect(() => {
@@ -78,7 +78,9 @@ const App = observer((props: Props) => {
       {props.store.currentUserId >= 0 ? (
         <Body>
           {width >= 640 && <Header store={props.store} />}
-          <Route render={() => <Redirect to='/social-network' />} />
+          {!window.location.pathname.includes('/social-network') && (
+            <Redirect to='/social-network' />
+          )}
           <Main>
             <Route
               path='/social-network/explore'

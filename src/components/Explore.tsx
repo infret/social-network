@@ -1,10 +1,10 @@
 import React from 'react'
-import Searchbar from './Searchbar'
 import { IStore } from '../store'
 import User from './User'
 import Post from './Post'
 import styled from 'styled-components'
 import { observer } from 'mobx-react-lite'
+import CloseIcon from '../resources/close.svg'
 
 const Page = styled.div`
   width: 100%;
@@ -15,6 +15,33 @@ const Page = styled.div`
   position: relative;
 `
 
+const Searchbar = styled.div`
+  width: 300px;
+  height: 36px;
+  margin: 8px auto;
+  border: 1px solid gainsboro;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+`
+
+const Input = styled.input`
+  width: calc(100% - 30px);
+  height: 100%;
+  font-size: 15px;
+  margin-left: 10px;
+`
+
+const Button = styled.button`
+  background-image: url(${CloseIcon});
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 22px;
+  width: 22px;
+  justify-self: end;
+  margin-right: 10px;
+`
+
 const Overlay = styled.div`
   width: 300px;
   margin: 0 auto;
@@ -22,6 +49,8 @@ const Overlay = styled.div`
   overflow-x: auto;
   background-color: white;
   border: 1px solid gainsboro;
+  position: absolute;
+  top: 50px;
 `
 
 const Posts = styled.div`
@@ -36,7 +65,15 @@ const Explore = observer((props: Props) => {
   document.title = 'Search and explore'
   return (
     <Page>
-      <Searchbar store={props.store} />
+      <Searchbar>
+        <Input
+          type='search'
+          placeholder='Search'
+          value={props.store.searchBy}
+          onChange={(e) => props.store.setSearch(e.target.value.toLowerCase())}
+        />
+        {props.store.searchBy && <Button onClick={() => props.store.setSearch('')}></Button>}
+      </Searchbar>
       {props.store.searchBy && (
         <Overlay>
           {props.store.users
