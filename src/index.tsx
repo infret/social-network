@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
-import * as ReactDOM from 'react-dom'
+import ReactDOM from 'react-dom'
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Feed from './components/Feed'
@@ -9,7 +9,7 @@ import { BrowserRouter, Redirect, Route } from 'react-router-dom'
 import ChatPage from './components/Chat'
 import Explore from './components/Explore'
 import Header from './components/Header'
-import store, { IStore, autoSave } from './store'
+import store, { IStore } from './store'
 import Followers from './components/Followers'
 import Following from './components/Following'
 import Liked from './components/Liked'
@@ -54,6 +54,14 @@ interface Props {
 }
 
 const App = observer((props: Props) => {
+  useEffect(() => {
+    props.store.loadStore()
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('store', JSON.stringify(props.store))
+  }, [props.store.currentUserId, props.store.users, props.store.searchBy])
+
   return (
     <BrowserRouter>
       {props.store.currentUserId >= 0 ? (

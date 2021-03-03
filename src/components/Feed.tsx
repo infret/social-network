@@ -18,7 +18,7 @@ const Placeholder = styled.h1`
   text-align: center;
 `
 
-const StyledLink = styled(NavLink)`
+const Link = styled(NavLink)`
   color: dodgerblue;
 `
 
@@ -60,10 +60,10 @@ const Feed = observer((props: Props) => {
       ) : (
         <Placeholder>
           You don't follow anyone yet, consider
-          <StyledLink to='/social-network/explore'>
+          <Link to='/social-network/explore'>
             {' '}
             searching for posts and people to follow
-          </StyledLink>
+          </Link>
         </Placeholder>
       )}
     </Page>

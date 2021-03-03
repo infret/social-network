@@ -90,7 +90,6 @@ const Login = observer((props: Props) => {
                     .length
                 ) {
                   props.store.setCurrentUser(loginUsername.current.value)
-                  console.log(props.store.currentUserId)
                 } else {
                   alert('Incorrect username')
                 }
@@ -118,7 +117,6 @@ const Login = observer((props: Props) => {
                     status.current.value
                   )
                   props.store.setCurrentUser(registerUsername.current.value)
-                  console.log(props.store.currentUserId)
                 } else {
                   alert('User already exists')
                 }
@@ -128,9 +126,9 @@ const Login = observer((props: Props) => {
         </Form>
       </Container>
       <Note>
-        This is not a real app. Users are fictional,
-        photos are copyright-free. All data and profile activity (messages, posts, etc.) are
-        not sent anywhere and exist only in the current browser session. No password is required,
+        This website is not real. Users are fictional,
+        photos are copyright-free. All data (messages, posts, etc.) is
+        not sent anywhere and exist only in your browser. No password is required,
         you can log in with any existing username (try
         <b> infret</b>) or register a new one.
       </Note>

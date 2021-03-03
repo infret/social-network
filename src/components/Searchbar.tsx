@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { IStore } from '../store'
 import CloseIcon from '../resources/close.svg'
 
-const StyledForm = styled.div`
+const Form = styled.div`
   width: 300px;
   height: 36px;
   margin: 8px auto;
@@ -36,7 +36,7 @@ interface Props {
 
 export default function Searchbar(props: Props) {
   return (
-    <StyledForm>
+    <Form>
       <Input
         type='search'
         placeholder='Search'
@@ -44,6 +44,6 @@ export default function Searchbar(props: Props) {
         onChange={(e) => props.store.setSearch(e.target.value)}
       />
       {props.store.searchBy && <Button onClick={() => props.store.setSearch('')}></Button>}
-    </StyledForm>
+    </Form>
   )
 }

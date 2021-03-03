@@ -8,7 +8,7 @@ import { NavLink } from 'react-router-dom'
 import { observer } from 'mobx-react-lite'
 import Input from './Input'
 
-const StyledPost = styled.div`
+const Component = styled.div`
   margin: 10px auto;
   border: 1px solid gainsboro;
   display: inline-flex;
@@ -126,7 +126,7 @@ const Post = observer((props: Props) => {
       .map((comment) => comments.push({ user: user, text: comment.text, date: comment.date }))
   )
   return (
-    <StyledPost>
+    <Component>
       {props.img && <PostImg src={props.img} />}
       <PostBody>
         <div>
@@ -167,7 +167,7 @@ const Post = observer((props: Props) => {
           <Input onclick={props.store.createComment} id={props.id} placeholder={'Add a comment'} />
         </Actions>
       </PostBody>
-    </StyledPost>
+    </Component>
   )
 })
 export default Post

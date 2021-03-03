@@ -110,6 +110,12 @@ const Store = types
       !username
         ? (self.currentUserId = -1)
         : (self.currentUserId = self.users.filter((user) => user.username === username)[0].id)
+    },
+    loadStore() {
+      let json = JSON.parse(localStorage.getItem('store')!)
+      self.users = json.users
+      self.currentUserId = json.currentUserId
+      self.searchBy = json.searchBy
     }
   }))
 
@@ -309,22 +315,4 @@ export function timeSince(date: number) {
 export interface IStore extends Instance<typeof store> {}
 export interface IUser extends Instance<typeof User> {}
 
-export const saveState = (state: IStore) => {
-  window.sessionStorage.setItem('state', JSON.stringify(state))
-}
-
-export const loadState = () => {
-  const savedState = window.sessionStorage.getItem('state')
-  return savedState ? (JSON.parse(savedState) as IStore) : undefined
-}
-
-export function autoSave(store: IStore) {
-  let firstRun = true
-  autorun(() => {
-    if (!firstRun) {
-      window.sessionStorage.setItem('state', JSON.stringify(toJS(store)))
-    }
-    firstRun = false
-  })
-}
 export default store
