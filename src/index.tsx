@@ -15,6 +15,7 @@ import Following from './components/Following'
 import Liked from './components/Liked'
 import Login from './components/Login'
 import { observer } from 'mobx-react-lite'
+import MobileHeader from './components/MobileHeader'
 
 const GlobalStyle = createGlobalStyle`
 	* {
@@ -77,7 +78,7 @@ const App = observer((props: Props) => {
     <BrowserRouter>
       {props.store.currentUserId >= 0 ? (
         <Body>
-          {width >= 640 && <Header store={props.store} />}
+          {width >= 640 ? <Header store={props.store}/> : <MobileHeader/>}
           {!window.location.pathname.includes('/social-network') && (
             <Redirect to='/social-network' />
           )}

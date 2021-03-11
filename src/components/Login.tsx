@@ -1,6 +1,5 @@
 import { observer } from 'mobx-react-lite'
-import React, { MutableRefObject, useRef } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { MutableRefObject, useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { IStore } from '../store'
 
@@ -68,13 +67,20 @@ interface Props {
 }
 
 const Login = observer((props: Props) => {
-  const history = useHistory()
+  const [isShown, setIsShown] = useState(false)
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsShown(true)
+    }, 1000)
+  })
+
   const loginUsername = useRef() as MutableRefObject<HTMLInputElement>
   const registerUsername = useRef() as MutableRefObject<HTMLInputElement>
   const avatar = useRef() as MutableRefObject<HTMLInputElement>
   const status = useRef() as MutableRefObject<HTMLInputElement>
   document.title = 'Login or register'
-  return (
+  return isShown ? (
     <Page>
       <Heading>social network</Heading>
       <Container>
@@ -126,16 +132,17 @@ const Login = observer((props: Props) => {
         </Form>
       </Container>
       <Note>
-        This website is not real. Users are fictional,
-        photos are copyright-free. All data (messages, posts, etc.) is
-        not sent anywhere and exist only in your browser. No password is required,
-        you can log in with any existing username (try
-        <b> infret</b>) or register a new one.
+        This website is not real. Users are fictional, photos are copyright-free. All data
+        (messages, posts, etc.) is not sent anywhere and exist only in your browser. No password is
+        required, you can log in with any existing username (try <b> infret</b>) or register a new
+        one.
       </Note>
       <Link href='https://infret.github.io'>
         <i>by Infret</i>
       </Link>
     </Page>
+  ) : (
+    <></>
   )
 })
 export default Login
