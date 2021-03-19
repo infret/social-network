@@ -1,4 +1,3 @@
-import { autorun, toJS } from 'mobx'
 import { Instance, types } from 'mobx-state-tree'
 
 const Post = types.model({

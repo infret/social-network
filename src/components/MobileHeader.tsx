@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite'
 import React, { useEffect, useState } from 'react'
-import { Router, useHistory } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import BackIcon from '../resources/back.svg'
 import { withRouter } from 'react-router-dom'
@@ -38,7 +38,6 @@ const Header = observer(() => {
   history.listen((location) => {
     setUrl(location.pathname)
   })
-  console.log(url.split('/'))
   return (
     <MobileHeader>
       {url.split('/')[url.split('/').length - 1] !== 'social-network' && (

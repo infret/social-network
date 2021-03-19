@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import Feed from './components/Feed'
 import Profile from './components/Profile'
 import Chats from './components/Chats'
-import { BrowserRouter, Redirect, Route } from 'react-router-dom'
+import { BrowserRouter, Redirect, Route, useHistory } from 'react-router-dom'
 import ChatPage from './components/Chat'
 import Explore from './components/Explore'
 import Header from './components/Header'
@@ -59,14 +59,15 @@ interface Props {
 }
 
 const App = observer((props: Props) => {
-  localStorage.getItem('store') &&
-    useEffect(() => {
-      props.store.loadStore()
-    }, [])
+  const history = useHistory()
 
   useEffect(() => {
-    localStorage.setItem('store', JSON.stringify(props.store))
-  }, [props.store.currentUserId, props.store.users])
+    async function init() {
+      const data = await localStorage.getItem('store')
+      localStorage.setItem('store', JSON.stringify(data))
+    }
+    init()
+  }, [props.store.currentUserId])
 
   const [width, setWidth] = useState(window.innerWidth)
   useLayoutEffect(() => {
@@ -78,7 +79,7 @@ const App = observer((props: Props) => {
     <BrowserRouter>
       {props.store.currentUserId >= 0 ? (
         <Body>
-          {width >= 640 ? <Header store={props.store}/> : <MobileHeader/>}
+          {width >= 640 ? <Header store={props.store} /> : <MobileHeader />}
           {!window.location.pathname.includes('/social-network') && (
             <Redirect to='/social-network' />
           )}
